@@ -1,0 +1,265 @@
+<body>
+    
+
+        <div class="container">
+          <div id="container">
+            <div class="underline"></div>
+            <h1>Formulario de Aspectos Tecnicos</h1>
+            <!-- Ejemplo en tu plantilla -->
+            <form id="AspectosTecnicos_form" #form2="ngForm" (ngSubmit)="onSubmitAspectosTecnicos(form2)"
+              class="form-container">
+              <legend>
+                <h1>Formulario de Aspectos Tecnicos</h1>
+              </legend>
+    
+    
+    
+    
+              <div class="form-group">
+                <label for="paste_FECHA_ASPEC_TECNICOS">Fecha de Ingreso de Aspectos Tecnicos:</label>
+                <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS"
+                  [(ngModel)]="paste_FECHA_ASPEC_TECNICOS" disabled>
+              </div>
+    
+              <!-- Sección 1: Selecciones -->
+              <div class="form-group">
+                <label for="ambiental">Tipo de Permiso Ambiental:</label>
+                <select name="ambiental" id="ambiental" [(ngModel)]="id_PTIPEAM" (change)="seleccionarTipoAmbiental($event)" required>
+                  <option disabled hidden selected>Seleccione un tipo de Permiso:</option>
+                  <option *ngFor="let aspectosTecnicos of tipoAmbiental" [value]="aspectosTecnicos.id_PTIPEAM">
+                    {{aspectosTecnicos.ptipeam_TIPO_PER_AMBIENTAL}}
+                  </option>
+                </select>
+              </div>
+    
+              <!-- Sección 5: campos de número -->
+              <div class="form-group">
+                <label for="paste_BENEFI_DIRECT_PLANI">Beneficiarios Directos Planificado:</label>
+                <input matInput type="number" placeholder="Beneficiarios Directos" class="form-control"
+                  name="paste_BENEFI_DIRECT_PLANI" [(ngModel)]="paste_BENEFI_DIRECT_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_BENEFI_DIRECT_EJEC">Beneficiarios Directos Ejecutado:</label>
+                <input matInput type="number" placeholder="Beneficiarios Directos " class="form-control"
+                  name="paste_BENEFI_DIRECT_EJEC" [(ngModel)]="paste_BENEFI_DIRECT_EJEC" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_VIVIENDAS_CON_SERVICIO_P">Viviendas con Servicio Planificado:</label>
+                <input matInput type="number" placeholder="Viviendas con Servicio" class="form-control"
+                  name="paste_VIVIENDAS_CON_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_CON_SERVICIO_P" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_VIVIENDAS_CON_SERVICIO_E">Viviendas con Servicio Ejecutado:</label>
+                <input matInput type="number" placeholder="Viviendas con Servicio" class="form-control"
+                  name="paste_VIVIENDAS_CON_SERVICIO_E" [(ngModel)]="paste_VIVIENDAS_CON_SERVICIO_E" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_VIVIENDAS_SIN_SERVICIO_P">Viviendas sin Servicio Planificado:</label>
+                <input matInput type="number" placeholder="Viviendas sin Servicio" class="form-control"
+                  name="paste_VIVIENDAS_SIN_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_SIN_SERVICIO_P" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_VIVIENDAS_SIN_SERVICIO_E">Viviendas sin Servicio Ejecutado:</label>
+                <input matInput type="number" placeholder="Viviendas sin Servicio" class="form-control"
+                  name="paste_VIVIENDAS_SIN_SERVICIO_E" [(ngModel)]="paste_VIVIENDAS_SIN_SERVICIO_E" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_TOTAL_VIVIENDA_PLANI">Total Viviendas Planificado:</label>
+                <input matInput type="number" placeholder="Total Viviendas" class="form-control"
+                  name="paste_TOTAL_VIVIENDA_PLANI" [(ngModel)]="paste_TOTAL_VIVIENDA_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_TOTAL_VIVIENDA_EJEC">Total Viviendas Ejecutado:</label>
+                <input matInput type="number" placeholder="Total Viviendas" class="form-control"
+                  name="paste_TOTAL_VIVIENDA_EJEC" [(ngModel)]="paste_TOTAL_VIVIENDA_EJEC" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_LUMINARIA_NUEVAS_PLANI">Luminarias Nuevas Planificado:</label>
+                <input matInput type="number" placeholder="Luminarias Nuevas" class="form-control"
+                  name="paste_LUMINARIA_NUEVAS_PLANI" [(ngModel)]="paste_LUMINARIA_NUEVAS_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_LUMINARIA_NUEVAS_EJEC">Luminarias Nuevas Ejecutado:</label>
+                <input matInput type="number" placeholder="Luminarias Nuevas" class="form-control"
+                  name="paste_LUMINARIA_NUEVAS_EJEC" [(ngModel)]="paste_LUMINARIA_NUEVAS_EJEC" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_AV_PLANFIICADO">AV (km) Planificado:</label>
+                <input matInput type="number" placeholder="AV (km)" class="form-control" name="paste_AV_PLANFIICADO"
+                  [(ngModel)]="paste_AV_PLANFIICADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_AV_EJECUTADO">AV (km) Ejecutado:</label>
+                <input matInput type="number" placeholder="AV (km)" class="form-control" name="paste_AV_EJECUTADO"
+                  [(ngModel)]="paste_AV_EJECUTADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_MV_PLANFIICADO">MV (km) Planificado:</label>
+                <input matInput type="number" placeholder="MV (km)" class="form-control" name="paste_MV_PLANFIICADO"
+                  [(ngModel)]="paste_MV_PLANFIICADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_MV_EJECUTADO">MV (km) Ejecutado:</label>
+                <input matInput type="number" placeholder="MV (km)" class="form-control" name="paste_MV_EJECUTADO"
+                  [(ngModel)]="paste_MV_EJECUTADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_BV_PLANFIICADO">BV (km) Planificado:</label>
+                <input matInput type="number" placeholder="BV (km)" class="form-control" name="paste_BV_PLANFIICADO"
+                  [(ngModel)]="paste_BV_PLANFIICADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_BV_EJECUTADO">BV (km) Ejecutado:</label>
+                <input matInput type="number" placeholder="BV (km)" class="form-control" name="paste_BV_EJECUTADO"
+                  [(ngModel)]="paste_BV_EJECUTADO" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_ACOMO_MEDI_PLANI">Acometidas de Medidores
+                  (km) Planificado:</label>
+                <input matInput type="number" placeholder="Acometidas de Medidores
+                (km)" class="form-control" name="paste_ACOMO_MEDI_PLANI" [(ngModel)]="paste_ACOMO_MEDI_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_ACOMO_MEDI_EJEC">Acometidas de Medidores
+                  (km) Ejecutado:</label>
+                <input matInput type="number" placeholder="Acometidas de Medidores
+                (km)" class="form-control" name="paste_ACOMO_MEDI_EJEC" [(ngModel)]="paste_ACOMO_MEDI_EJEC" required>
+              </div>
+    
+    
+    
+              <div class="form-group">
+                <label for="paste_MEDIDORES_PLANI">Medidores Planificado:</label>
+                <input matInput type="number" placeholder="Medidores" class="form-control" name="paste_MEDIDORES_PLANI"
+                  [(ngModel)]="paste_MEDIDORES_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_MEDIDORES_EJEC">Medidores Ejecutado:</label>
+                <input matInput type="number" placeholder="Medidores" class="form-control" name="paste_MEDIDORES_EJEC"
+                  [(ngModel)]="paste_MEDIDORES_EJEC" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_TRAN_DISTRIBUCION_EJEC">Transformadores de Distribución Planificado:</label>
+                <input matInput type="number" placeholder="Transformadores de Distribución" class="form-control"
+                  name="paste_TRAN_DISTRIBUCION_EJEC" [(ngModel)]="paste_TRAN_DISTRIBUCION_EJEC" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_TRAN_DISTRIBUCION_PLANI">Transformadores de Distribución Ejecutado:</label>
+                <input matInput type="number" placeholder="Transformadores de Distribución" class="form-control"
+                  name="paste_TRAN_DISTRIBUCION_PLANI" [(ngModel)]="paste_TRAN_DISTRIBUCION_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_PO_IN_TRAN__DIST_PLANI">Potencia Instalada en Transformadores de Distribución
+                  (kVA) Planificado:</label>
+                <input matInput type="number" placeholder="Potencia Instalada en Transformadores de Distribución
+                (kVA)" class="form-control" name="paste_PO_IN_TRAN__DIST_PLANI" [(ngModel)]="paste_PO_IN_TRAN__DIST_PLANI"
+                  required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_PO_IN_TRAN__DIST_EJEC">Potencia Instalada en Transformadores de Distribución
+                  (kVA) Ejecutado:</label>
+                <input matInput type="number" placeholder="Potencia Instalada en Transformadores de Distribución
+                (kVA)" class="form-control" name="paste_PO_IN_TRAN__DIST_EJEC" [(ngModel)]="paste_PO_IN_TRAN__DIST_EJEC"
+                  required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_SUBE_DISTRI_NUEV_PLANI">Subestaciones de Distribución Nuevas Planificado:</label>
+                <input matInput type="number" placeholder="Subestaciones de Distribución Nuevas" class="form-control"
+                  name="paste_SUBE_DISTRI_NUEV_PLANI" [(ngModel)]="paste_SUBE_DISTRI_NUEV_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_SUBE_DISTRI_NUEV_EJEC">Subestaciones de Distribución Nuevas Ejecutado:</label>
+                <input matInput type="number" placeholder="Subestaciones de Distribución Nuevas" class="form-control"
+                  name="paste_SUBE_DISTRI_NUEV_EJEC" [(ngModel)]="paste_SUBE_DISTRI_NUEV_EJEC" required>
+              </div>
+    
+    
+              <div class="form-group">
+                <label for="paste__PO_IN_SUB_DISTRI_NUEV_P">Potencia Instalada en Subestaciones de Distribución Nuevas
+                  (MVA) Planificado:</label>
+                <input matInput type="number" placeholder="Potencia Instalada en Subestaciones de Distribución Nuevas
+                (MVA)" class="form-control" name="paste__PO_IN_SUB_DISTRI_NUEV_P"
+                  [(ngModel)]="paste__PO_IN_SUB_DISTRI_NUEV_P" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste__PO_IN_SUB_DISTRI_NUEV_E">Potencia Instalada en Subestaciones de Distribución Nuevas
+                  (MVA) Ejecutado:</label>
+                <input matInput type="number" placeholder="Potencia Instalada en Subestaciones de Distribución Nuevas
+                (MVA)" class="form-control" name="paste__PO_IN_SUB_DISTRI_NUEV_E"
+                  [(ngModel)]="paste__PO_IN_SUB_DISTRI_NUEV_E" required>
+              </div>
+    
+    
+              <div class="form-group">
+                <label for="paste_FECH_OB_PERM_AMBI_PLANI">Fecha de Obtención del Permiso Ambiental
+                  (dd/mm/aaaa) Planificado:</label>
+                <input type="date" placeholder="Fecha de Obtención del Permiso Ambiental
+                (dd/mm/aaaa)" class="form-control" name="paste_FECH_OB_PERM_AMBI_PLANI"
+                  [(ngModel)]="paste_FECH_OB_PERM_AMBI_PLANI" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="paste_FECH_OB_PERM_AMBI_EJEC">Fecha de Obtención del Permiso Ambiental
+                  (dd/mm/aaaa) Ejecutado:</label>
+                <input type="date" placeholder="Fecha de Obtención del Permiso Ambiental
+                (dd/mm/aaaa)" class="form-control" name="paste_FECH_OB_PERM_AMBI_EJEC"
+                  [(ngModel)]="paste_FECH_OB_PERM_AMBI_EJEC" required>
+              </div>
+    
+    
+              <div class="form-group">
+                <label for="paste_EMPLE_DIRE_GENERA">Empleos
+                  directos generados:</label>
+                <input matInput type="number" placeholder="Empleos directos generados" class="form-control"
+                  name="paste_EMPLE_DIRE_GENERA" [(ngModel)]="paste_EMPLE_DIRE_GENERA" required>
+    
+              </div>
+    
+    
+              <div class="submit-container">
+                <div class="submit">
+                  <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form2.valid"
+                    class="btn btn-primary" />
+                </div>
+
+
+                <div class="submit">
+                  <input type="button" value="Actualizar Registro" (click)="actualizarAspectosTecnicos(form2)"
+                    class="btn btn-success" />
+                </div>
+    
+        
+              </div>
+    
+            </form>
+    
+    
+          </div><!-- // End #container -->
+        </div>
+
+</body>

@@ -1,0 +1,31 @@
+<body>
+  <div class="container">
+      <div id="container">
+          <div class="underline"></div>
+          <form id="cargarProyecto" #form1="ngForm" (ngSubmit)="(form1)" class="form-container">
+              <legend>
+                  <h1>Formulario para Cargar un Proyecto</h1>
+              </legend>
+
+              <div class="form-group">
+                  <label for="Codigorapido">Codigo Rapido:</label>
+                  <input type="text" placeholder="Ingrese el Codigo rapido" name="Codigorapido" id="ppro_CODIGO_RAPIDO"
+                      [(ngModel)]="codigo_rapido" required>
+              </div>
+
+              <div class="form-group">
+                  <label for="nombreProyecto">Nombre del Proyecto:</label>
+                  <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+                      [(ngModel)]="nombre_proyecto" disabled>
+              </div>
+
+              <div class="submit-container">
+                  <div class="submit">
+                      <input type="submit" value="Buscar Proyecto" id="form_button" [disabled]="!form1.valid"
+                          class="btn btn-primary" (click)="buscarDatosCodigoRapido()" />
+                  </div>
+              </div>
+          </form>
+      </div><!-- // End #container -->
+  </div>
+</body>

@@ -1,0 +1,143 @@
+/* Component styles */
+
+/* General styles */
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)),
+    url('../../../assets/img/fondoPrinc.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 0;
+  margin-bottom: 5%;
+  margin-top: 10%;
+}
+
+form {
+  width: 90%;
+  max-width: 100%;
+  margin: 5% auto; /* Utilizando unidades relativas */
+  padding: 3%;
+  background-color: #f0f0f0;
+  border: solid 3px #919191;
+  border-radius: 2vmin; /* Utilizando unidades relativas */
+  margin-top: 8%;
+}
+
+h1 {
+  color: #192a67;
+  font-size: 2.8vmin;
+  font-weight: 700;
+  letter-spacing: 0.5vmin;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 1vmin;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  width: calc(30% - 1vmin);
+  margin-bottom: 2vmin;
+  box-sizing: border-box;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 2vmin;
+  border: 0.2vmin solid #000;
+  border-radius: 0.4vmin;
+  font-size: 1.6vmin;
+  margin-top: 1vmin;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1vmin;
+}
+
+/* Agrega un espacio entre las etiquetas en pantallas más grandes */
+@media screen and (max-width: 768px) {
+  .form-group {
+    width: 100%;
+    margin-right: 0;
+    flex-direction: column;
+  }
+}
+
+.submit-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2vmin;
+}
+
+/* Estilo común para los botones */
+.submit input[type='submit'],
+.btn-secondary {
+  flex: 1;
+  box-sizing: border-box;
+  margin-right: 1vmin;
+  padding: 1.5vmin 2.5vmin;
+  font-size: 1.6vmin;
+  border-radius: 0.4vmin;
+  outline: none;
+}
+
+/* Botón Siguiente */
+.btn-siguiente {
+  background: #384591;
+  color: #fff;
+}
+
+.btn-siguiente:hover {
+  background: #d3b383;
+}
+
+/* Botón Regresar */
+.btn-regresar {
+  background: #757575;
+  color: #fff;
+}
+
+.btn-regresar:hover {
+  background: #555555;
+}
+
+/* Ajustes para el botón de Eliminar */
+.btn-eliminar {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-eliminar:hover {
+  background: #c82333;
+}
+
+/* Ajustes para el modal */
+.modal-content {
+  background-color: #fff;
+}
+
+.modal-title {
+  color: #192a67;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspectos Tecnicos del ejecucionProyecto</title>
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div>
+        <p class="text-uppercase text-center h1" style="color: #192A67;">
+            <strong>DATOS DE LA EJECUCION DEL PROYECTO</strong>
+        </p>
+    </div>
+
+    <div>
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaGeneracion" #inputPalabraBusqueda
+                            (input)="buscarPalabraGeneracion(palabraBusquedaGeneracion)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{contadorResultadosGeneracion}}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                    <div id="ingresar">
+                        <div class="col-md-50 d-flex">
+                            <button routerLink="/crearActualizarEjecucionProyecto" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar Ejecucion del Proyecto
+                                 </button>
+
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+
+                <div class="table-responsive">
+                    <!-- Add these buttons in your template -->
+                    <div id="descargar">
+                        <button class="btn btn-primary" (click)="downloadPDF()"><i
+                                class="bi bi-arrow-down-circle-fill"></i><span
+                                style="margin-left: 5px;"></span>Descargar PDF</button>
+                        <button class="btn btn-success" (click)="downloadExel()"><i
+                                class="bi bi-arrow-down-circle-fill"></i><span style="margin-left: 5px;"></span>Exportar
+                            a XLSX</button>
+                    </div>
+                    <table #ejecucionProyecto  class="table table-striped table-hover" id="ejecucionProyecto">
+                        <thead>
+                            <tr>
+
+                                <th>Codigo de Rapido (USD)</th>
+                                <th>Avance de Ejecucion Fisica</th>
+                                <th>Avance de Ejecucion Total</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha Programada del Final</th>
+                                <th>Fecha Final</th>
+                                <th>Estado del Proyecto</th>
+                                <th>Etapa de Ejecucion del Proyecto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ejecucionProyecto of resultadosBusquedaGeneracion of listadoGeneracion">
+
+
+                                <td>{{ejecucionProyecto.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{ejecucionProyecto.pejecp_AVANCE_EJECU_FISICA_PRO}}</td>
+                                <td>{{ejecucionProyecto.pejecp_AVANCE_EJECU_TOTAL_PRO}}</td>
+                                <td>{{ejecucionProyecto.pejecp_FECHA_INICIO_PRO}}</td>
+                                <td>{{ejecucionProyecto.pejecp_FECHA_PROG_FINA_PRO}}</td>
+                                <td>{{ejecucionProyecto.pejecp_FECHA_FINAL_PRO}}</td>
+                                <td>{{ejecucionProyecto.pestpro_ESTADO_PRO}}</td>
+                                <td>{{ejecucionProyecto.petaejepro_ETAPA_EJE_PROYEC}}</td>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="aspectosTecnicosEliminar" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar aspectosTecnicos?</h1>
+                </div>
+                <!-- <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                   <button type="button" (click)="EliminaraspectosTecnicos()" class="btn btn-danger">Elimnar</button>
+               </div>-->
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

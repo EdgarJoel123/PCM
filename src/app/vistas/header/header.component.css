@@ -1,0 +1,137 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    display: flex;
+}
+
+.col-md-3 {
+    width: 300px;
+    min-width: 50px;
+    background-color: #001f3f;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: scroll;
+    transition: all 0.3s;
+}
+
+.menu-hidden {
+    transform: translateX(-250px); /* Cambiado a -250px para que el menú quede oculto */
+}
+
+.col-md-3.menu-hidden {
+    width: 50px;
+}
+
+.col-md-3.menu-visible {
+    transform: translateX(0);
+}
+
+.col-md-12 {
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #001f3f; /* Color de fondo del header */
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.menu-toggle {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px; /* Ajusta según sea necesario para separar visualmente la imagen del ícono */
+}
+
+.menu-toggle:hover {
+    color: #173b5f;
+}
+
+.menu-container {
+    margin-top: 60px; /* Ajusta según sea necesario para separar visualmente el menú del encabezado */
+}
+
+.menu-abierto .menu-container {
+    margin-top: 10px; /* Ajusta según sea necesario para separar visualmente el menú del encabezado cuando está abierto */
+}
+
+.nav.flex-column {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    padding: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+
+.nav-link:hover {
+    background-color: #003366;
+}
+
+.imagen-contraste {
+    width: 230px;
+    height: 60px;
+    margin-right: 10px;
+    filter: invert(100%);
+}
+
+.image-visible {
+    visibility: visible;
+}
+
+.image-hidden {
+    visibility: hidden;
+}
+
+/* Resto del código ... */
+
+#nombreProyecto {
+    margin: auto;
+    text-align: center; /* Añadido para centrar el texto horizontalmente */
+    margin-left: 40px;
+}
+
+.col-md-9 {
+    transition: margin-left 0.3s; /* Agregado para suavizar la transición del margen izquierdo */
+}
+
+.menu-visible .col-md-9 {
+    margin-left: 300px; /* Ancho del menú cuando está abierto */
+}
+
+@media (max-width: 768px) {
+    .col-md-3 {
+        width: 50px;
+    }
+
+    .col-md-3.menu-visible {
+        transform: translateX(0);
+        width: 100%;
+        z-index: 1;
+    }
+
+    .menu-visible .col-md-9 {
+        margin-left: 0;
+    }
+}

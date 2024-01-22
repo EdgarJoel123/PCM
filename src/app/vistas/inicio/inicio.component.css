@@ -1,0 +1,137 @@
+html, body {
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('../../../assets/img/fondoPrinc.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 100vh;
+  margin-top: 90px;
+  box-shadow: 0 0 15px rgba(18, 36, 137, 0.6);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-left: 7%;
+  /* Evita que las esquinas redondeadas se vean cortadas */
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 80px;
+}
+
+.carousel-image {
+  height: 300px;
+  object-fit: cover;
+}
+
+header,
+section,
+footer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-container {
+  margin-top: 50px;
+}
+
+.section-title {
+  font-size: 2.5em;
+  color: #1f4c7d;
+  /* Azul marino más oscuro */
+  margin-bottom: 10px;
+  /* Agrega un pequeño espacio inferior */
+}
+
+.section-text {
+  font-size: 1.2em;
+  line-height: 1.6;
+  /* Espaciado entre líneas mejorado */
+  color: #fff;
+  /* Texto blanco */
+}
+
+.btn-cta {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1f4c7d;
+  /* Azul marino más oscuro */
+  color: #fff;
+  /* Texto blanco */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+}
+
+.btn-cta:hover {
+  background-color: #153560;
+  /* Azul marino más oscuro al hacer hover */
+  box-shadow: 0 0 10px rgba(243, 144, 144, 0.481);
+}
+
+.carousel-inner,
+.carousel-item {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #1f4c7d;
+  /* Azul marino más oscuro */
+  transition: background-color 0.3s ease;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+      margin-left: 0;
+  }
+
+  .container-fluid {
+      margin-top: 60px;
+  }
+
+  .logo {
+      max-height: 60px;
+  }
+
+  .carousel-image {
+      height: 200px;
+  }
+
+  header,
+  section,
+  footer {
+      width: 95%;
+  }
+
+  .content-container {
+      margin-top: 30px;
+  }
+
+  .section-title {
+      font-size: 2em;
+  }
+
+  .btn-cta {
+      padding: 10px 20px;
+      font-size: 1em;
+  }
+}

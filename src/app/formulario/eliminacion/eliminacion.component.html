@@ -1,0 +1,41 @@
+<body>
+  <div class="container">
+    <div id="container">
+      <div class="underline"></div>
+      <h1>Formulario de Aspectos Tecnicos</h1>
+      <form id="AspectosTecnicos_form" #form1="ngForm" (ngSubmit)="(form1)" class="form-container">
+        <legend>
+          <h1>Formulario para Eliminar un Proyecto</h1>
+        </legend>
+
+        <div class="form-group">
+          <label for="nombreProyecto">Nombre del Proyecto:</label>
+          <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto" [(ngModel)]="nombre_proyecto" disabled>
+        </div>
+
+        <div class="submit-container">
+          <div class="submit">
+            <input type="submit" value="Eliminar Proyecto" id="form_button" class="btn btn-danger" (click)="openEditarModalEliminacion()" data-bs-toggle="modal" data-bs-target="#Eliminar" />
+          </div>
+        </div>
+      </form>
+    </div><!-- // End #container -->
+  </div>
+</body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Está seguro de que desea eliminar todo el proyecto?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="openEditarModalEliminacion()">Eliminar Proyecto</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

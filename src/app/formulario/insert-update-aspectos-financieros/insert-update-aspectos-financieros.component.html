@@ -1,0 +1,112 @@
+<body>
+
+<div class="container">
+    <div id="container">
+      <div class="underline"></div>
+      <h1>Formulario de Aspectos Financieros</h1>
+      <!-- Ejemplo en tu plantilla -->
+      <form id="AspectosFinacieros_form" #form3="ngForm" (ngSubmit)="onSubmitAspectosFinancieros(form3)"
+        class="form-container">
+
+        <legend>
+          <h1>Formulario de Aspectos Financieros</h1>
+        </legend>
+
+     <!--   <div class="form-group">
+          <label for="Codigorapido">Codigo Rapido:</label>
+          <input type="text" placeholder="Ingrese el Codigo rapido" name="Codigorapido" id="ppro_CODIGO_RAPIDO"
+            [(ngModel)]="codigo_rapido" required>
+          <button type="button" class="btn btn-outline-success" id="buscarDatosCodigoRapido"
+            (click)="buscarDatosCodigoRapido()">Buscar el Proyecto</button>
+        </div>
+
+        <div class="form-group">
+          <label for="nombreProyecto">Nombre del Proyecto:</label>
+          <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+            [(ngModel)]="nombre_proyecto" disabled>
+        </div>-->
+
+
+        <div class="form-group">
+          <label for="pasfina_FECHA">Fecha de Ingreso de Aspectos Financieros:</label>
+          <input type="date" id="pasfina_FECHA" placeholder="Fecha" name="pasfina_FECHA" [(ngModel)]="pasfina_FECHA"
+            disabled>
+        </div>
+
+
+        <!-- Sección 5: campos de número -->
+        <div class="form-group">
+          <label for="pasfina_PRESU_CODIFICADO">Presupuesto Codificado:</label>
+          <input matInput type="number" placeholder="Presupuesto Codificado" class="form-control"
+            name="pasfina_PRESU_CODIFICADO" [(ngModel)]="pasfina_PRESU_CODIFICADO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_DEVENGADO">Devengado:</label>
+          <input matInput type="number" placeholder="Devengado" class="form-control" name="pasfina_DEVENGADO"
+            [(ngModel)]="pasfina_DEVENGADO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_EJECUTADO">Ejecutado:</label>
+          <input matInput type="number" placeholder="Ejecutado" class="form-control" name="pasfina_EJECUTADO"
+            [(ngModel)]="pasfina_EJECUTADO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_ASIGNACION_INICIAL">Asignacion Inicial:</label>
+          <input matInput type="number" placeholder="Asignacion Inicial" class="form-control"
+            name="pasfina_ASIGNACION_INICIAL" [(ngModel)]="pasfina_ASIGNACION_INICIAL" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_REFORMAS">Reformas:</label>
+          <input matInput type="number" placeholder="Reformas" class="form-control" name="pasfina_REFORMAS"
+            [(ngModel)]="pasfina_REFORMAS" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_PRE_COMPROMISO">Pre Compromiso:</label>
+          <input matInput type="number" placeholder="Pre Compromiso" class="form-control"
+            name="pasfina_PRE_COMPROMISO" [(ngModel)]="pasfina_PRE_COMPROMISO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_COMPROMISO">Compromiso:</label>
+          <input matInput type="number" placeholder="Compromiso" class="form-control" name="pasfina_COMPROMISO"
+            [(ngModel)]="pasfina_COMPROMISO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_EJECUTADO_PAGADO">Ejecutado Pagado:</label>
+          <input matInput type="number" placeholder="Ejecutado Pagado" class="form-control"
+            name="pasfina_EJECUTADO_PAGADO" [(ngModel)]="pasfina_EJECUTADO_PAGADO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_ANTICIPO_NO_AMORTI">Anticipo no Amortizado:</label>
+          <input matInput type="number" placeholder="Anticipo no Amortizado" class="form-control"
+            name="pasfina_ANTICIPO_NO_AMORTI" [(ngModel)]="pasfina_ANTICIPO_NO_AMORTI" required>
+        </div>
+
+        <div class="submit-container">
+          <div class="submit">
+            <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form3.valid"
+              class="btn btn-primary"/>
+
+
+              <div class="submit">
+                <input type="button" value="Actualizar Registro" (click)="actualizarAspectosFinancieros(form3)"
+                  class="btn btn-success" />
+              </div>
+          </div>
+        </div>
+
+
+      </form>
+
+
+    </div><!-- // End #container -->
+  </div>
+    
+</body>

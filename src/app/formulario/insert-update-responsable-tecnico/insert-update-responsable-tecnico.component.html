@@ -1,0 +1,125 @@
+<body>
+
+    <div class="container">
+        <div id="container">
+            <div class="underline"></div>
+
+            <form id="Responsable" #form9="ngForm" (ngSubmit)="onSubmitResponsableTecnico(form9)"
+                class="form-container">
+
+                <legend>
+                    <h1>Formulario De Responsable Tecnico</h1>
+                </legend>
+
+                <div class="form-group">
+                    <label for="Username">Username:</label>
+                    <input type="text" placeholder="Ingrese el Username" name="Username" id="username"
+                        [(ngModel)]="username_name" required>
+                    <button type="button" class="btn btn-outline-success" id="buscarDatosCodigoRapido"
+                        (click)="buscarDatosUser()">Buscar datos del User</button>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Apellidos">Nombres:</label>
+                    <input type="text" id="Apellidos" placeholder="No editable" name="Nombres"
+                        [(ngModel)]="prete_NOMBRES" disabled required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Apellidos">Apellidos:</label>
+                    <input type="text" id="Apellidos" placeholder="No editable" name="Apellidos"
+                        [(ngModel)]="prete_APELLIDOS" disabled required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prete_DERTAMENTO_PER">Departamento Perteneciente:</label>
+                    <input type="text" id="prete_DERTAMENTO_PER" placeholder="No editable" name="prete_DERTAMENTO_PER"
+                        [(ngModel)]="prete_DERTAMENTO_PER" disabled required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prete_DMPER_NUMERO_ROL">Numero de Rol:</label>
+                    <input type="text" id="prete_DMPER_NUMERO_ROL" placeholder="No editable"
+                        name="prete_DMPER_NUMERO_ROL" [(ngModel)]="prete_DMPER_NUMERO_ROL" disabled required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="prete_DMPER_CODIGO">DMPER Codigo:</label>
+                    <input type="text" id="prete_DMPER_CODIGO" placeholder="No editable" name="prete_DMPER_CODIGO"
+                        [(ngModel)]="prete_DMPER_CODIGO" disabled required>
+                </div>
+
+
+
+
+                <div class="submit-container">
+                    <div class="submit">
+                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form9.valid"
+                            class="btn btn-primary" />
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+            <form id="AsignamientoResponsable" #form10="ngForm" (ngSubmit)="onSubmitDetalleResponsableTecnico(form10)"
+                class="form-container">
+
+                <legend>
+                    <h1>Formulario de Asignamiento de Responsable Tecnico</h1>
+                </legend>
+
+                
+                <div class="form-group">
+                    <label for="fech_DETALLE_RES">Fecha de asignacion de Responsable:</label>
+                    <input type="date" id="fech_DETALLE_RES" placeholder="Fecha" name="fech_DETALLE_RES"
+                      [(ngModel)]="fech_DETALLE_RES" disabled>
+                  </div>
+
+
+
+                <div class="form-group">
+                    <label for="Responsable">Responsable Tecnico</label>
+                    <select id="Responsable" name="Responsable" (change)="seleccionarResponsableTecnico($event)">
+                        <option value="" disabled hidden selected>Seleccione un Responsable Tecnico:</option>
+                        <option *ngFor="let responsableTecnico of responsables" [value]="responsableTecnico.id_PRETE">
+                            {{ responsableTecnico.prete_NOMBRES }} {{ responsableTecnico.prete_APELLIDOS }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombreProyecto">Nombre del Proyecto:</label>
+        
+                    <!-- Cambia el atributo disabled por readonly -->
+                    <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+                      [(ngModel)]="nombre_proyecto_CODIGO" readonly>
+        
+                  </div>
+
+    
+
+
+
+
+                <div class="submit-container">
+                    <div class="submit">
+                        <input type="submit" value="Asignar" id="form_button" [disabled]="!form10.valid"
+                            class="btn btn-primary" />
+                    </div>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+</body>

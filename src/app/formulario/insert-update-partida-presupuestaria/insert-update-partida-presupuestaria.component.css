@@ -1,0 +1,136 @@
+/* Component styles */
+
+/* General styles */
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('src/assets/img/fondoPrinc.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 0;
+  margin-bottom: 5%; /* Utilizando unidades relativas */
+}
+
+form {
+  width: 90%;
+  max-width: 100%;
+  margin: 5% auto; /* Utilizando unidades relativas */
+  padding: 3%;
+  background-color: #f0f0f0;
+  border: solid 3px #919191;
+  border-radius: 2vmin; /* Utilizando unidades relativas */
+  margin-top: 8%;
+}
+
+h1 {
+  color: #192a67;
+  font-size: 2.8vmin; /* Utilizando unidades relativas */
+  font-weight: 700;
+  letter-spacing: 0.5vmin; /* Utilizando unidades relativas */
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 1vmin; /* Utilizando unidades relativas */
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  width: calc(30% - 1vmin); /* Utilizando unidades relativas */
+  margin-bottom: 2vmin; /* Utilizando unidades relativas */
+  box-sizing: border-box;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 2vmin; /* Utilizando unidades relativas */
+  border: 0.2vmin solid #000; /* Utilizando unidades relativas */
+  border-radius: 0.4vmin; /* Utilizando unidades relativas */
+  font-size: 1.6vmin; /* Utilizando unidades relativas */
+  margin-top: 1vmin; /* Utilizando unidades relativas */
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1vmin; /* Utilizando unidades relativas */
+}
+
+/* Agrega un espacio entre las etiquetas en pantallas más grandes */
+@media screen and (max-width: 768px) {
+  .form-group {
+    width: 100%;
+    margin-right: 0;
+    flex-direction: column;
+  }
+}
+
+.submit-container {
+  display: flex;
+  flex-wrap: wrap; /* Añadir flex-wrap para evitar desbordamiento en pantallas pequeñas */
+  justify-content: space-between;
+  align-items: flex-end; /* Alinea los botones en la parte inferior */
+  margin-top: 2vmin; /* Utilizando unidades relativas */
+}
+
+/* Estilo común para los botones */
+.submit input[type='submit'],
+.btn-secondary {
+  flex: 1; /* Ocupa el espacio disponible */
+  box-sizing: border-box;
+  margin-right: 1vmin; /* Utilizando unidades relativas */
+  padding: 1.5vmin 2.5vmin; /* Utilizando unidades relativas */
+  font-size: 1.6vmin; /* Utilizando unidades relativas */
+  border-radius: 0.4vmin; /* Utilizando unidades relativas */
+  outline: none;
+}
+
+/* Botón Siguiente */
+.btn-siguiente {
+  background: #384591;
+  color: #fff;
+}
+
+.btn-siguiente:hover {
+  background: #d3b383;
+}
+
+/* Botón Regresar */
+.btn-regresar {
+  background: #757575;
+  color: #fff;
+}
+
+.btn-regresar:hover {
+  background: #555555;
+}
+
+
+.option-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tipo {
+    font-weight: bold; /* Opcional: Puedes ajustar el estilo según tus preferencias */
+  }
+
+  .partida {
+    color: #ce0000; /* Opcional: Puedes ajustar el color según tus preferencias */
+  }

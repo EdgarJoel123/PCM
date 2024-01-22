@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<head>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="header">
+              <div class="d-flex align-items-center">
+                <a class="navbar-brand text-white mr-2" routerLink="/inicio">
+                  <img src="assets/img/2.png" class="imagen-contraste">
+                </a>
+                <button class="menu-toggle" (click)="toggleMenu()">
+                  <i class="bi bi-list"></i>
+                  <span style="margin-left: 5px;"></span>
+                </button>
+              </div>
+              <div id="nombreProyecto">
+                <h2 style="color: aliceblue;">{{ nombre_proyecto }}</h2>
+              </div>
+            </div>
+          </div>
+
+            <div class="col-md-3 sidebar" [ngClass]="{'menu-hidden': !menuVisible, 'menu-visible': menuVisible}">
+
+                <br>
+
+
+                <div class="menu-container">
+                    <ul class="nav flex-column">
+                        <!-- Menú Principal -->
+                        <li class="nav-item title" (click)="toggleOpciones(0)">
+                            Menú Principal
+                        </li>
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/">
+                                    <i class="bi bi-house-fill"></i><span style="margin-left: 5px;"></span> Inicio
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/crear">
+                                    <i class="bi bi-node-plus-fill"></i><span style="margin-left: 5px;"></span> Crear un Proyecto
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/cargarProyecto">
+                                    <i class="bi bi-arrow-clockwise"></i><span style="margin-left: 5px;"></span> Cargar un Proyecto
+                                </a>
+                            </li>
+                        </ul>
+
+
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/eliminar">
+                                    <i class="bi bi-trash"></i><span style="margin-left: 5px;"></span> Eliminar un Proyecto
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Proyectos -->
+                        <li class="nav-item title" (click)="toggleOpciones(1)">
+                            Proyectos
+                        </li>
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[1]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/principal">
+                                    <i class="bi bi-boxes"></i> <span style="margin-left: 5px;"></span> Datos
+                                    Principales
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/aspectosTecnicos">
+                                    <i class="bi bi-laptop"> <span style="margin-left: 5px;"></span></i> Aspectos
+                                    Técnicos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/aspectosFinancieros">
+                                    <i class="bi bi-coin"></i> <span style="margin-left: 5px;"></span> Aspectos
+                                    Financieros
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/ejecucioProyecto"><i class="bi bi-percent"></i>
+                                    <span style="margin-left: 5px;"></span> Ejecución</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/proforma"> <i class="bi bi-receipt"></i>
+                                    <span style="margin-left: 5px;"></span> Proforma</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/reforma"><i
+                                        class="bi bi-receipt-cutoff"></i>
+                                    <span style="margin-left: 5px;"></span> Reforma</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/partipaPresupuestaria">
+                                    <i class="bi bi-cash-coin"></i>
+                                    <span style="margin-left: 5px;"></span>
+    
+                                        Partida Presupuestaria 
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/procesosSercop">
+                                    <i class="bi bi-cash-coin"></i>
+                                    <span style="margin-left: 5px;"></span>
+                            
+                                       Procesos de la SERCOP
+                                
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <!-- Opciones -->
+                        <li class="nav-item title" (click)="toggleOpciones(2)">
+                            Opciones
+                        </li>
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[2]">
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" routerLink="/contacto">
+                                    <i class="bi bi-person-lines-fill"></i><span style="margin-left: 5px;"></span> Contacto
+                                </a>
+                            </li>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </ul>
+
+
+                        <ul class="nav flex-column" *ngIf="opcionesVisibles[2]">
+                            <li class="nav-item">
+                                <a type="button" class="nav-link text-uppercase" (click)="cerrarSesion()">
+                                    <i class="bi bi-person-circle"></i> <span style="margin-left: 5px;"></span> Cerrar
+                                    Sesión
+                                </a>
+                            </li>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </ul>
+
+                   
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<body>
+    
+    <div class="container">
+      <div id="container">
+        <div class="underline"></div>
+        <h1>Formulario de Ejecucion del Proyecto</h1>
+        <form id="EjecucionProyecto_form" #form4="ngForm" (ngSubmit)="onSubmitEjecucionProyecto(form4)"
+          class="form-container">
+
+          <legend>
+            <h1>Formulario de Ejecucion del Proyecto</h1>
+          </legend>
+
+
+          <div class="form-group">
+            <label for="pejecp_FECHA_INICIO_PRO">Fecha de Inicio del Proyecto:</label>
+            <input type="date" id="pejecp_FECHA_INICIO_PRO" placeholder="Fecha" name="pejecp_FECHA_INICIO_PRO"
+              [(ngModel)]="pejecp_FECHA_INICIO_PRO" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pejecp_FECHA_PROG_FINA_PRO">Fecha de Final Programa del Proyecto:</label>
+            <input type="date" id="pejecp_FECHA_PROG_FINA_PRO" placeholder="Fecha" name="pejecp_FECHA_PROG_FINA_PRO"
+              [(ngModel)]="pejecp_FECHA_PROG_FINA_PRO" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pejecp_FECHA_FINAL_PRO">Fecha de Final del Proyecto:</label>
+            <input type="date" id="pejecp_FECHA_FINAL_PRO" placeholder="Fecha" name="pejecp_FECHA_FINAL_PRO"
+              [(ngModel)]="pejecp_FECHA_FINAL_PRO" required>
+          </div>
+
+          <!-- Sección 1: Selecciones -->
+          <div class="form-group">
+            <label for="Estado">Estado del Proyecto:</label>
+            <select name="Estado" id="Estado"  [(ngModel)]="id_PESTPRO" (change)="seleccionarEstadoProyecto($event)" required>
+              <option disabled hidden selected>Seleccione el Estado del Proyecto:</option>
+              <option *ngFor="let ejecucionProyecto of estadoProyecto" [value]="ejecucionProyecto.id_PESTPRO">
+                {{ejecucionProyecto.pestpro_ESTADO_PRO}}
+              </option>
+            </select>
+          </div>
+
+       
+
+          <div class="form-group">
+            <label for="Etapa">Etapa de Ejecucion del Proyecto:</label>
+            <select name="Etapa" id="Etapa"  [(ngModel)]="id_PETAEJEPRO" (change)="seleccionarEtapaEjecucion($event)" required>
+              <option disabled hidden selected>Seleccione la etapa de Ejecucion %:</option>
+              <option *ngFor="let ejecucionProyecto of etapaEjecucion" [value]="ejecucionProyecto.id_PETAEJEPRO">
+                {{ejecucionProyecto.petaejepro_ETAPA_EJE_PROYEC}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Sección 5: campos de número -->
+          <div class="form-group">
+            <label for="pejecp_AVANCE_EJECU_FISICA_PRO">Avance de Ejecucion Fisica %:</label>
+            <input matInput type="number" placeholder="Avance de Ejecucion Fisica %" min="0" max="100"
+              class="form-control" name="pejecp_AVANCE_EJECU_FISICA_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_FISICA_PRO"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="pejecp_AVANCE_EJECU_TOTAL_PRO">Avance de Ejecucion Total %:</label>
+            <input matInput type="number" placeholder="Avance de Ejecucion Total %" min="0" max="100"
+              class="form-control" name="pejecp_AVANCE_EJECU_TOTAL_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_TOTAL_PRO"
+              required>
+          </div>
+
+          <div class="submit-container">
+            <div class="submit">
+              <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form4.valid"
+                class="btn btn-primary" />
+            </div>
+
+            <div class="submit">
+              <input type="button" value="Actualizar Registro" (click)="actualizarEjecucionProyecto(form4)"
+                class="btn btn-success" />
+            </div>
+
+          </div>
+
+
+        </form>
+      </div><!-- // End #container -->
+    </div>
+</body>

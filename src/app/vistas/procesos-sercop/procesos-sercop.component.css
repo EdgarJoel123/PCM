@@ -1,0 +1,184 @@
+/* Component styles */
+
+/* General styles */
+html, body {
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('src/assets/img/fondoPrinc.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0; 
+}
+
+/* Typography */
+h1 {
+  text-align: center;
+  color: #192A67;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0; 
+}
+
+/* Table styles */
+.container2 {
+  margin-left: 300px; /* Ajusta según sea necesario para dejar espacio para el menú */
+  margin-right: 20px; /* Margen derecho para que el contenido no toque el borde de la pantalla */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  transition: margin-left 0.3s; /* Añade transición para suavizar el cambio */
+}
+
+.menu-abierto .container2 {
+  margin-left: 50px; /* Ajusta según sea necesario para dejar espacio para el menú */
+}
+
+.table-responsive {
+  width: 120%; /* Ocupa todo el ancho disponible */
+  overflow-x: auto;
+  overflow-y: auto;
+  border: 1px solid #cfedffa4;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Resto del código ... */
+
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 2px solid #cfedffa4;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  min-width: 200px;
+}
+
+.table th {
+  background-color: #174e9683;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Button styles */
+.custom-button,
+.custom-button-danger {
+  background-color: #143947;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #4d78b1;
+}
+
+.custom-button-danger:hover {
+  background-color: #C82333;
+}
+
+/* Input styles */
+.input-container {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+.contador-resultados {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.contador-cuadro {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.contador-texto {
+  font-size: 18px;
+}
+
+.form-container {
+  margin: 20px;
+}
+
+.my-btn {
+  background-color: #3c4a7a;
+  color: #ffffff;
+  border-color: #3c4a7a;
+}
+
+.my-btn:hover {
+  background-color: #2162b8;
+  border-color: #3c4a7a;
+}
+
+/* Custom select styles */
+.custom-select {
+  width: 100%;
+}
+
+/* Label styles */
+.custom-label {
+  font-weight: bold;
+  color: #192A67;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .table-responsive {
+      overflow-x: auto;
+      overflow-y: hidden;
+  }
+
+  .table th,
+  .table td {
+      white-space: normal;
+  }
+}
+
+
+
+
+#descargar {
+  margin: 20px;
+}
+
+#descargar button {
+  margin-right: 10px;
+}
+
+
+#ingresar {
+  width: auto; /* Ajusta el ancho según tus necesidades */
+  height:auto; /* Ajusta la altura según tus necesidades */
+  text-align: center; /* Alinea el contenido al centro */
+margin-left: auto;
+}
+
+.modal-header {
+  background-color: #007bff; /* Cambia el color de fondo del encabezado del modal */
+  color: white;
+  border-bottom: 2px solid #0056b3; /* Añade un borde inferior al encabezado del modal */
+}

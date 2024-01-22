@@ -1,0 +1,77 @@
+<body>
+
+    <div class="container">
+        <div id="container">
+            <div class="underline"></div>
+    <form id="Reforms" #form6="ngForm" (ngSubmit)="onSubmitReforma(form6)" class="form-container">
+
+        <legend>
+          <h1>Formulario de Reforma del Proyecto</h1>
+        </legend>
+
+        
+        <div class="form-group">
+            <label for="paste_FECHA_ASPEC_TECNICOS">Fecha de Ingreso de la Proforma:</label>
+            <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS"
+              [(ngModel)]="prefoin_FECHA" disabled>
+          </div>
+
+
+        <div class="form-group">
+          <label for="prefoin_ANIO">Año:</label>
+          <input type="text" class="form-control" placeholder="Año de Reforma" name="prefoin_ANIO"
+            [(ngModel)]="prefoin_ANIO" pattern="[0-9]{4}" title="El año debe tener 4 dígitos numéricos"
+            (keypress)="onKeyPressAnioReforma($event)" required (keyup)="onYearChangeAnioReforma()">
+          <div
+            *ngIf="form6.controls['prefoin_ANIO'].hasError('required') && (form6.controls['prefoin_ANIO'].dirty || form6.controls['prefoin_ANIO'].touched)">
+            <div *ngIf="form6.controls['prefoin_ANIO'].errors && form6.controls['prefoin_ANIO'].errors['required']"
+              style="color: red;">El año es requerido.</div>
+          </div>
+          <div
+            *ngIf="form6.controls['prefoin_ANIO'].hasError('pattern') && (form6.controls['prefoin_ANIO'].dirty || form6.controls['prefoin_ANIO'].touched)">
+            <div *ngIf="form6.controls['prefoin_ANIO'].errors && form6.controls['prefoin_ANIO'].errors['pattern']"
+              style="color: red;">El año debe tener 4 dígitos numéricos.</div>
+          </div>
+        </div>
+
+
+        <!-- Sección 5: campos de número -->
+        <div class="form-group">
+          <label for="prefoin_VALOR_TOTAL_PROYECTO_R">Valor Total del Proyecto Reforma</label>
+          <input matInput type="number" placeholder="Valor Total del Proyecto Reforma" class="form-control"
+            name="prefoin_VALOR_TOTAL_PROYECTO_R" [(ngModel)]="prefoin_VALOR_TOTAL_PROYECTO_R" required>
+        </div>
+
+        <div class="form-group">
+          <label for="prefoin_REFORMA">Proforma:</label>
+          <input matInput type="number" placeholder="Reforma" class="form-control" name="prefoin_REFORMA"
+            [(ngModel)]="prefoin_REFORMA" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="prefoin_PRESUPUESTO_REFORMA">Presupuesto Reforma</label>
+          <input matInput type="number" placeholder="Presupuesto Reforma" class="form-control"
+            name="prefoin_PRESUPUESTO_REFORMA" [(ngModel)]="prefoin_PRESUPUESTO_REFORMA" required>
+        </div>
+
+        <div class="submit-container">
+          <div class="submit">
+            <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form6.valid"
+              class="btn btn-primary" />
+          </div>
+
+          <div class="submit">
+            <input type="button" value="Actualizar Registro" (click)="actualizarReforma(form6)"
+              class="btn btn-success" />
+          </div>
+
+
+        </div>
+
+
+      </form>
+    </div><!-- // End #container -->
+  </div>
+
+</body>

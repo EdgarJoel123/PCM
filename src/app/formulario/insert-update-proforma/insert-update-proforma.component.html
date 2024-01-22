@@ -1,0 +1,84 @@
+<body>
+    <div class="container">
+        <div id="container">
+            <div class="underline"></div>
+            <form id="Proforma" #form5="ngForm" (ngSubmit)="onSubmitProfroma(form5)" class="form-container">
+
+                <legend>
+                    <h1>Formulario de Proforma del Proyecto</h1>
+                </legend>
+
+                <div class="form-group">
+                    <label for="paste_FECHA_ASPEC_TECNICOS">Fecha de Ingreso de la Proforma:</label>
+                    <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS"
+                      [(ngModel)]="pproin_FECHA" disabled>
+                  </div>
+
+
+                <div class="form-group">
+                    <label for="pproin_ANIO">Año:</label>
+                    <input type="text" class="form-control" placeholder="Año de Proforma" name="pproin_ANIO"
+                        [(ngModel)]="pproin_ANIO" pattern="[0-9]{4}" title="El año debe tener 4 dígitos numéricos"
+                        (keypress)="onKeyPressAnioProforma($event)" required (keyup)="onYearChangeAnioProforma()">
+                    <div
+                        *ngIf="form5.controls['pproin_ANIO'].hasError('required') && (form5.controls['pproin_ANIO'].dirty || form5.controls['pproin_ANIO'].touched)">
+                        <div *ngIf="form5.controls['pproin_ANIO'].errors && form5.controls['pproin_ANIO'].errors['required']"
+                            style="color: red;">El año es requerido.</div>
+                    </div>
+                    <div
+                        *ngIf="form5.controls['pproin_ANIO'].hasError('pattern') && (form5.controls['pproin_ANIO'].dirty || form5.controls['pproin_ANIO'].touched)">
+                        <div *ngIf="form5.controls['pproin_ANIO'].errors && form5.controls['pproin_ANIO'].errors['pattern']"
+                            style="color: red;">El año debe tener 4 dígitos numéricos.</div>
+                    </div>
+                </div>
+
+            
+
+
+                <!-- Sección 5: campos de número -->
+                <div class="form-group">
+                    <label for="pproin_VALOR_TOTAL_PROYECTO_PR">Valor Total del Proyecto Proforma</label>
+                    <input matInput type="number" placeholder="Valor Total del Proyecto Proforma" class="form-control"
+                        name="pproin_VALOR_TOTAL_PROYECTO_PR" [(ngModel)]="pproin_VALOR_TOTAL_PROYECTO_PR" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pproin_PROFORMA">Proforma:</label>
+                    <input matInput type="number" placeholder="Proforma" class="form-control" name="pproin_PROFORMA"
+                        [(ngModel)]="pproin_PROFORMA" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="pproin_PRESUPUESTO_PROFORMA">Presupuesto Proforma:</label>
+                    <input matInput type="number" placeholder="Presupuesto Proforma" class="form-control"
+                        name="pproin_PRESUPUESTO_PROFORMA" [(ngModel)]="pproin_PRESUPUESTO_PROFORMA" required>
+                </div>
+
+                <div class="submit-container">
+                    <div class="submit">
+                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form5.valid"
+                            class="btn btn-primary" />
+                    </div>
+
+
+                    <div class="submit">
+                        <input type="button" value="Actualizar Registro" (click)="actualizarProforma(form5)"
+                          class="btn btn-success" />
+                      </div>
+
+                </div>
+
+
+                
+
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+</body>

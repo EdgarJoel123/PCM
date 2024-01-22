@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutentificacionService } from './services/autentificacion.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PCM';
+
+  constructor(private service: AutentificacionService){}
+
+
+  isLoggedIn(): boolean {
+    return this.service.canActivate();
+  }
 }

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de datos del sistema</title>
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
+        <p class="text-uppercase text-center h1" style="color: #192A67;">
+            <strong>DATOS DE LA PROFORMA</strong>
+        </p>
+    </div>
+    <!--  <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="label-container">
+                    <label class="custom-label" for="vistaSelect">Seleccionar el tipo de Programa:</label>
+                    <select id="vistaSelect" class="form-select custom-select" [(ngModel)]="opcionSeleccionada">
+                        <option value="GENERACION">GENERACION</option>
+                        <option value="SUBTRASMISION">SUBTRASMISION</option>
+                        <option value="DISTRIBUCION">DISTRIBUCION</option>
+                        <option value="ALUMBRADO PUBLICO"> ALUMBRADO PUBLICO</option>
+                        <option value="ACOMETIDAS Y MEDIDORES">ACOMETIDAS Y MEDIDORES</option>
+                        <option value="INVERSIONES GENERALES">INVERSIONES GENERALES</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div>
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaGeneracion" #inputPalabraBusqueda
+                            (input)="buscarPalabraGeneracion(palabraBusquedaGeneracion)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosGeneracion }}</div>
+                        <div class="contador-texto">resultados</div>
+
+                        
+                    </div>
+
+
+                    <div id="ingresar">
+                        <div class="col-md-50 d-flex">
+                            <button routerLink="/crearActualizarProforma" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar
+                                la Proforma</button>
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <!-- <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10 d-flex">
+                            <button (click)="listarTodosGeneracion()" class="btn btn-outline-info my-btn mx-2" type="submit">Listar Todos los Datos Existentes</button>
+
+                            <button class="btn btn-outline-info my-btn mx-2" type="submit">Listar los Proyectos Especial</button>
+                        </div>
+                    </form>
+                </div>-->
+
+
+
+                <div class="table-responsive">
+                    <!-- Add these buttons in your template -->
+                    <div id="descargar">
+                        <button class="btn btn-primary" (click)="downloadPDF()"><i
+                                class="bi bi-arrow-down-circle-fill"></i><span
+                                style="margin-left: 5px;"></span>Descargar PDF</button>
+                        <button class="btn btn-success" (click)="downloadExel()"><i
+                                class="bi bi-arrow-down-circle-fill"></i><span style="margin-left: 5px;"></span>Exportar
+                            a XLSX</button>
+                    </div>
+
+                    <table #proforma class="table table-striped table-hover" id="proforma">
+                        <thead>
+                            <tr>
+
+                                <th>Código Rapido</th>
+                                <th>Fecha</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let proforma of resultadosBusquedaGeneracion of listadoGeneracion ">
+
+
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{proforma.pproin_FECHA}}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--   <div *ngIf="opcionSeleccionada === 'SUBTRASMISION'">
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaSubtrasmicion" #inputPalabraBusqueda
+                            (input)="buscarPalabraSubtrasmicion(palabraBusquedaSubtrasmicion)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosSubtrasmicion }}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10">
+                            <button (click)="listarTodosSubtrasmicion()" class="btn btn-outline-info my-btn"
+                                type="submit">Listar Todos los
+                                Datos Existentes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <p class="text-uppercase text-center h1" style="color: #192A67;">Datos de
+                        <strong>SUBTRASMISION</strong></p>
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operaciones</th>
+                                <th>Código Rapido</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let proforma of resultadosBusquedaSubtrasmicion of listadoSubtrasmicion ">
+
+                                <td class="d-flex" style="height: auto;">
+                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEditar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="opcionSeleccionada === 'DISTRIBUCION'">
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaDistribucion" #inputPalabraBusqueda
+                            (input)="buscarPalabraDistribucion(palabraBusquedaDistribucion)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosDistribucion }}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10">
+                            <button (click)="listarTodosDistribucion()" class="btn btn-outline-info my-btn"
+                                type="submit">Listar Todos los
+                                Datos Existentes</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <p class="text-uppercase text-center h1" style="color: #192A67;">Datos de
+                        <strong>DISTRIBUCION</strong></p>
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operaciones</th>
+                                <th>Código Rapido</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let proforma of resultadosBusquedaDistribucion of listadoDistribucion ">
+
+                                <td class="d-flex" style="height: auto;">
+                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEditar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="opcionSeleccionada === 'ALUMBRADO PUBLICO'">
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaAlumbrado" #inputPalabraBusqueda
+                            (input)="buscarPalabraAlumbrado(palabraBusquedaAlumbrado)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosAlumbrado }}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10">
+                            <button (click)="listarTodosAlumbrado()" class="btn btn-outline-info my-btn"
+                                type="submit">Listar Todos los
+                                Datos Existentes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <p class="text-uppercase text-center h1" style="color: #192A67;">Datos de
+                        <strong>ALUMBRADO PUBLICO</strong></p>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operaciones</th>
+                                <th>Código Rapido</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let proforma of resultadosBusquedaAlumbrado of listadoAlumbrado ">
+
+                                <td class="d-flex" style="height: auto;">
+                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEditar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="opcionSeleccionada === 'ACOMETIDAS Y MEDIDORES'">
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaAcometidasMedidores" #inputPalabraBusqueda
+                            (input)="buscarPalabraAcometidas(palabraBusquedaAcometidasMedidores)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosAcometidasMedidores }}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10">
+                            <button (click)="listarTodosAcometidas()" class="btn btn-outline-info my-btn"
+                                type="submit">Listar Todos los
+                                Datos Existentes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <p class="text-uppercase text-center h1" style="color: #192A67;">Datos de
+                        <strong>ACOMETIDAS Y MEDIDORES</strong></p>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operaciones</th>
+                                <th>Código Rapido</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let proforma of resultadosBusquedaAcometidasMedidores of listadoAcometidasMedidores ">
+
+                                <td class="d-flex" style="height: auto;">
+                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEditar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+                              
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="opcionSeleccionada === 'INVERSIONES GENERALES'">
+        <div class="container my-5">
+            <div class="section">
+                <div class="input-container">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Buscar"
+                            [(ngModel)]="palabraBusquedaInversiones" #inputPalabraBusqueda
+                            (input)="buscarPalabraInversiones(palabraBusquedaInversiones)">
+                    </div>
+                    <div class="contador-resultados">
+                        <div class="contador-cuadro">{{ contadorResultadosInversiones }}</div>
+                        <div class="contador-texto">resultados</div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form #formularioproforma="ngForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-10">
+                            <button (click)="listarTodosInversiones()" class="btn btn-outline-info my-btn"
+                                type="submit">Listar Todos los
+                                Datos Existentes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <p class="text-uppercase text-center h1" style="color: #192A67;">Datos de
+                        <strong>INVERSIONES GENERALES</strong></p>
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Operaciones</th>
+                                <th>Código Rapido</th>
+                                <th>Valor total del Proyecto PR</th>
+                                <th>Proforma</th>
+                                <th>Presupuesto Profroma</th>
+                                <th>Año</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let proforma of resultadosBusquedaInversiones of listadoInversiones ">
+
+                                <td class="d-flex" style="height: auto;">
+                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEditar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        (click)="openEditarModalProforma(proforma)" data-bs-toggle="modal"
+                                        data-bs-target="#proformaEliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </button>
+                                </td>
+                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
+                                <td>{{ proforma.pproin_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_PRESUPUESTO_PROFORMA }}</td>
+                                <td>{{ proforma.pproin_ANIO }}</td>
+                              
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Modal para la edición -->
+    <div class="modal fade" id="proformaEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar proforma </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí coloca el formulario de edición 
+                    <div class="container">
+
+
+                        <div class="mb-3">
+                            <label for="codigo" class="form-label">Código</label>
+                            <input type="text" class="form-control" id="codigo" [(ngModel)]="idRolOpreacion"
+                                disabled="true">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label" style="font-weight: bold;">Rol</label>
+                            <select class="form-control" id="nombreRolSelect" [(ngModel)]="nombreRolRO">
+                                <option *ngFor="let rol of listadoRoles" [value]="rol.id_ROL">
+                                    {{rol.nombre_ROL}}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="moduloSelect" class="form-label" style="font-weight: bold;">Modulo</label>
+                            <select class="form-control" id="moduloSelect" [(ngModel)]="nombreModuloproforma"
+                                (change)="cargarOperacionesPorModulo()">
+                                <option *ngFor="let modulo of listadoModulos" [value]="modulo.id_MODULO">
+                                    {{ modulo.nombre_MODULO }}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="operacionSelect" class="form-label" style="font-weight: bold;">Operacion</label>
+                            <select class="form-control" id="operacionSelect" [(ngModel)]="nombreOperacionRO">
+                                <option *ngFor="let operacion of listadoOperaciones" [value]="operacion.id_OPERACION">
+                                    {{ operacion.op_NOMBRE }}</option>
+                            </select>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button (click)="Actualizarproforma()" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="proformaEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar proforma?</h1>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" (click)="Eliminarproforma()" class="btn btn-danger">Elimnar</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

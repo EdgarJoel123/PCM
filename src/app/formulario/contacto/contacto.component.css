@@ -1,0 +1,118 @@
+/* General styles */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('src/assets/img/fondoPrinc.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px; /* Adjust margin as needed */
+  box-shadow: 0 0 15px rgba(18, 36, 137, 0.6);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 200px;
+  margin-left: 350px;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 80px;
+}
+
+.carousel-image {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+  max-height: 300px; /* Adjust max-height as needed */
+  object-fit: cover;
+}
+
+header, section, footer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-container {
+  margin-top: 30px; /* Adjust margin-top as needed */
+}
+
+.section-title {
+  font-size: 2em;
+  color: #1f4c7d;
+  margin-bottom: 10px;
+}
+
+.section-text {
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.btn-cta {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1f4c7d;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cta:hover {
+  background-color: #153560;
+  box-shadow: 0 0 10px rgba(243, 144, 144, 0.481);
+}
+
+.carousel-inner,
+.carousel-item {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #1f4c7d;
+  transition: background-color 0.3s ease;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .container {
+    margin: 30px; /* Adjust margin as needed for smaller screens */
+  }
+
+  .carousel-image {
+    max-height: 200px; /* Adjust max-height as needed for smaller screens */
+  }
+
+  header, section, footer {
+    width: 95%;
+  }
+
+  .content-container {
+    margin-top: 20px; /* Adjust margin-top as needed for smaller screens */
+  }
+
+  .section-title {
+    font-size: 1.5em; /* Adjust font-size as needed for smaller screens */
+  }
+
+  .btn-cta {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}

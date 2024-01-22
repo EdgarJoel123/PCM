@@ -1,0 +1,154 @@
+.login-container {
+  display: flex;
+  align-items: right; /* Alinea la parte inferior de la imagen con la parte inferior del contenedor */
+  justify-content: flex-end;
+  height: 100vh;
+  background-image: url('src/assets/img/fondo3.jpg');
+  background-size: cover;
+  background-position: center bottom; /* Ajusta la posición de la imagen para mostrar la parte inferior */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+}
+
+
+
+
+
+.login-form {
+  background-color: #001f3f;
+  padding: 50px;
+  border-radius: 20px;
+  width: 60%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  color: #ecf0f1;
+}
+
+
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  color: #2c3e50;
+  background-color: #ecf0f1;
+}
+
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+.login-form button[type="submit"]:active {
+  background-color: #1f618d;
+}
+
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  content: url('/assets/img/logotipo.png');
+}
+
+
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinea el contenido a la derecha */
+  height: 100vh;
+  padding-right: 25%; /* Ajusta el espacio a la derecha del contenedor */
+}
+
+
+.login-form {
+  background-color: #001f3f;
+  padding: 50px;
+  border-radius: 140px;
+  width: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  color: #ecf0f1;
+  z-index: 1;
+}
+
+.imagen-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background-image: url('src/assets/img/login.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Resto del CSS... */
+/* Media query for small screens (320px - 768px) */
+@media (max-width: 768px) {
+  .login-container {
+    align-items: flex-start;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+  }
+}
+
+/* Media query for medium screens (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .login-container {
+    justify-content: flex-end;
+    padding-right: 25%;
+  }
+
+  .login-form {
+    width: 80%;
+    max-width: 500px;
+  }
+}
+
+/* Media query for large screens (1024px+) */
+@media (min-width: 1024px) {
+  .login-container {
+    justify-content: flex-end;
+    padding-right: 25%;
+  }
+
+  .login-form {
+    width: 50%;
+  }
+}
