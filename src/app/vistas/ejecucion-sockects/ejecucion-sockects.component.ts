@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { EjecucionProyecto } from 'src/app/modelo/ejecucionProyecto';
 import { EjecucionRestService } from 'src/app/services/ejecucion-rest.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
 import { WebSocketService } from 'src/app/services/web-socket-service.service';
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-ejecucion-sockects',
   templateUrl: './ejecucion-sockects.component.html',

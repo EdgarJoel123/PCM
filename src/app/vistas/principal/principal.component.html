@@ -13,29 +13,6 @@
     <br>
     <br>
     <br>
-    <!-- <div class="container">
-        <p class="text-uppercase text-center h1" style="color: #192A67;">Datos<strong> principales de los
-                Proyectos</strong>
-        </p>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="label-container">
-                    <label class="custom-label" for="vistaSelect">Seleccionar el tipo de Programa:</label>
-                    <select id="vistaSelect" class="form-select custom-select" [(ngModel)]="opcionSeleccionada">
-                        <option value="GENERACION">GENERACION</option>
-                        <option value="SUBTRASMISION">SUBTRASMISION</option>
-                        <option value="DISTRIBUCION">DISTRIBUCION</option>
-                        <option value="ALUMBRADO PUBLICO"> ALUMBRADO PUBLICO</option>
-                        <option value="ACOMETIDAS Y MEDIDORES">ACOMETIDAS Y MEDIDORES</option>
-                        <option value="INVERSIONES GENERALES">INVERSIONES GENERALES</option>
-
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div>
         <div>
             <p class="text-uppercase text-center h1" style="color: #192A67;">
@@ -59,7 +36,7 @@
                         <div class="col-md-50 d-flex">
                             <button routerLink="/crearActualizarResponsableTecnico"
                                 class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar los Datos del
-                                Responsable tecnico </button>
+                                Responsable Técnico </button>
 
 
                         </div>
@@ -100,14 +77,14 @@
                                 <th>Acciones</th>
                                 <th>Código Referencial</th>
                                 <th>Nombre</th>
-                                <th>Codigo Rapido</th>
+                                <th>Código Rápido</th>
                                 <th>Año de Aprobacion</th>
                                 <th>Proceso Corporativo (S/N)</th>
                                 <th>Arrastre (S/N)</th>
                                 <th>Calificado en estudios de Costos (S/N)</th>
-                                <th>Codigo Estudio de Costos</th>
+                                <th>CÓdigo Estudio de Costos</th>
                                 <th>Año de Calificacion de Ejecucion</th>
-                                <th>Codigo EDD</th>
+                                <th>CÓdigo EDD</th>
                                 <th>Objetivo</th>
                                 <th>Observaciones</th>
                                 <th>Etapa Funcional </th>
@@ -116,7 +93,7 @@
                                 <th>Tipo de Subprograma </th>
                                 <th>Tipo de Programa </th>
                                 <th>Departamento </th>
-                                <th>Resposable Tecnico </th>
+                                <th>Resposable Técnico </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,7 +153,7 @@
 
                                         <div class="form-group">
                                             <label for="departamento">Departamento:</label>
-                                            <select name="departamento" id="departamento" [(ngModel)]="id_PDEP"
+                                            <select class="form-control" name="departamento" id="departamento" [(ngModel)]="id_PDEP"
                                                 (change)="seleccionarDepartamento($event)" required>
                                                 <option disabled hidden selected>Seleccione un Departamento:</option>
                                                 <option *ngFor="let proyecto of departamentos"
@@ -194,7 +171,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label for="tipoPlan">Tipo de Plan</label>
-                                                <select name="tipoPlan" id="tipoPlan" [(ngModel)]="id_PTIPLA"
+                                                <select class="form-control" name="tipoPlan" id="tipoPlan" [(ngModel)]="id_PTIPLA"
                                                     (change)="seleccionarTipoPlan($event)" required>
                                                     <option disabled hidden selected>Seleccione un Tipo de Plan:
                                                     </option>
@@ -212,7 +189,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label for="tipoPeriodicidad">Tipo de Periodicidad</label>
-                                                <select name="tipoPeriodicidad" id="tipoPeriodicidad"
+                                                <select class="form-control" name="tipoPeriodicidad" id="tipoPeriodicidad"
                                                     [(ngModel)]="id_PTIPER"
                                                     (change)="seleccionarTipoPeriodicidad($event)" required>
                                                     <option disabled hidden selected>Seleccione un Tipo de Periodicidad:
@@ -229,7 +206,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="etapaFuncional">Etapa Funcional</label>
-                                            <select name="etapaFuncional" id="etapaFuncional" [(ngModel)]="id_PETAFUN"
+                                            <select class="form-control" name="etapaFuncional" id="etapaFuncional" [(ngModel)]="id_PETAFUN"
                                                 (change)="seleccionarEtapaFuncional($event)" required>
                                                 <option disabled hidden selected>Seleccione la Etapa Funcional:
                                                 </option>
@@ -244,7 +221,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="tipoPrograma">Tipo de Programa</label>
-                                            <select name="tipoPrograma" id="tipoPrograma" [(ngModel)]="id_PTIPRO"
+                                            <select class="form-control" name="tipoPrograma" id="tipoPrograma" [(ngModel)]="id_PTIPRO"
                                                 (change)="seleccionarTipoPrograma($event)" required>
                                                 <option disabled hidden selected>Seleccione un Programa:</option>
                                                 <option *ngFor="let proyecto of tipoPrograma"
@@ -260,7 +237,7 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="tipoSubprograma">Tipo de Subprograma</label>
-                                                <select name="tipoSubprograma" id="tipoSubprograma"
+                                                <select class="form-control" name="tipoSubprograma" id="tipoSubprograma"
                                                     (change)="seleccionarTipoSubprograma($event)"
                                                     [disabled]="!tipoProgramaSeleccionado" required>
                                                     <option disabled hidden selected>Seleccione una Tipo de Subprograma:
@@ -295,8 +272,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombreProyecto">Nombre del Proyecto:</label>
-                                                <input type="text" id="nombreProyecto" placeholder="Nombre del Proyecto"
+                                                <textarea type="text" id="nombreProyecto" placeholder="Nombre del Proyecto"
                                                     name="nombreProyecto" [(ngModel)]="ppro_NOMBRE_PROY" disabled>
+                                                </textarea>
                                             </div>
                                         </div>
 
