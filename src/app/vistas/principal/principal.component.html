@@ -223,7 +223,7 @@
                                             <label for="tipoPrograma">Tipo de Programa</label>
                                             <select class="form-control" name="tipoPrograma" id="tipoPrograma" [(ngModel)]="id_PTIPRO"
                                                 (change)="seleccionarTipoPrograma($event)" required>
-                                                <option disabled hidden selected>Seleccione un Programa:</option>
+                                                <option disabled hidden selected>Seleccione un Tipo de Programa:</option>
                                                 <option *ngFor="let proyecto of tipoPrograma"
                                                     [value]="proyecto.id_PTIPRO">
                                                     {{proyecto.ptipro_TIPO_PROGRAMA}}
@@ -314,7 +314,7 @@
                                                 <label for="AÑO DE CALIFICACION DE EJECUCION">Año de Calificación de
                                                     Ejecución:</label>
                                                 <input type="text" class="form-control"
-                                                    placeholder="AÑO DE CALIFICACION DE EJECUCION"
+                                                    placeholder="Año de Calificación de Ejecución"
                                                     name="ppro_ANIO_CALIFICACION_EJECU"
                                                     [(ngModel)]="ppro_ANIO_CALIFICACION_EJECU" pattern="[0-9]{4}"
                                                     title="El año debe tener 4 dígitos numéricos"
@@ -337,7 +337,7 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="ppro_COD_PARROQUIA">Codigo Parroquia:</label>
+                                                <label for="ppro_COD_PARROQUIA">CODIGO Parroquia:</label>
                                                 <input type="text" placeholder="CODIGO parroquia"
                                                     id="ppro_COD_PARROQUIA" name="parroquia"
                                                     [(ngModel)]="ppro_COD_PARROQUIA" required>
@@ -347,8 +347,9 @@
                                         <!-- Sección 3: Selecciones adicionales -->
 
                                         <div class="col-md-4">
+                                            <br>
                                             <div class="form-group">
-                                                <label for="procesoCorporativoUn">PROCESO CORPORATIVO UN.
+                                                <label for="procesoCorporativoUn">Proceso Corporativo Un.
                                                     (S/N):
                                                 </label>
                                                 <select class="form-control" name="procesoCorporativoUn"
@@ -362,8 +363,9 @@
 
 
                                         <div class="col-md-4">
+                                            <br>
                                             <div class="form-group">
-                                                <label for="ppro_PROYECTO_ARRASTRE">PROYECTO DE ARRASTRES
+                                                <label for="ppro_PROYECTO_ARRASTRE">Proyecto de Arrastre
                                                     (S/N):</label>
                                                 <select class="form-control" name="ppro_PROYECTO_ARRASTRE"
                                                     [(ngModel)]="ppro_PROYECTO_ARRASTRE" required>
@@ -374,9 +376,9 @@
                                         </div>
 
                                         <div class="col-md-4">
+                                            <br>
                                             <div class="form-group">
-                                                <label for="ppro_PROY_CALI_ESTUDIO_COSTOS">PROYECTO CALIFICADO EN
-                                                    ESTUDIOS DE COSTOS (S/N):</label>
+                                                <label for="ppro_PROY_CALI_ESTUDIO_COSTOS">Proyecto Calificado en Estudios de Costos (S/N):</label>
                                                 <select class="form-control" name="ppro_PROY_CALI_ESTUDIO_COSTOS"
                                                     [(ngModel)]="ppro_PROY_CALI_ESTUDIO_COSTOS" required>
                                                     <option value="S">SI</option>
@@ -391,7 +393,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="objetivoProyecto">Objetivo del Proyecto:</label>
-                                                <textarea name="objetivoProyecto" placeholder="Objetivo del proyecto"
+                                                <textarea name="objetivoProyecto" placeholder="Objetivo del Proyecto"
                                                     name="objetivoProyecto" cols="30" rows="5"
                                                     [(ngModel)]="ppro_OBJETIVO_PRO" required></textarea>
                                             </div>
@@ -401,7 +403,7 @@
                                             <div class="form-group">
                                                 <label for="ppro_OBSERVACIONES_JUSTIFICACI">Observacion del
                                                     Proyecto:</label>
-                                                <textarea name="message" placeholder="Observaciones del proyecto"
+                                                <textarea name="message" placeholder="Observaciones del Proyecto"
                                                     cols="30" rows="5" [(ngModel)]="ppro_OBSERVACIONES_JUSTIFICACI"
                                                     required></textarea>
                                             </div>
@@ -413,7 +415,7 @@
                                             <div class="form-group">
                                                 <label for="montoAprobado">Monto Aprobado en Estudios de
                                                     Costos:</label>
-                                                <input matInput type="number" placeholder="Monto Aprobado"
+                                                <input matInput type="number" placeholder="$$$$"
                                                     class="form-control" name="montoAprobado"
                                                     [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS" required>
                                             </div>
@@ -423,8 +425,8 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="ppro_CODIGO_PRO_EED">Codigo EDD:</label>
-                                                <input matInput type="number" placeholder="CODIGO EDD"
+                                                <label for="ppro_CODIGO_PRO_EED">Código EDD:</label>
+                                                <input matInput type="number" placeholder="Código EDD"
                                                     class="form-control" name="CODIGO EDD"
                                                     [(ngModel)]="ppro_CODIGO_PRO_EED" required>
                                             </div>

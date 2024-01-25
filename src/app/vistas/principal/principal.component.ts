@@ -441,15 +441,15 @@ export class PrincipalComponent {
 
     const proyecto: Proyecto = {
 
-      ppro_OBSERVACIONES_JUSTIFICACI: this.ppro_OBSERVACIONES_JUSTIFICACI,
+      ppro_OBSERVACIONES_JUSTIFICACI: this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
       id_PPRO_CODIGO_UNICO: this.id_PPRO_CODIGO_UNICO,
       ptipla_TIPO_PLAN: this.ptipla_TIPO_PLAN,
-      ppro_NOMBRE_PROY: this.ppro_NOMBRE_PROY,
+      ppro_NOMBRE_PROY: this.ppro_NOMBRE_PROY.toUpperCase(),
       ppro_ANIO_APROBACION: this.ppro_ANIO_APROBACION,
       pdep_DEPARTAMENTO: this.pdep_DEPARTAMENTO,
       ptipro_TIPO_PROGRAMA: this.ptipro_TIPO_PROGRAMA,
       ppro_CODIGO_PRO_EED: this.ppro_CODIGO_PRO_EED,
-      ppro_OBJETIVO_PRO: this.ppro_OBJETIVO_PRO,
+      ppro_OBJETIVO_PRO: this.ppro_OBJETIVO_PRO.toUpperCase(),
       prete_APELLIDOS: "",
       ppro_CODIGO_RAPIDO: this.ppro_CODIGO_RAPIDO,
       ptiper_TIPO_PERIODICIDAD: this.ptiper_TIPO_PERIODICIDAD,
