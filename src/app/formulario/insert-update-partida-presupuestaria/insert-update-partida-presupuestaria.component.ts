@@ -79,7 +79,7 @@ export class InsertUpdatePartidaPresupuestariaComponent {
             this.router.navigate(['partipaPresupuestaria']);
           } else {
             alert("NO SE PUDO ASIGNAR LA PARTIDA PRESUPUESTARIA");
-            form.reset();
+            //form.reset();
             //window.location.reload();
           }
         },

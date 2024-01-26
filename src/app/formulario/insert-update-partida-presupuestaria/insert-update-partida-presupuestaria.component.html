@@ -4,71 +4,59 @@
         <div id="container">
             <div class="underline"></div>
 
-
-            <form id="partidPresupuestaria_form" #form8="ngForm" (ngSubmit)="onSubmitPartidaPresupuestaria(form8)"
-                class="form-container">
-
+            <form id="partidaPresupuestaria_form" #form8="ngForm" (ngSubmit)="onSubmitPartidaPresupuestaria(form8)" class="form-container">
                 <legend>
                     <h1>Formulario de Partida Presupuestaria del Proyecto</h1>
                 </legend>
-
-                <div class="form-group">
-                    <label for="paste_FECHA_ASPEC_TECNICOS">Fecha de Ingreso:</label>
-                    <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS"
-                      [(ngModel)]="ppart_FECHA" disabled>
-                  </div>
-
-          
-
-
-                <div class="form-group">
-                    <label for="ppart_CODIGO_PARTIDA">Codigo partida Presupuestaria:</label>
-                    <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control"
-                        name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA" required>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="ppart_PARTIDA_PRESUPUESTARIA">Partida Presupuestaria:</label>
-                    <input type="text" placeholder="Partida Presupuestaria" class="form-control"
-                        name="ppart_PARTIDA_PRESUPUESTARIA" [(ngModel)]="ppart_PARTIDA_PRESUPUESTARIA" required>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="ppart_MONTO_PARTIDA">Monto partida Presupuestaria:</label>
-                    <input type="number" placeholder="Monto partida Presupuestaria" class="form-control"
-                        name="ppart_MONTO_PARTIDA" [(ngModel)]="ppart_MONTO_PARTIDA" required>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="Presupuestaria">Tipo de Partida Presupuestaria:</label>
-                    <select name="Presupuestaria" id="Presupuestaria" (change)="seleccionarPartidaPrespuestaria($event)"
-                        required>
-                        <option disabled hidden selected>Seleccione un Tipo:</option>
-                        <option *ngFor="let partidaPresupuestaria of tipoPartida"
-                            [value]="partidaPresupuestaria.id_PTIPAPRE">
-                            {{partidaPresupuestaria.ptipapre_TIPO_PAR_PRESUPUESTAR}}
-                        </option>
-                    </select>
-                </div>
-
-
-    
-
-                <div class="submit-container">
-                    <div class="submit">
-                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form8.valid"
-                            class="btn btn-primary" />
+            
+                <div class="form-group row">
+                    <label for="paste_FECHA_ASPEC_TECNICOS" class="form-label">Fecha de Ingreso:</label>
+                    <div class="col-sm">
+                        <input type="date" class="form-control" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS" [(ngModel)]="ppart_FECHA" disabled>
                     </div>
-
-
                 </div>
-
-
+            
+                <div class="form-group row">
+                    <label for="Presupuestaria" class="form-label">Tipo de Partida Presupuestaria:</label>
+                    <div class="col-sm">
+                        <select name="Presupuestaria" class="form-control" id="Presupuestaria" (change)="seleccionarPartidaPrespuestaria($event)" required>
+                            <option disabled hidden selected>Seleccione un Tipo de Partida Presupuestaria:</option>
+                            <option *ngFor="let partidaPresupuestaria of tipoPartida" [value]="partidaPresupuestaria.id_PTIPAPRE">
+                                {{partidaPresupuestaria.ptipapre_TIPO_PAR_PRESUPUESTAR}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="ppart_CODIGO_PARTIDA" class="form-label">Código partida Presupuestaria:</label>
+                    <div class="col-sm">
+                        <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control" name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA" required>
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="ppart_PARTIDA_PRESUPUESTARIA" class="form-label">Partida Presupuestaria:</label>
+                    <div class="col-sm">
+                        <textarea type="text" placeholder="Partida Presupuestaria" class="form-control" name="ppart_PARTIDA_PRESUPUESTARIA" [(ngModel)]="ppart_PARTIDA_PRESUPUESTARIA" required>
+                        </textarea>
+                        </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="ppart_MONTO_PARTIDA" class="form-label">Monto partida Presupuestaria:</label>
+                    <div class="col-sm">
+                        <input type="number" placeholder="$$$$" class="form-control" name="ppart_MONTO_PARTIDA" [(ngModel)]="ppart_MONTO_PARTIDA" required>
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <div class="col-sm offset-sm-3">
+                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form8.valid" class="btn btn-primary" />
+                    </div>
+                </div>
             </form>
-
+            
 
             <form id="EjecucionProyecto_form" #form11="ngForm" (ngSubmit)="onSubmitDetallePartidaPresupuestaria(form11)"
                 class="form-container">
@@ -78,7 +66,7 @@
                 </legend>
 
 
-           
+
 
 
                 <div class="form-group">
@@ -87,19 +75,20 @@
                         (change)="seleccionarPartidaPresupuestaria($event)" required>
                         <option value="" disabled hidden selected>Seleccione una Partida Presupuestaria</option>
                         <option *ngFor="let partidaPresupuestaria of partidas" [value]="partidaPresupuestaria.id_PPART">
-                         {{ partidaPresupuestaria.ppart_PARTIDA_PRESUPUESTARIA }}
+                            {{ partidaPresupuestaria.ppart_PARTIDA_PRESUPUESTARIA }}
                         </option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="nombreProyecto">Nombre del Proyecto:</label>
-        
+
                     <!-- Cambia el atributo disabled por readonly -->
-                    <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
-                      [(ngModel)]="nombre_proyecto_CODIGO" readonly>
-        
-                  </div>
+                    <textarea type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+                        [(ngModel)]="nombre_proyecto_CODIGO" readonly>
+                    </textarea>
+
+                </div>
 
 
                 <!--  <div class="form-group">

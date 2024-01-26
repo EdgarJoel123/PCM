@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspectos Tecnicos del partidaPresupuestaria</title>
 </head>
 
 <body>
@@ -97,13 +96,13 @@
                         <thead>
                             <tr>
                           
-                                <th>Codigo de Rapido</th>
+                                <th>Codigo de Rápido</th>
                                 <th>Fecha</th>
-                                <th>Codigo partida Presupuestaria</th>
+                                <th>Código partida Presupuestaria</th>
                                 <th>Partida Presupuestaria</th>
                                 <th>Monto partida Presupuestaria</th>
                                 <th>Tipo de Partida Prespuestaria</th>
-                                <th>Acciones </th>
+                                <th>Acciones</th>
                             </tr>
 
                         </thead>
@@ -154,6 +153,7 @@
                           <label for="paste_FECHA_ASPEC_TECNICOS" class="form-label">Fecha de Ingreso:</label>
                           <input type="date" id="paste_FECHA_ASPEC_TECNICOS" class="form-control"
                             placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS" [(ngModel)]="ppart_FECHA">
+                            <br>
                         </div>
                       </div>
                     </div>
@@ -161,7 +161,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="ppart_CODIGO_PARTIDA" class="form-label">Codigo partida Presupuestaria:</label>
+                          <label for="ppart_CODIGO_PARTIDA" class="form-label">Código partida Presupuestaria:</label>
                           <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control"
                             name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA" required>
                         </div>
@@ -179,6 +179,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
+                          <br>
                           <label for="ppart_MONTO_PARTIDA" class="form-label">Monto partida Presupuestaria:</label>
                           <input type="number" placeholder="Monto partida Presupuestaria" class="form-control"
                             name="ppart_MONTO_PARTIDA" [(ngModel)]="ppart_MONTO_PARTIDA" required>
@@ -187,6 +188,7 @@
       
                       <div class="col-md-6">
                         <div class="form-group">
+                          <br>
                           <label for="Presupuestaria" class="form-label">Tipo de Partida Presupuestaria:</label>
                           <select name="Presupuestaria" id="Presupuestaria" class="form-select"
                             [(ngModel)]="id_PTIPAPRE" (change)="seleccionarPartidaPrespuestaria($event)" required>
