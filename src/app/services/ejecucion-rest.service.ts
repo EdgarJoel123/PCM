@@ -49,8 +49,9 @@ export class EjecucionRestService {
 
 
   // listar Estados Proyecto
-  getListarEtapaEjecucion(): Observable<any> {
-    return this.http.get<EjecucionProyecto>(this.apiUrlEtapaEjecucion);
+  getListarEtapaEjecucion(id: number): Observable<any> {
+    const params = { ID_PESTPRO: id.toString()};
+    return this.http.get<EjecucionProyecto>(`${this.apiUrlEtapaEjecucion}`, { params });
   }
 
   // listar Estados Proyecto

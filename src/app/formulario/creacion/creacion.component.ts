@@ -333,7 +333,7 @@ export class CreacionComponent implements OnInit {
     this.cargarDatosTipoPrograma();
     this.cargarDatosAmbiental();
     this.cargarDatosEstadoProyecto();
-    this.cargarDatosEpataEjecuccion();
+    //this.cargarDatosEpataEjecuccion();
     this.listarProyectos();
     this.cargarDatosPartidaPresupuestaria();
     this.listarResponsableTecnico();
@@ -492,52 +492,6 @@ export class CreacionComponent implements OnInit {
   }
 
 
-  onSubmitEjecucionProyecto(form: any) {
-
-
-    const fechaInicioProyecto = new Date(this.pejecp_FECHA_INICIO_PRO + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
-
-    const fechaFinalProgramada = new Date(this.pejecp_FECHA_PROG_FINA_PRO + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
-
-    const fechaFinalProyecto = new Date(this.pejecp_FECHA_FINAL_PRO + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
-
-
-
-
-    if (form.valid) {
-      const ejecucionProyecto = new EjecucionProyecto(
-        this.selectEstadoProyecto,
-        this.selectEtapaEjecuccion,
-        this.pejecp_AVANCE_EJECU_FISICA_PRO,
-        this.pejecp_AVANCE_EJECU_TOTAL_PRO,
-        fechaInicioProyecto,
-        fechaFinalProgramada,
-        fechaFinalProyecto,
-        this.id_PPRO_CODIGO_UNICO_ejecucion_proyecto,
-
-      );
-
-      this.serviceEjecuccionProyecto.insertarEjecucionProyecto(ejecucionProyecto).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Ejecucuion del proyecto creado correctamente') {
-            alert("DATOS DE EJEUCCION CREADOS CON ÉXITO");
-            form.reset();
-            //window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-          } else {
-            alert("NO SE PUDO CREAR LOS DATOS DE EJEUCCION");
-            form.reset();
-            //window.location.reload();
-          }
-        },
-        error => {
-          alert("NO SE PUDO CREAR LOS DATOS DE EJEUCCION");
-          form.reset();
-          //window.location.reload();
-        }
-      );
-    }
-  }
 
 
   onSubmitProfroma(form: any) {
@@ -1069,18 +1023,6 @@ export class CreacionComponent implements OnInit {
   }
 
 
-  cargarDatosEpataEjecuccion() {
-    this.serviceEjecuccionProyecto.getListarEtapaEjecucion().subscribe(
-      (data) => {
-        this.etapaEjecucion = data;
-        //console.log(this.tipoPlan);
-
-      },
-      (error) => {
-        console.error('Error al obtener los departamentos:', error);
-      }
-    );
-  }
 
   seleccionarEtapaEjecucion(event: Event): void {
     const target = event.target as HTMLSelectElement;
