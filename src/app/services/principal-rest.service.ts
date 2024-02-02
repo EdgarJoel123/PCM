@@ -48,6 +48,13 @@ export class PrincipalRestService {
 
 
 
+  eliminarProyecto(id: number){
+
+    const url = `http://localhost:8080/proyecto/eliminar/${id}`;
+    return this.http.delete(url);
+
+  }
+
 
   updateProyectoPrincipal(proyecto: Proyecto) {
     const url = `http://localhost:8080/proyecto/editar/${proyecto.id_PPRO_CODIGO_UNICO}`;
