@@ -85,8 +85,8 @@
 
                 <div class="form-group">
                     <label for="Responsable">Responsable Tecnico</label>
-                    <select id="Responsable" name="Responsable" (change)="seleccionarResponsableTecnico($event)">
-                        <option value="" disabled hidden selected>Seleccione un Responsable Tecnico:</option>
+                    <select id="Responsable" name="Responsable" (change)="seleccionarResponsableTecnico($event)" required>
+                        <option disabled hidden selected>Seleccione un Responsable Tecnico:</option>
                         <option *ngFor="let responsableTecnico of responsables" [value]="responsableTecnico.id_PRETE">
                             {{ responsableTecnico.prete_NOMBRES }} {{ responsableTecnico.prete_APELLIDOS }}
                         </option>
@@ -97,8 +97,8 @@
                     <label for="nombreProyecto">Nombre del Proyecto:</label>
         
                     <!-- Cambia el atributo disabled por readonly -->
-                    <input type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
-                      [(ngModel)]="nombre_proyecto_CODIGO" readonly>
+                    <textarea type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+                      [(ngModel)]="nombre_proyecto_CODIGO" readonly> </textarea>
         
                   </div>
 
