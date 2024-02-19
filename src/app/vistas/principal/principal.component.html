@@ -221,7 +221,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="tipoPrograma">Tipo de Programa</label>
-                                            <select class="form-control" name="tipoPrograma" id="tipoPrograma" [(ngModel)]="id_PTIPRO"
+                                            <select class="form-control" name="tipoPrograma" id="tipoPrograma" [(ngModel)]="ptipro_TIPO_PROGRAMA"
                                                 (change)="seleccionarTipoPrograma($event)" required>
                                                 <option disabled hidden selected>Seleccione un Tipo de Programa:</option>
                                                 <option *ngFor="let proyecto of tipoPrograma"
@@ -237,9 +237,9 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="tipoSubprograma">Tipo de Subprograma</label>
-                                                <select class="form-control" name="tipoSubprograma" id="tipoSubprograma"
+                                                <select class="form-control" name="tipoSubprograma" id="tipoSubprograma" [(ngModel)]="id_PTISUBP"
                                                     (change)="seleccionarTipoSubprograma($event)"
-                                                    [disabled]="!tipoProgramaSeleccionado" required>
+                                                      required>
                                                     <option disabled hidden selected>Seleccione una Tipo de Subprograma:
                                                     </option>
                                                     <option *ngFor="let proyecto of tipoSubprograma"

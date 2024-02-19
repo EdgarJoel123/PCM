@@ -73,8 +73,6 @@ export class PrincipalComponent {
   //tipo de programa
   id_PTIPRO: number;
   tipoPrograma: Proyecto[];
-  tipoProgramaSeleccionado: boolean = false;
-
 
 
   //sleccionar tipo de subprograma
@@ -247,6 +245,10 @@ export class PrincipalComponent {
         this.id_PTIPRO = data[0].id_PTIPRO;
         this.id_PTISUBP = data[0].id_PTIPRO;
         this.ppro_COD_PARROQUIA = data[0].ppro_COD_PARROQUIA;
+        this.ptipro_TIPO_PROGRAMA = data[0].id_PTIPRO;
+
+
+        this.cargarDatosTipoSubprograma();
 
         //console.log(this.id_PTISUBP); // verifica si hay datos
       })
@@ -315,7 +317,6 @@ export class PrincipalComponent {
   seleccionarTipoPrograma(event: Event): void {
     const target = event.target as HTMLSelectElement;
     this.id_PTIPRO = parseFloat(target.value);
-    this.tipoProgramaSeleccionado = true;
     this.cargarDatosTipoSubprograma();
   }
 
@@ -433,6 +434,9 @@ export class PrincipalComponent {
 
     this.ppro_MONTO_APRO_ESTUDI_COSTOS = proyecto.ppro_MONTO_APRO_ESTUDI_COSTOS;
     this.ppro_CODIGO_PRO_EED = proyecto.ppro_CODIGO_PRO_EED;
+
+
+    this.ptisubp_TIPO_SUBPROGRAMA = proyecto.id_PTISUBP.toString();
 
 
   }
