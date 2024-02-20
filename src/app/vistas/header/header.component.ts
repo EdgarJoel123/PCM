@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class HeaderComponent {
   // Puedes mantener un seguimiento del estado de visibilidad de las opciones
   opcionesVisibles: boolean[];
 
-  constructor(private router: Router, private sharedService: SharedIDService) {
+  constructor(private router: Router, private sharedService: SharedIDService, private authService: AutentificacionService) {
     // Inicializa la matriz de visibilidad con 'false' para cada grupo de opciones
     this.opcionesVisibles = new Array(3).fill(true);
 
@@ -55,7 +56,9 @@ export class HeaderComponent {
     }
 }
 
-
+isUserAdmin(): boolean {
+  return this.authService.hasRole('admin');
+}
 
 
 
