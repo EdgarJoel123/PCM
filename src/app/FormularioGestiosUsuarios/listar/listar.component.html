@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de datos del sistema</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <p class="text-uppercase text-center h1" style="color: #192A67;">Listado de <strong>datos del sistema</strong></p>
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="label-container">
+          <label class="custom-label" for="vistaSelect">Seleccionar una vista:</label>
+          <select id="vistaSelect" class="form-select custom-select" [(ngModel)]="opcionSeleccionada">
+            <option value="detalle">Detalle</option>
+            <option value="roles">Roles</option>
+            <option value="operaciones">Operaciones</option>
+            <option value="modulos">Módulos</option>
+            <option value="usuarios">Usuarios</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="opcionSeleccionada === 'detalle'">
+    <div class="container my-5">
+      <div class="section">
+        <div class="input-container">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaDetalle"
+              #inputPalabraBusqueda (input)="buscarPalabraDetalle(palabraBusquedaDetalle)">
+          </div>
+          <div class="contador-resultados">
+            <div class="contador-cuadro">{{ contadorResultadosDetalle }}</div>
+            <div class="contador-texto">resultados</div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form #formularioDetalle="ngForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-10">
+              <button (click)="listarTodosDetalle()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
+                Datos Existentes</button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <br>
+          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Detalle</strong> rol y operacion</p>
+        </div>
+        <div class="table-responsive">
+
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre del Rol</th>
+                <th>Descripción del Rol</th>
+                <th>Nombre Operación</th>
+                <th>Descripción Operación</th>
+                <th>Nombre Módulo</th>
+                <th>Descripción Módulo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of resultadosBusquedaDetalle of listadoDetalle ">
+
+                <td>{{ detalle.id_ROL_OPERACIONES }}</td>
+                <td>{{ detalle.nombre_ROL }}</td>
+                <td>{{ detalle.descripcion_ROL }}</td>
+                <td>{{ detalle.op_NOMBRE }}</td>
+                <td>{{ detalle.op_DESCRIPCION }}</td>
+                <td>{{ detalle.nombre_MODULO }}</td>
+                <td>{{ detalle.descripcion_MODULO }}</td>
+                <td class="d-flex">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalDetalle(detalle)"
+                    data-bs-toggle="modal" data-bs-target="#detalleEditar">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalDetalle(detalle)"
+                    data-bs-toggle="modal" data-bs-target="#detalleEliminar">
+                    <i class="bi bi-trash-fill"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Modal para la edición -->
+  <div class="modal fade" id="detalleEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Detalle </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Aquí coloca el formulario de edición -->
+          <div class="container">
+
+
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="text" class="form-control" id="codigo" [(ngModel)]="idRolOpreacion" disabled="true">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" style="font-weight: bold;">Rol</label>
+              <select class="form-control" id="nombreRolSelect" [(ngModel)]="nombreRolRO">
+                <option *ngFor="let rol of listadoRoles" [value]="rol.id_ROL">
+                  {{rol.nombre_ROL}}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="moduloSelect" class="form-label" style="font-weight: bold;">Modulo</label>
+              <select class="form-control" id="moduloSelect" [(ngModel)]="nombreModuloDetalle" (change)="cargarOperacionesPorModulo()">
+                <option *ngFor="let modulo of listadoModulos" [value]="modulo.id_MODULO">
+                  {{ modulo.nombre_MODULO }}</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="operacionSelect" class="form-label" style="font-weight: bold;">Operacion</label>
+              <select class="form-control" id="operacionSelect" [(ngModel)]="nombreOperacionRO">
+                <option *ngFor="let operacion of listadoOperaciones" [value]="operacion.id_OPERACION">
+                  {{ operacion.op_NOMBRE }}</option>
+              </select>
+            </div>
+            
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="ActualizarDetalle()" class="btn btn-primary">Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="detalleEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar Detalle?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="EliminarDetalle()" class="btn btn-danger">Elimnar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="opcionSeleccionada === 'roles'">
+    <div class="container my-5">
+      <div class="section">
+        <div class="input-container">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaRol"
+              (input)="buscarPalabraRoles(palabraBusquedaRol)">
+          </div>
+          <div class="contador-resultados">
+            <div class="contador-cuadro">{{ contadorResultadosRol }}</div>
+            <div class="contador-texto">resultados</div>
+          </div>
+        </div>
+        <div class="form-container">
+          <form #formulario="ngForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-10">
+              <button (click)="listarTodosRoles()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
+                Datos Existentes</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <br>
+          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Roles</strong></p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Código del Rol</th>
+                <th>Nombre del Rol</th>
+                <th>Descripción del Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rol of resultadosBusquedaRol of listadoRoles ">
+                <td>{{ rol.id_ROL }}</td>
+                <td>{{ rol.nombre_ROL }}</td>
+                <td>{{ rol.descripcion_ROL }}</td>
+                <td class="d-flex">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalRol(rol)"
+                    data-bs-toggle="modal" data-bs-target="#rolEditar">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalRol(rol)" data-bs-toggle="modal"
+                    data-bs-target="#rolEliminar">
+                    <i class="bi bi-trash-fill"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para la edición -->
+  <div class="modal fade" id="rolEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Aquí coloca el formulario de edición -->
+          <div class="container">
+
+
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="text" class="form-control" id="codigo" [(ngModel)]="idRol" disabled="true">
+            </div>
+            <div class="mb-3">
+              <label for="nombreRol" class="form-label">Nombre del Rol</label>
+              <input type="text" class="form-control" id="nombreRol" [(ngModel)]="nombreRol">
+            </div>
+            <div class="mb-3">
+              <label for="descripcionRol" class="form-label">Descripción del Rol</label>
+              <textarea class="form-control" id="descripcionRol" cols="30" rows="5" [(ngModel)]="descripcionRol">
+              </textarea>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="ActualizarRol()" class="btn btn-primary">Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="rolEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar el Rol?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="eliminarRol()" class="btn btn-danger">Elimnar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="opcionSeleccionada === 'operaciones'">
+    <div class="container my-5">
+      <div class="section">
+        <div class="input-container">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaOperaciones"
+              (input)="buscarPalabraOperaciones(palabraBusquedaOperaciones)">
+          </div>
+          <div class="contador-resultados">
+            <div class="contador-cuadro">{{ contadorResultadosOperaciones }}</div>
+            <div class="contador-texto">resultados</div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form #formulario="ngForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-10">
+              <button (click)="listarTodosOperaciones()" class="btn btn-outline-info my-btn" type="submit">Listar Todos
+                los Datos Existentes</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <br>
+          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Operaciones</strong></p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre del Módulo</th>
+                <th>Nombre de la Operación</th>
+                <th>Descripción de la Operación</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let operacion of resultadosBusquedaOperaciones of listadoOperaciones">
+
+                <td>{{ operacion.id_OPERACION }}</td>
+                <td>{{ operacion.nombre_MODULO }}</td>
+                <td>{{ operacion.op_NOMBRE }}</td>
+                <td>{{ operacion.op_DESCRIPCION }}</td>
+
+                <td class="d-flex">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalOperacion(operacion)"
+                    data-bs-toggle="modal" data-bs-target="#operacionEditar">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalOperacion(operacion)"
+                    data-bs-toggle="modal" data-bs-target="#operacionEliminar">
+                    <i class="bi bi-trash-fill"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal para la edición -->
+  <div class="modal fade" id="operacionEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar operacion </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Aquí coloca el formulario de edición -->
+          <div class="container">
+
+
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="text" class="form-control" id="codigo" [(ngModel)]="idOperacion" disabled="true">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" style="font-weight: bold;">Modulo</label>
+              <select class="form-control" id="exampleInputEmail1" [(ngModel)]="nombreOperacionMo">
+                <option *ngFor="let modulos of listadoModulos" [value]="modulos.id_MODULO">
+                  {{modulos.nombre_MODULO}}</option>
+              </select>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="nombreRol" class="form-label">Nombre de la Operacion</label>
+              <input type="text" class="form-control" id="nombreRol" [(ngModel)]="nombreOperacion">
+            </div>
+            <div class="mb-3">
+              <label for="descripcionRol" class="form-label">Descripción de LA operacion</label>
+              <textarea class="form-control" id="descripcionRol" cols="30" rows="5" [(ngModel)]="descripcionOperacion">
+                </textarea>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="ActualizarOperacion()" class="btn btn-primary">Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="operacionEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar la Operacion?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="eliminarOperacion()" class="btn btn-danger">Elimnar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="opcionSeleccionada === 'modulos'">
+    <div class="container my-5">
+      <div class="section">
+        <div class="input-container">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaModulo"
+              #inputPalabraBusqueda (input)="buscarPalabraModulo(palabraBusquedaModulo)">
+          </div>
+          <div class="contador-resultados">
+            <div class="contador-cuadro">{{ contadorResultadosModulo }}</div>
+            <div class="contador-texto">resultados</div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form #formulario="ngForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-10">
+              <button (click)="listarTodosModulo()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
+                Datos Existentes</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <br>
+          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Módulos</strong></p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre del Módulo</th>
+                <th>Descripción del Módulo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let modulo of resultadosBusquedaModulo of listadoModulos  ">
+
+                <td>{{ modulo.id_MODULO }}</td>
+                <td>{{ modulo.nombre_MODULO }}</td>
+                <td>{{ modulo.descripcion_MODULO }}</td>
+                <td class="d-flex">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalModulo(modulo)"
+                    data-bs-toggle="modal" data-bs-target="#moduloEditar">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalModulo(modulo)"
+                    data-bs-toggle="modal" data-bs-target="#moduloEliminar">
+                    <i class="bi bi-trash-fill"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal para la edición -->
+  <div class="modal fade" id="moduloEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Modulo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Aquí coloca el formulario de edición -->
+          <div class="container">
+
+
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="text" class="form-control" id="codigo" [(ngModel)]="idModulo" disabled="true">
+            </div>
+            <div class="mb-3">
+              <label for="nombreRol" class="form-label">Nombre del Modulo</label>
+              <input type="text" class="form-control" id="nombreRol" [(ngModel)]="nombreModulo">
+            </div>
+            <div class="mb-3">
+              <label for="descripcionRol" class="form-label">Descripción del Modulo</label>
+              <textarea class="form-control" id="descripcionRol" cols="30" rows="5" [(ngModel)]="descripcionModulo">
+              </textarea>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="ActualizarModulo()" class="btn btn-primary">Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="moduloEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar el Modulo?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="eliminarModulo()" class="btn btn-danger">Elimnar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div *ngIf="opcionSeleccionada === 'usuarios'">
+    <div class="container my-5">
+      <div class="section">
+        <div class="input-container">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaUsuario"
+              #inputPalabraBusqueda (input)="buscarPalabraUsuarios(palabraBusquedaUsuario)">
+          </div>
+          <div class="contador-resultados">
+            <div class="contador-cuadro">{{ contadorResultadosUsuario }}</div>
+            <div class="contador-texto">resultados</div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form #formulario="ngForm" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-10">
+              <button (click)="listarTodosUsuarios()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
+                Datos Existentes</button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <br>
+          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Usuarios</strong></p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Rol</th>
+                <th>User Name</th>
+                <th>Nombre de Usuario</th>
+                <th>Apellido de Usuario</th>
+                <th>Eliminado</th>
+                <th>Bloqueado</th>
+                <th>DMPER Código</th>
+                <th>DMPER Número Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let listar of resultadosBusquedaUsuario of listadoUsuarios">
+
+                <td>{{ listar.id_USUARIO }}</td>
+                <td>{{ listar.nombre_ROL }}</td>
+                <td>{{ listar.user_NAME }}</td>
+                <td>{{ listar.nomb_USUARIO }}</td>
+                <td>{{ listar.ape_USUARIO }}</td>
+                <td>{{ listar.eliminado }}</td>
+                <td>{{ listar.bloqueado }}</td>
+                <td>{{ listar.dmper_CODIGO }}</td>
+                <td>{{ listar.dmper_NUMERO_ROL }}</td>
+                <td class="d-flex">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalUsuario(listar)"
+                    data-bs-toggle="modal" data-bs-target="#usuariosEditar">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalUsuario(listar)"
+                    data-bs-toggle="modal" data-bs-target="#usuariosEliminar">
+                    <i class="bi bi-trash-fill"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal para la edición -->
+  <div class="modal fade" id="usuariosEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario de edición -->
+          <div class="container">
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="text" class="form-control" id="codigo" [(ngModel)]="idUsuario" disabled="true">
+            </div>
+
+            <div class="mb-3">
+              <label for="nombreRolUser" class="form-label" style="font-weight: bold;">Rol</label>
+              <select class="form-control" id="nombreRolUser" [(ngModel)]="nombreRolUser">
+                <option *ngFor="let rol of listadoRoles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" [(ngModel)]="username">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreUser" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombreUser" [(ngModel)]="nombreUser">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="apeliidoUser" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="apeliidoUser" [(ngModel)]="apeliidoUser">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="bloqueadoUser" class="form-label">Bloqueado</label>
+                  <select class="form-control" id="bloqueadoUser" [(ngModel)]="bloqueadoUser">
+                    <option value="S">Sí</option>
+                    <option value="N">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="eliminadoUser" class="form-label">Eliminado</label>
+                  <select class="form-control" id="eliminadoUser" [(ngModel)]="eliminadoUser">
+                    <option value="S">Sí</option>
+                    <option value="N">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="dmperUser" class="form-label">DMPER CODIGO</label>
+                  <input type="text" class="form-control" id="dmperUser" [(ngModel)]="dmperUser">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="dmperRolUser" class="form-label">DMPER NUMERO ROL</label>
+                  <input type="text" class="form-control" id="dmperRolUser" [(ngModel)]="dmperRolUser">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="ActualizarUsuario()" class="btn btn-primary">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="usuariosEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar el Usuario?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="eliminarUsuario()" class="btn btn-danger">Elimnar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
