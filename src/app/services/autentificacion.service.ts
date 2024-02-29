@@ -28,7 +28,7 @@ export class AutentificacionService {
 // autentificacion.service.ts
 // ... (código existente)
 
-validarUsuario(formulario: any) {
+validarUsuario(formulario: any) { 
   const url = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security/validarUsuario';
   const cuenta = btoa(formulario.username);
   const clave = btoa(formulario.password);
@@ -42,16 +42,9 @@ validarUsuario(formulario: any) {
     map((response: any) => {
       console.log(response.TOKEN);
 
-      // Supongamos que si el nombre de usuario es "ivargas", asignamos automáticamente el rol de "admin"
-      const roles = (formulario.username.toLowerCase() === 'dcadme') ? ['admin'] : [];
-
-      // Guardar roles en el almacenamiento local
-      localStorage.setItem('roles', JSON.stringify(roles));
+ 
 
       this.setToken(response.TOKEN);
-
-      // Mostrar un alert según el rol del usuario
-      this.mostrarMensajeSegunRol(roles);
 
       return {
         MESSAGE: response.MESSAGE,
@@ -83,12 +76,6 @@ validarUsuario(formulario: any) {
   );
 }
 
-private mostrarMensajeSegunRol(roles: string[]): void {
-  if (roles.includes('admin')) {
-    alert('¡Usted es administrador!');
-  }
-  // Agrega más casos según tus roles
-}
 
 
   setToken(token: string): void {
@@ -99,20 +86,6 @@ private mostrarMensajeSegunRol(roles: string[]): void {
   getToken(): string {
     return this.token;
   }
-
-  getRoles(): string[] {
-    // Obtener roles del almacenamiento local
-    return JSON.parse(localStorage.getItem('roles') || '[]');
-  }
-
-
-  // autentificacion.service.ts
-// ... (código existente)
-
-hasRole(role: string): boolean {
-  const roles = this.getRoles();
-  return roles.includes(role);
-}
 
 
 }

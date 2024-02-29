@@ -56,10 +56,5 @@ export class HeaderComponent {
     }
 }
 
-isUserAdmin(): boolean {
-  return this.authService.hasRole('admin');
-}
-
-
 
 }
