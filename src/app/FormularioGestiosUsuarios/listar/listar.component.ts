@@ -662,7 +662,10 @@ export class ListarComponent {
     }
     
   
-  
+    setOption(option: string): void {
+      this.opcionSeleccionada = option;
+      // Add logic to fetch data or update UI based on the selected option
+    }
   
   }
   

@@ -23,6 +23,7 @@ import { InsertUpdateReformaComponent } from './formulario/insert-update-reforma
 import { InsertUpdatePartidaPresupuestariaComponent } from './formulario/insert-update-partida-presupuestaria/insert-update-partida-presupuestaria.component';
 import { InsertUpdateProcesosSercopComponent } from './formulario/insert-update-procesos-sercop/insert-update-procesos-sercop.component';
 import { InsertUpdateResponsableTecnicoComponent } from './formulario/insert-update-responsable-tecnico/insert-update-responsable-tecnico.component';
+import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.component';
 
 const routes: Routes = [
 
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent, canActivate:  [AutentificacionService] },
   { path: 'eliminar', component: EliminacionComponent, canActivate: [AutentificacionService] },
   { path: 'cargarProyecto', component: CargarProyectoComponent, canActivate: [AutentificacionService] },
+  { path: 'listarUsuarios', component: ListarComponent, canActivate: [AutentificacionService] },
   
 ];
 

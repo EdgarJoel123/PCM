@@ -9,91 +9,90 @@
 
 <body>
 
-  <div class="container">
-    <p class="text-uppercase text-center h1" style="color: #192A67;">Listado de <strong>datos del sistema</strong></p>
+  <div class="container mt-5">
+    <br>
+    <br>
+
+    <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Gestion de Usuarios PCM</strong></p>
     <br>
     <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="label-container">
-          <label class="custom-label" for="vistaSelect">Seleccionar una vista:</label>
-          <select id="vistaSelect" class="form-select custom-select" [(ngModel)]="opcionSeleccionada">
-            <option value="detalle">Detalle</option>
-            <option value="roles">Roles</option>
-            <option value="operaciones">Operaciones</option>
-            <option value="modulos">Módulos</option>
-            <option value="usuarios">Usuarios</option>
-          </select>
+      <div class="col-md-12">
+        <div class="btn-group" role="group" aria-label="Vistas">
+          <button type="button" class="btn btn-secondary" (click)="setOption('detalle')">Detalle</button>
+          <button type="button" class="btn btn-secondary" (click)="setOption('roles')">Roles</button>
+          <button type="button" class="btn btn-secondary" (click)="setOption('operaciones')">Operaciones</button>
+          <button type="button" class="btn btn-secondary" (click)="setOption('modulos')">Módulos</button>
+          <button type="button" class="btn btn-secondary" (click)="setOption('usuarios')">Usuarios</button>
         </div>
       </div>
     </div>
   </div>
+  
 
-  <div *ngIf="opcionSeleccionada === 'detalle'">
-    <div class="container my-5">
-      <div class="section">
-        <div class="input-container">
-          <div class="form-group mb-0">
-            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaDetalle"
-              #inputPalabraBusqueda (input)="buscarPalabraDetalle(palabraBusquedaDetalle)">
+  <div *ngIf="opcionSeleccionada === 'detalle'" class="container my-5">
+    <div class="section">
+
+      <div class="input-container">
+        <div class="form-group mb-0">
+          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="palabraBusquedaDetalle"
+            #inputPalabraBusqueda (input)="buscarPalabraDetalle(palabraBusquedaDetalle)">
+        </div>
+        <div class="contador-resultados">
+          <div class="contador-cuadro">{{ contadorResultadosDetalle }}</div>
+          <div class="contador-texto">resultados</div>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <form #formularioDetalle="ngForm" class="row g-3 needs-validation" novalidate>
+          <div class="col-md-10">
+            <button (click)="listarTodosDetalle()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
+              Datos Existentes</button>
           </div>
-          <div class="contador-resultados">
-            <div class="contador-cuadro">{{ contadorResultadosDetalle }}</div>
-            <div class="contador-texto">resultados</div>
-          </div>
-        </div>
+        </form>
+      </div>
+      <div>
+        <br>
+        <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Detalle</strong> rol y operacion</p>
+      </div>
 
-        <div class="form-container">
-          <form #formularioDetalle="ngForm" class="row g-3 needs-validation" novalidate>
-            <div class="col-md-10">
-              <button (click)="listarTodosDetalle()" class="btn btn-outline-info my-btn" type="submit">Listar Todos los
-                Datos Existentes</button>
-            </div>
-          </form>
-        </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre del Rol</th>
+              <th>Descripción del Rol</th>
+              <th>Nombre Operación</th>
+              <th>Descripción Operación</th>
+              <th>Nombre Módulo</th>
+              <th>Descripción Módulo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detalle of resultadosBusquedaDetalle of listadoDetalle ">
 
-        <div>
-          <br>
-          <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Detalle</strong> rol y operacion</p>
-        </div>
-        <div class="table-responsive">
-
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Nombre del Rol</th>
-                <th>Descripción del Rol</th>
-                <th>Nombre Operación</th>
-                <th>Descripción Operación</th>
-                <th>Nombre Módulo</th>
-                <th>Descripción Módulo</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let detalle of resultadosBusquedaDetalle of listadoDetalle ">
-
-                <td>{{ detalle.id_ROL_OPERACIONES }}</td>
-                <td>{{ detalle.nombre_ROL }}</td>
-                <td>{{ detalle.descripcion_ROL }}</td>
-                <td>{{ detalle.op_NOMBRE }}</td>
-                <td>{{ detalle.op_DESCRIPCION }}</td>
-                <td>{{ detalle.nombre_MODULO }}</td>
-                <td>{{ detalle.descripcion_MODULO }}</td>
-                <td class="d-flex">
-                  <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalDetalle(detalle)"
-                    data-bs-toggle="modal" data-bs-target="#detalleEditar">
-                    <i class="bi bi-pencil-fill"></i> Editar
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalDetalle(detalle)"
-                    data-bs-toggle="modal" data-bs-target="#detalleEliminar">
-                    <i class="bi bi-trash-fill"></i> Eliminar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              <td>{{ detalle.id_ROL_OPERACIONES }}</td>
+              <td>{{ detalle.nombre_ROL }}</td>
+              <td>{{ detalle.descripcion_ROL }}</td>
+              <td>{{ detalle.op_NOMBRE }}</td>
+              <td>{{ detalle.op_DESCRIPCION }}</td>
+              <td>{{ detalle.nombre_MODULO }}</td>
+              <td>{{ detalle.descripcion_MODULO }}</td>
+              <td class="d-flex">
+                <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalDetalle(detalle)"
+                  data-bs-toggle="modal" data-bs-target="#detalleEditar">
+                  <i class="bi bi-pencil-fill"></i> Editar
+                </button>
+                <button class="btn btn-sm btn-outline-danger" (click)="openEditarModalDetalle(detalle)"
+                  data-bs-toggle="modal" data-bs-target="#detalleEliminar">
+                  <i class="bi bi-trash-fill"></i> Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
