@@ -32,6 +32,7 @@ import { InsertUpdateResponsableTecnicoComponent } from './formulario/insert-upd
 import { WebSocketService } from 'src/app/services/web-socket-service.service';
 import { EliminacionProyectoComponent } from './formulario/eliminacion-proyecto/eliminacion-proyecto.component';
 import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.component';
+import { CreacionDetalleComponent } from './FormularioGestiosUsuarios/creacion-detalle/creacion-detalle.component';
 
 //const config: SocketIoConfig = { url: 'http://localhost:8080/ejecucionProyecto', options: {} };
 
@@ -65,7 +66,8 @@ import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.compo
     InsertUpdateProcesosSercopComponent,
     InsertUpdateResponsableTecnicoComponent,
     EliminacionProyectoComponent,
-    ListarComponent
+    ListarComponent,
+    CreacionDetalleComponent
     
   ],
   imports: [

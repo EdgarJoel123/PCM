@@ -1,23 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-</head>
 <body>
-    <div>
-        <br>
-        <br><b>rb
-            rb
-            rb
 
-            <b><br>br
-            r
-        <b>resultadosBusquedaDetallerb</b></b>
-        </b>
-        <h1>Creacion jajaja</h1>
-    </div>
+    <div class="container">
+        <div id="container">
+          <div class="underline"></div>
+          <!-- Ejemplo en tu plantilla -->
+          <form id="AspectosFinacieros_form" #form5="ngForm" (ngSubmit)="onFormSubmitRolOperacion(form5)"
+            class="form-container">
     
-</body>
-</html>
+            <legend>
+                <h1>Formulario de Asignamiento Roles/Operaciones </h1>
+              <br>
+            </legend>
+    
+
+    
+           
+            <div class="form-group">
+                <label for="role"></label>
+                <select name="role" id="role" (change)="seleccionarRol($event)">
+                    <option disabled hidden selected>Seleccionar un rol:</option>
+                    <option *ngFor="let rol of roles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="modulo"></label>
+                <select name="modulo" id="modulo" (change)="seleccionarModulo($event)">
+                    <option disabled hidden selected>Seleccione un modulo:</option>
+                    <option *ngFor="let modulo of modulos" [value]="modulo.id_MODULO">{{modulo.nombre_MODULO}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="modulo"></label>
+                <select name="modulo" id="modulo" (change)="seleccionarOperacion($event)">
+                    <option disabled hidden selected>Seleccione una operacion:</option>
+                    <option *ngFor="let operacion of operaciones" [value]="operacion.id_OPERACION">
+                        {{operacion.op_NOMBRE}}
+                    </option>
+                </select>
+            </div>
+    
+            <div class="submit-container">
+                <div class="submit">
+                  <input type="submit" value="Grabar Asignamiento" id="form_button" 
+                    class="btn btn-primary"/>
+    
+                </div>
+              </div>
+
+          </form>
+    
+    
+        </div><!-- // End #container -->
+      </div>
+        
+    </body>
+
