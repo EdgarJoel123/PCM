@@ -15,13 +15,13 @@
 
     <p class="text-uppercase text-center h1" style="color: #192A67;"><strong>Gestion de Usuarios PCM</strong></p>
     <br>
-    <div class="container">
+    <div class="containerLista">
       <div class="btn-group" role="group" aria-label="Vistas">
-        <button type="button" class="btn btn-secondary" (click)="setOption('detalle')">Detalle</button>
-        <button type="button" class="btn btn-secondary" (click)="setOption('roles')">Roles</button>
-        <button type="button" class="btn btn-secondary" (click)="setOption('operaciones')">Operaciones</button>
-        <button type="button" class="btn btn-secondary" (click)="setOption('modulos')">Módulos</button>
-        <button type="button" class="btn btn-secondary" (click)="setOption('usuarios')">Usuarios</button>
+        <button type="button" class="btn btn-primary" (click)="setOption('detalle')">Detalle</button>
+        <button type="button" class="btn btn-success" (click)="setOption('roles')">Roles</button>
+        <button type="button" class="btn btn-primary" (click)="setOption('operaciones')">Operaciones</button>
+        <button type="button" class="btn btn-success" (click)="setOption('modulos')">Módulos</button>
+        <button type="button" class="btn btn-primary" (click)="setOption('usuarios')">Usuarios</button>
       </div>
     </div>
   </div>
@@ -165,7 +165,7 @@
     </div>
   </div>
 
-  <div *ngIf="opcionSeleccionada === 'roles'">
+  <div *ngIf="opcionSeleccionada === 'roles'"  class="container my-5">
     <div class="container my-5">
       <div class="section">
         <div class="input-container">

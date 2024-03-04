@@ -578,6 +578,7 @@ export class ListarComponent {
         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
           if (response && response.message === 'Módulo eliminado correctamente') {
             alert("MÓDULO ELIMINADO CON ÉXITO");
+            window.location.reload();
             // Realiza cualquier otra lógica necesaria aquí
           } else {
             alert("NO SE PUDO ELIMINAR EL MÓDULO");
@@ -594,6 +595,7 @@ export class ListarComponent {
         (response: any) => {
           if (response && response.message === 'Operación eliminada correctamente') {
             alert("OPERACIÓN ELIMINADA CON ÉXITO");
+            window.location.reload();
             // Realiza cualquier otra lógica necesaria aquí
           } else {
             alert("NO SE PUDO ELIMINAR LA OPERACIÓN");
@@ -610,7 +612,9 @@ export class ListarComponent {
         (response: any) => {
           if (response && response.message === 'Rol eliminado correctamente') {
             alert("ROL ELIMINADO CON ÉXITO");
+            window.location.reload();
             // Realiza cualquier otra lógica necesaria aquí
+
           } else {
             alert("NO SE PUDO ELIMINAR EL ROL");
           }
@@ -626,6 +630,7 @@ export class ListarComponent {
         (response: any) => {
           if (response && response.message === 'Usuario eliminado correctamente') {
             alert("USUARIO ELIMINADO CON ÉXITO");
+            window.location.reload();
             // Realiza cualquier otra lógica necesaria aquí
           } else {
             alert("NO SE PUDO ELIMINAR EL USUARIO");

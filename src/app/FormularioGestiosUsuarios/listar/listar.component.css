@@ -153,4 +153,9 @@ h1 {
     text-align: center; /* Alinea el contenido al centro */
   margin-left: auto;
   }
+
+
+  .containerLista{
+    margin-left: 30%;
+  }
   
