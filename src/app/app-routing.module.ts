@@ -24,6 +24,11 @@ import { InsertUpdatePartidaPresupuestariaComponent } from './formulario/insert-
 import { InsertUpdateProcesosSercopComponent } from './formulario/insert-update-procesos-sercop/insert-update-procesos-sercop.component';
 import { InsertUpdateResponsableTecnicoComponent } from './formulario/insert-update-responsable-tecnico/insert-update-responsable-tecnico.component';
 import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.component';
+import { CreacionDetalleComponent } from './FormularioGestiosUsuarios/creacion-detalle/creacion-detalle.component';
+import { CreacionRolesComponent } from './FormularioGestiosUsuarios/creacion-roles/creacion-roles.component';
+import { CreacionOperacionesComponent } from './FormularioGestiosUsuarios/creacion-operaciones/creacion-operaciones.component';
+import { CreacionModulosComponent } from './FormularioGestiosUsuarios/creacion-modulos/creacion-modulos.component';
+import { CreacionUsuariosComponent } from './FormularioGestiosUsuarios/creacion-usuarios/creacion-usuarios.component';
 
 const routes: Routes = [
 
@@ -52,6 +57,11 @@ const routes: Routes = [
   { path: 'eliminar', component: EliminacionComponent, canActivate: [AutentificacionService] },
   { path: 'cargarProyecto', component: CargarProyectoComponent, canActivate: [AutentificacionService] },
   { path: 'listarUsuarios', component: ListarComponent, canActivate: [AutentificacionService] },
+  { path: 'crearDetalle', component: CreacionDetalleComponent, canActivate: [AutentificacionService] },
+  { path: 'crearRoles', component: CreacionRolesComponent, canActivate: [AutentificacionService] },
+  { path: 'crearOperaciones', component: CreacionOperacionesComponent, canActivate: [AutentificacionService] },
+  { path: 'crearModulos', component: CreacionModulosComponent, canActivate: [AutentificacionService] },
+  { path: 'crearUsuarios', component: CreacionUsuariosComponent, canActivate: [AutentificacionService] },
   
 ];
 
