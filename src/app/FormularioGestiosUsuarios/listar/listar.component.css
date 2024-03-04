@@ -1,153 +1,156 @@
+/* Component styles */
+
 /* General styles */
 html, body {
-    overflow-x: hidden;
-}
-
-body {
-    background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('../../../assets/img/fondoPrinc.avif');
+    overflow: hidden;
+  }
+  
+  body {
+    background: linear-gradient(rgba(113, 144, 165, 0.5), rgba(154, 197, 216, 0.5)), url('src/assets/img/fondoPrinc.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
-    padding: 0;
-}
+    padding: 0; 
+  }
+  
 
-/* Typography */
+  /* Typography */
 h1 {
     text-align: center;
     color: #192A67;
     font-size: 24px;
     font-weight: bold;
-    margin: 20px 0;
-}
+    margin: 20px 0; 
+  }
 
-/* Table styles */
-.container2 {
-    max-width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    overflow: hidden;
-}
 
-.table-responsive {
-    max-width: 100%;
+  .table-responsive {
+    width: 110%; /* Ocupa todo el ancho disponible */
     overflow-x: auto;
+    overflow-y: auto;
     border: 1px solid #cfedffa4;
     border-radius: 8px;
     margin: 10px 0;
-}
+    margin-left: 6%;
+  }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table th, .table td {
-    padding: 12px;
-    border: 1px solid #cfedffa4;
-    text-align: left;
-    vertical-align: middle;
-}
-
-.table th {
-    background-color: #3e72b683;
+  .table th {
+    background-color: #174e9683;
     color: #fff;
     font-weight: bold;
+  }
+
+
+  /* Button styles */
+.custom-button,
+.custom-button-danger {
+  background-color: #143947;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-/* Button styles */
-.custom-button, .custom-button-danger {
-    background-color: #143947;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 5px;
-    cursor: pointer;
-}
 
 .custom-button:hover {
     background-color: #4d78b1;
-}
+  }
 
-.custom-button-danger:hover {
+
+  .custom-button-danger:hover {
     background-color: #C82333;
-}
+  }
 
-/* Input styles */
+
+  /* Input styles */
 .input-container {
-    margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.form-control {
-    font-size: 18px;
-    border-radius: 4px;
-    margin: 5px;
-}
-
-.contador-resultados {
-    margin-right: 110%;
+    margin: 20px;
     display: flex;
     align-items: center;
-    margin: 10px 0;
-    
-}
-
-.contador-cuadro {
+  }
+  
+  .form-control {
+    font-size: 18px;
+    border-radius: 4px;
+  }
+  
+  .contador-resultados {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
+  .contador-cuadro {
     font-size: 24px;
     font-weight: bold;
     margin-right: 5px;
-}
-
-.contador-texto {
+  }
+  
+  .contador-texto {
     font-size: 18px;
-}
-
-.form-container {
-    margin: 20px 0;
-}
-
-.my-btn {
+  }
+  
+  .form-container {
+    margin: 20px;
+  }
+  
+  .my-btn {
     background-color: #3c4a7a;
     color: #ffffff;
     border-color: #3c4a7a;
-}
-
-.my-btn:hover {
+  }
+  
+  .my-btn:hover {
     background-color: #2162b8;
     border-color: #3c4a7a;
-}
-
-/* Custom select styles */
-.custom-select {
+  }
+  
+  /* Custom select styles */
+  .custom-select {
     width: 100%;
-    max-width: 600px;
-}
-
-/* Label styles */
-.custom-label {
+  }
+  
+  /* Label styles */
+  .custom-label {
     font-weight: bold;
     color: #192A67;
-}
-
-.label-container {
+  }
+  
+  .label-container {
     display: flex;
     align-items: center;
-}
-
-/* Media Query for Mobile Devices */
-@media (max-width: 768px) {
+  }
+  
+  /* Media Query for Mobile Devices */
+  @media (max-width: 768px) {
     .table-responsive {
         overflow-x: auto;
         overflow-y: hidden;
     }
-
-    .container2 {
-        max-width: 100%;
+  
+    .table th,
+    .table td {
+        white-space: normal;
     }
-}
+  }
+  
+  
+  #descargar {
+    margin: 20px;
+  }
+  
+  #descargar button {
+    margin-right: 10px;
+  }
+  
+  #ingresar {
+    width: auto; /* Ajusta el ancho según tus necesidades */
+    height:auto; /* Ajusta la altura según tus necesidades */
+    text-align: center; /* Alinea el contenido al centro */
+  margin-left: auto;
+  }
+  
