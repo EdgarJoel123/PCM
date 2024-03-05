@@ -1,1 +1,87 @@
-<p>creacion-usuarios works!</p>
+<body>
+    <div class="container">
+        <div id="container">
+            <div class="underline"></div>
+            <form id="contact_form" #form2="ngForm" (ngSubmit)="onFormSubmitUsuarios(form2)" class="form-container">
+
+                <div class="form-group">
+                    <label for="role"></label>
+                    <select name="role" id="role" (change)="seleccionarRol($event)">
+                        <option disabled hidden selected>Seleccionar un rol:</option>
+                        <option *ngFor="let rol of roles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="system_name"></label>
+                    <input type="text" placeholder="INGRESE EL USERNAME" name="system_username" id="system_username_input"
+                      [(ngModel)]="user_NAME" required>
+                    <button class="subject-button" type="button" (click)="buscarDatosUser()">Buscar los Datos del User</button>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="system_name"></label>
+                    <input type="text" placeholder="Nombre" name="system_name" id="system_name_input"
+                      [(ngModel)]="nomb_USUARIO" required>
+                  </div>
+                  
+                  
+
+                  <div class="form-group">
+                    <label for="system_name"></label>
+                    <input type="text" placeholder="Apellido" name="system_ape" id="system_ape_input"
+                        [(ngModel)]="ape_USUARIO" required>
+                </div>
+
+  
+
+
+                <div class="form-group">
+                    <label for="system_name"></label>
+                    <input type="text" placeholder="DMPER_CODIGO" name="system_DMPER_CODIGO" id="system_DMPER_CODIGO_input"
+                        [(ngModel)]="dmper_CODIGO" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="system_name"></label>
+                    <input type="text" placeholder="DMPER_NUMERO_ROL" name="system_DMPER_NUMERO_ROL" id="system_name_DMPER_NUMERO_ROL"
+                        [(ngModel)]="dmper_NUMERO_ROL" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="system_name">BLOQUEADO</label>
+                    <select name="role" id="role" [(ngModel)]="bloqueado" required>
+                        <option value="S">Sí</option>
+                        <option value="N">No</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="system_name">ELIMINADO</label>
+                    <select name="role" id="role" [(ngModel)]="eliminado" required>
+                        <option value="S">Sí</option>
+                        <option value="N">No</option>
+                    </select>
+                </div>
+
+           
+        <div class="submit-container">
+            <div class="submit">
+              <input type="submit" value="Crear Usuario" id="form_button"
+                class="btn btn-primary"/>
+  
+            </div>
+          </div>
+  
+            </form>
+
+
+        </div>
+    </div>
+
+
+
+</body>

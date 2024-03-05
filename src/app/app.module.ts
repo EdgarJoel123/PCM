@@ -33,6 +33,7 @@ import { WebSocketService } from 'src/app/services/web-socket-service.service';
 import { EliminacionProyectoComponent } from './formulario/eliminacion-proyecto/eliminacion-proyecto.component';
 import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.component';
 import { CreacionDetalleComponent } from './FormularioGestiosUsuarios/creacion-detalle/creacion-detalle.component';
+import { CreacionUsuariosComponent } from './FormularioGestiosUsuarios/creacion-usuarios/creacion-usuarios.component';
 
 //const config: SocketIoConfig = { url: 'http://localhost:8080/ejecucionProyecto', options: {} };
 
@@ -67,7 +68,8 @@ import { CreacionDetalleComponent } from './FormularioGestiosUsuarios/creacion-d
     InsertUpdateResponsableTecnicoComponent,
     EliminacionProyectoComponent,
     ListarComponent,
-    CreacionDetalleComponent
+    CreacionDetalleComponent,
+    CreacionUsuariosComponent
     
   ],
   imports: [
