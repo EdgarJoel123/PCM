@@ -26,7 +26,7 @@ export class ListarComponent {
   
   
   
-    opcionSeleccionada: string = 'usuarios'; // Valor por defecto
+    opcionSeleccionada: string = 'modulos'; // Valor por defecto
   
   
     palabraBusquedaDetalle: string; // Agregar esta línea
