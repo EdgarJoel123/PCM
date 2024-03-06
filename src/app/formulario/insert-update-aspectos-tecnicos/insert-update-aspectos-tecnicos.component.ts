@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AspectosFinancieros } from 'src/app/modelo/aspectosFinacieros';
 import { AspectosTecnicos } from 'src/app/modelo/aspectosTecnicos';
@@ -68,8 +69,10 @@ export class InsertUpdateAspectosTecnicosComponent {
 
   
   ngOnInit() {
-    this.cargarDatosAmbiental();
+
     this.buscarDatosAspectosTecnicos();
+    this.cargarDatosAmbiental();
+ 
 
   }
 
@@ -181,10 +184,9 @@ export class InsertUpdateAspectosTecnicosComponent {
   buscarDatosAspectosTecnicos() {
     this.serviceAspectosTecnicos.getListarAspectosTecnicos2(this.id_PPRO_CODIGO_UNICO_aspectos_tecnicos).subscribe(
       (response: any) => {
-        //console.log('Datos de aspectos financieros:', response);
-
-        // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
-        if (response && response.length) {
+        //console.log('Datos de aspectos tecnicos:', response);
+        //console.log("id_PASTE:", response[0].id_PASTE);
+        if (response && response.length && response[0].id_PASTE !== 0) {
           this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           this.ptipeam_TIPO_PER_AMBIENTAL = response[0].ptipeam_TIPO_PER_AMBIENTAL;
           this.paste_BENEFI_DIRECT_PLANI = response[0].paste_BENEFI_DIRECT_PLANI;
@@ -226,16 +228,18 @@ export class InsertUpdateAspectosTecnicosComponent {
           this.id_PASTE = response[0].id_PASTE;
 
 
-          console.log(this.id_PASTE);
-
+          console.log(this.paste_FECHA_ASPEC_TECNICOS);
 
         } else {
-          alert("Todavia no existe ningun aspecto tecnico, ingreselos")
+          this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
+          alert("Todavía no existe ningún aspecto técnico, ingréselos");
+        
 
         }
       },
       (error) => {
-        console.error('Error al obtener los departamentos:', error);
+        
+        console.error('Error al obtener los datos:', error);
       }
     );
   }
@@ -313,4 +317,12 @@ export class InsertUpdateAspectosTecnicosComponent {
     }
   }
 
+
+  confirmarActualizacion(form: NgForm): void {
+    if (window.confirm('¿Estás seguro de que deseas actualizar el registro?')) {
+      this.actualizarAspectosTecnicos(form);
+    }
+  }
+
+  
 }

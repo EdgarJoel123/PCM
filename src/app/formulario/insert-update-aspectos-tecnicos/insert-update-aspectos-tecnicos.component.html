@@ -247,11 +247,11 @@
                     class="btn btn-primary" />
                 </div>
 
-
                 <div class="submit">
-                  <input type="button" value="Actualizar Registro" (click)="actualizarAspectosTecnicos(form2)"
+                  <input type="button" value="Actualizar Registro" [disabled]="!form2.valid" (click)="confirmarActualizacion(form2)"
                     class="btn btn-success" />
                 </div>
+                
     
         
               </div>

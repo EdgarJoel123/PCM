@@ -13,6 +13,9 @@ export class CargarProyectoComponent implements OnInit {
   codigo_rapido: string;
   nombre_proyecto: string;
 
+  anio_proyecto: string;
+  monto_proyecto: string;
+
   menuVisible: boolean = false; // Asegúrate de declarar menuVisible y asignarle un valor inicial
 
 
@@ -36,11 +39,18 @@ export class CargarProyectoComponent implements OnInit {
         if (response && response.length > 0 && response[0].ppro_NOMBRE_PROY) {
           const codigoUnico = response[0].id_PPRO_CODIGO_UNICO;
           const nombreProyecto = response[0].ppro_NOMBRE_PROY;
+          const anio = response[0].ppro_ANIO_CALIFICACION_EJECU;
+          const monto = response[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
 
           console.log('Código único obtenido:', codigoUnico);
           console.log('Nombre del proyecto obtenido:', nombreProyecto);
+          console.log('Año:', anio);
+          console.log('Monto:', monto);
 
           // Actualiza el valor en el servicio compartido
+          this.sharedService.setCodigoUnico(codigoUnico);
+          this.sharedService.setNombreProyecto(nombreProyecto);
+
           this.sharedService.setCodigoUnico(codigoUnico);
           this.sharedService.setNombreProyecto(nombreProyecto);
 

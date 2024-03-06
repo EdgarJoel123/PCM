@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EjecucionProyecto } from 'src/app/modelo/ejecucionProyecto';
 import { EjecucionRestService } from 'src/app/services/ejecucion-rest.service';
@@ -159,9 +160,9 @@ export class InsertUpdateEjecucionProyectoComponent {
   buscarDatosEjecucionProyecto() {
     this.serviceEjecuccionProyecto.getListarEjecucionProyecto2(this.id_PPRO_CODIGO_UNICO_ejecucion_proyecto).subscribe(
       (response: any) => {
-        console.log('Datos de ejecucion de un proyecto:', response);
+        //console.log('Datos de ejecucion de un proyecto:', response);
 
-        if (response && response.length) {
+        if (response && response.length && response[0].id_PEJECP !== 0) {
           const data = response[0];
           this.pejecp_FECHA_INICIO_PRO = data.pejecp_FECHA_INICIO_PRO;
           this.pejecp_FECHA_PROG_FINA_PRO = data.pejecp_FECHA_PROG_FINA_PRO;
@@ -177,8 +178,8 @@ export class InsertUpdateEjecucionProyectoComponent {
           this.id_PEJECP = data.id_PEJECP;
 
 
-          console.log(this.id_PESTPRO);
-          console.log(this.id_PETAEJEPRO);
+        //  console.log(this.id_PESTPRO);
+          //console.log(this.id_PETAEJEPRO);
 
           // Establecer el valor de isEtapaDisabled
           this.isEtapaDisabled = data.pestpro_ESTADO_PRO === 'PARALIZADO';
@@ -246,5 +247,12 @@ export class InsertUpdateEjecucionProyectoComponent {
       );
     }
   }
+
+  confirmarActualizacion(form: NgForm): void {
+    if (window.confirm('¿Estás seguro de que deseas actualizar el registro?')) {
+      this.actualizarEjecucionProyecto(form);
+    }
+  }
+
 
 }

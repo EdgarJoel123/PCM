@@ -37,55 +37,55 @@
         <!-- Sección 5: campos de número -->
         <div class="form-group">
           <label for="pasfina_PRESU_CODIFICADO">Presupuesto Codificado (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Presupuesto Codificado (USD)" class="form-control"
             name="pasfina_PRESU_CODIFICADO" [(ngModel)]="pasfina_PRESU_CODIFICADO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_DEVENGADO">Devengado (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control" name="pasfina_DEVENGADO"
+          <input matInput type="number" placeholder="Devengado (USD)" class="form-control" name="pasfina_DEVENGADO"
             [(ngModel)]="pasfina_DEVENGADO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_EJECUTADO">Ejecutado (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control" name="pasfina_EJECUTADO"
+          <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control" name="pasfina_EJECUTADO"
             [(ngModel)]="pasfina_EJECUTADO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_ASIGNACION_INICIAL">Asignacion Inicial (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control"
             name="pasfina_ASIGNACION_INICIAL" [(ngModel)]="pasfina_ASIGNACION_INICIAL" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_REFORMAS">Reformas (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control" name="pasfina_REFORMAS"
+          <input matInput type="number" placeholder="Reformas (USD)" class="form-control" name="pasfina_REFORMAS"
             [(ngModel)]="pasfina_REFORMAS" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_PRE_COMPROMISO">Pre Compromiso (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Pre Compromiso (USD)" class="form-control"
             name="pasfina_PRE_COMPROMISO" [(ngModel)]="pasfina_PRE_COMPROMISO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_COMPROMISO">Compromiso (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control" name="pasfina_COMPROMISO"
+          <input matInput type="number" placeholder="Compromiso (USD)" class="form-control" name="pasfina_COMPROMISO"
             [(ngModel)]="pasfina_COMPROMISO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_EJECUTADO_PAGADO">Ejecutado Pagado (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Ejecutado Pagado (USD)" class="form-control"
             name="pasfina_EJECUTADO_PAGADO" [(ngModel)]="pasfina_EJECUTADO_PAGADO" required>
         </div>
 
         <div class="form-group">
           <label for="pasfina_ANTICIPO_NO_AMORTI">Anticipo no Amortizado (USD):</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Anticipo no Amortizado (USD)" class="form-control"
             name="pasfina_ANTICIPO_NO_AMORTI" [(ngModel)]="pasfina_ANTICIPO_NO_AMORTI" required>
         </div>
 
@@ -96,7 +96,7 @@
 
 
               <div class="submit">
-                <input type="button" value="Actualizar Registro" (click)="actualizarAspectosFinancieros(form3)"
+                <input type="button" value="Actualizar Registro" [disabled]="!form3.valid" (click)="confirmarActualizacion(form3)"
                   class="btn btn-success" />
               </div>
           </div>

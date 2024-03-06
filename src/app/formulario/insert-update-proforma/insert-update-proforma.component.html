@@ -17,8 +17,8 @@
 
                 <div class="form-group">
                     <label for="pproin_ANIO">Año:</label>
-                    <input type="text" class="form-control" placeholder="Año de Proforma" name="pproin_ANIO"
-                        [(ngModel)]="pproin_ANIO" pattern="[0-9]{4}" title="El año debe tener 4 dígitos numéricos"
+                    <input type="text" class="form-control" placeholder="Año de Proforma" name="pproin_ANIO" 
+                    [(ngModel)]="pproin_ANIO" pattern="[0-9]{4}" title="El año debe tener 4 dígitos numéricos"
                         (keypress)="onKeyPressAnioProforma($event)" required (keyup)="onYearChangeAnioProforma()">
                     <div
                         *ngIf="form5.controls['pproin_ANIO'].hasError('required') && (form5.controls['pproin_ANIO'].dirty || form5.controls['pproin_ANIO'].touched)">

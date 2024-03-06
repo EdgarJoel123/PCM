@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AspectosFinancieros } from 'src/app/modelo/aspectosFinacieros';
 import { AspectosFinancierosRestService } from 'src/app/services/aspectos-financieros-rest.service';
@@ -112,7 +113,7 @@ export class InsertUpdateAspectosFinancierosComponent {
         //console.log('Datos de aspectos financieros:', response);
 
         // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
-        if (response && response.length) {
+        if (response && response.length && response[0].id_PASFINA !==0) {
           this.pasfina_PRESU_CODIFICADO = response[0].pasfina_PRESU_CODIFICADO;
           this.pasfina_DEVENGADO = response[0].pasfina_DEVENGADO;
           this.pasfina_EJECUTADO = response[0].pasfina_EJECUTADO;
@@ -131,12 +132,13 @@ export class InsertUpdateAspectosFinancierosComponent {
 
 
         } else {
+          this.pasfina_FECHA = this.formatoFechaActual();
           alert("Todavia no existe ningun aspecto financiero, ingreselos")
 
         }
       },
       (error) => {
-        console.error('Error al obtener los departamentos:', error);
+        console.error('Error al obtener los datos:', error);
       }
     );
   }
@@ -185,6 +187,12 @@ export class InsertUpdateAspectosFinancierosComponent {
       );
     }
 
+  }
+
+  confirmarActualizacion(form: NgForm): void {
+    if (window.confirm('¿Estás seguro de que deseas actualizar el registro?')) {
+      this.actualizarAspectosFinancieros(form);
+    }
   }
 
 }

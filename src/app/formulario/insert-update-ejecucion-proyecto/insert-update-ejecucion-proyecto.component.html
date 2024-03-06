@@ -74,7 +74,7 @@
             </div>
 
             <div class="submit">
-              <input type="button" value="Actualizar Registro" (click)="actualizarEjecucionProyecto(form4)"
+              <input type="button" value="Actualizar Registro" [disabled]="!form4.valid" (click)="confirmarActualizacion(form4)"
                 class="btn btn-success" />
             </div>
 

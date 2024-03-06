@@ -25,7 +25,7 @@ export class CreacionModulosComponent {
           if (response && response.message === 'Módulo creado correctamente') {
             alert("MÓDULO CREADO CON ÉXITO");
 
-            this.router.navigate(['']);
+            this.router.navigate(['listarUsuarios']);
           
             // Aquí puedes hacer lo que necesites con la respuesta del servidor
           } else {
