@@ -352,29 +352,29 @@ export class CreacionComponent implements OnInit {
         this.ppro_CODIGO_PRO_EED, this.ppro_OBJETIVO_PRO.toUpperCase(), this.ppro_MONTO_APRO_ESTUDI_COSTOS, this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
         this.ppro_COD_PARROQUIA);
 
-      this.servicePrincipal.insertaProyecto(nuevoProyecto).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Proyecto creado correctamente') {
-            alert("Proyecto CREADO CON ÉXITO");
-            this.router.navigate(['cargarProyecto']);
-
-            //form.reset();
-            //window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-          } else {
-            alert("NO SE PUDO CREAR EL Proyecto");
-            // form.reset();
-            //window.location.reload();
+        this.servicePrincipal.insertaProyecto(nuevoProyecto).subscribe(
+          (response: any) => {
+            if (response && response.message === 'Proyecto creado correctamente') {
+              alert("Proyecto CREADO CON ÉXITO");
+              this.router.navigate(['cargarProyecto']);
+            } else {
+              alert("Error al crear el proyecto. Verifique los datos e inténtelo de nuevo.");
+            }
+          },
+          (error) => {
+            if (error.status === 400) {
+              alert("Error de solicitud. Verifique los datos e inténtelo de nuevo.");
+            } else if (error.status === 500) {
+              alert("Error interno del servidor. Por favor, inténtelo más tarde.");
+            } else {
+              alert("Error desconocido. Por favor, inténtelo más tarde.");
+            }
           }
-        },
-        error => {
-          alert("NO SE PUDO CREAR EL Proyecto");
-          //form.reset();
-          //window.location.reload();
-        }
-      );
+        );
+
     }
   }
+  
 
 
 
