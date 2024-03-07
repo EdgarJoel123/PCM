@@ -31,7 +31,6 @@ export class PrincipalComponent {
   ppro_ANIO_APROBACION: string;
   pdep_DEPARTAMENTO: string;
   ptipro_TIPO_PROGRAMA: string;
-  ppro_CODIGO_PRO_EED: number;
   ppro_OBJETIVO_PRO: string;
   ppro_CODIGO_RAPIDO: string;
   ptiper_TIPO_PERIODICIDAD: string;
@@ -210,7 +209,6 @@ export class PrincipalComponent {
         (generacion.ppro_PROYECTO_ARRASTRE && generacion.ppro_PROYECTO_ARRASTRE.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_PROY_CALI_ESTUDIO_COSTOS && generacion.ppro_PROY_CALI_ESTUDIO_COSTOS.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_ANIO_CALIFICACION_EJECU && generacion.ppro_ANIO_CALIFICACION_EJECU.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
-        (generacion.ppro_CODIGO_PRO_EED && generacion.ppro_CODIGO_PRO_EED.toLocaleString().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_OBJETIVO_PRO && generacion.ppro_OBJETIVO_PRO.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_OBSERVACIONES_JUSTIFICACI && generacion.ppro_OBSERVACIONES_JUSTIFICACI.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.petafun_ETAPA_FUNCIONAL && generacion.petafun_ETAPA_FUNCIONAL.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
@@ -433,7 +431,7 @@ export class PrincipalComponent {
     this.ppro_OBSERVACIONES_JUSTIFICACI = proyecto.ppro_OBSERVACIONES_JUSTIFICACI;
 
     this.ppro_MONTO_APRO_ESTUDI_COSTOS = proyecto.ppro_MONTO_APRO_ESTUDI_COSTOS;
-    this.ppro_CODIGO_PRO_EED = proyecto.ppro_CODIGO_PRO_EED;
+
 
 
     this.ptisubp_TIPO_SUBPROGRAMA = proyecto.id_PTISUBP.toString();
@@ -452,7 +450,6 @@ export class PrincipalComponent {
       ppro_ANIO_APROBACION: this.ppro_ANIO_APROBACION,
       pdep_DEPARTAMENTO: this.pdep_DEPARTAMENTO,
       ptipro_TIPO_PROGRAMA: this.ptipro_TIPO_PROGRAMA,
-      ppro_CODIGO_PRO_EED: this.ppro_CODIGO_PRO_EED,
       ppro_OBJETIVO_PRO: this.ppro_OBJETIVO_PRO.toUpperCase(),
       prete_APELLIDOS: "",
       ppro_CODIGO_RAPIDO: this.ppro_CODIGO_RAPIDO,

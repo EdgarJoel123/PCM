@@ -9,7 +9,6 @@ export class Proyecto {
     ppro_ANIO_APROBACION: string;
     pdep_DEPARTAMENTO: string;
     ptipro_TIPO_PROGRAMA: string;
-    ppro_CODIGO_PRO_EED: number;
     ppro_OBJETIVO_PRO: string;
     prete_APELLIDOS: string;
     ppro_CODIGO_RAPIDO: string;
@@ -54,7 +53,6 @@ export class Proyecto {
         ppro_PROYECTO_ARRASTRE: string,
         ppro_PROY_CALI_ESTUDIO_COSTOS: string,
         ppro_ANIO_CALIFICACION_EJECU: string,
-        ppro_CODIGO_PRO_EED: number,
         ppro_OBJETIVO_PRO: string,
         ppro_MONTO_APRO_ESTUDI_COSTOS: number,
         ppro_OBSERVACIONES_JUSTIFICACI: string,
@@ -73,7 +71,6 @@ export class Proyecto {
         this.ppro_PROYECTO_ARRASTRE = ppro_PROYECTO_ARRASTRE;
         this.ppro_PROY_CALI_ESTUDIO_COSTOS = ppro_PROY_CALI_ESTUDIO_COSTOS;
         this.ppro_ANIO_CALIFICACION_EJECU = ppro_ANIO_CALIFICACION_EJECU;
-        this.ppro_CODIGO_PRO_EED = ppro_CODIGO_PRO_EED;
         this.ppro_OBJETIVO_PRO = ppro_OBJETIVO_PRO;
         this.ppro_MONTO_APRO_ESTUDI_COSTOS = ppro_MONTO_APRO_ESTUDI_COSTOS;
         this.ppro_OBSERVACIONES_JUSTIFICACI = ppro_OBSERVACIONES_JUSTIFICACI;

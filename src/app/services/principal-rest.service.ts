@@ -73,7 +73,6 @@ export class PrincipalRestService {
       .set('PPRO_PROYECTO_ARRASTRE', proyecto.ppro_PROYECTO_ARRASTRE)
       .set('PPRO_PROY_CALI_ESTUDIO_COSTOS', proyecto.ppro_PROY_CALI_ESTUDIO_COSTOS)
       .set('PPRO_ANIO_CALIFICACION_EJECU', proyecto.ppro_ANIO_CALIFICACION_EJECU)
-      .set('PPRO_CODIGO_PRO_EED', proyecto.ppro_CODIGO_PRO_EED)
       .set('PPRO_OBJETIVO_PRO', proyecto.ppro_OBJETIVO_PRO)
       .set('PPRO_MONTO_APRO_ESTUDI_COSTOS', proyecto.ppro_MONTO_APRO_ESTUDI_COSTOS)
       .set('PPRO_OBSERVACIONES_JUSTIFICACI', proyecto.ppro_OBSERVACIONES_JUSTIFICACI)

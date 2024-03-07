@@ -77,14 +77,13 @@
                                 <th>Acciones</th>
                                 <th>Código Referencial</th>
                                 <th>Nombre</th>
-                                <th>Código Rápido</th>
+                                <th>Código Rápido/EDD </th>
                                 <th>Año de Aprobacion</th>
                                 <th>Proceso Corporativo (S/N)</th>
                                 <th>Arrastre (S/N)</th>
                                 <th>Calificado en estudios de Costos (S/N)</th>
                                 <th>Código Estudio de Costos</th>
                                 <th>Año de Calificacion de Ejecucion</th>
-                                <th>Código EDD</th>
                                 <th>Objetivo</th>
                                 <th>Observaciones</th>
                                 <th>Etapa Funcional </th>
@@ -114,7 +113,6 @@
                                 <td>{{ proyecto.ppro_PROY_CALI_ESTUDIO_COSTOS }}</td>
                                 <td>{{ proyecto.ppro_CODIGO_ESTU_COSTOS }}</td>
                                 <td>{{ proyecto.ppro_ANIO_CALIFICACION_EJECU }}</td>
-                                <td>{{ proyecto.ppro_CODIGO_PRO_EED }}</td>
                                 <td>{{ proyecto.ppro_OBJETIVO_PRO }}</td>
                                 <td>{{ proyecto.ppro_OBSERVACIONES_JUSTIFICACI }}</td>
                                 <td>{{ proyecto.petafun_ETAPA_FUNCIONAL }}</td>
@@ -281,7 +279,7 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="Codigorapido">Codigo Rapido:</label>
+                                                <label for="Codigorapido">Codigo Rapido/EDD:</label>
                                                 <input type="text" placeholder="Codigo rapido" name="Codigorapido"
                                                     id="ppro_CODIGO_RAPIDO" [(ngModel)]="ppro_CODIGO_RAPIDO" disabled>
                                             </div>
@@ -418,17 +416,6 @@
                                                 <input matInput type="number" placeholder="$$$$"
                                                     class="form-control" name="montoAprobado"
                                                     [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS" required>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="ppro_CODIGO_PRO_EED">Código EDD:</label>
-                                                <input matInput type="number" placeholder="Código EDD"
-                                                    class="form-control" name="CODIGO EDD"
-                                                    [(ngModel)]="ppro_CODIGO_PRO_EED" required>
                                             </div>
                                         </div>
 

@@ -57,7 +57,6 @@ export class CreacionComponent implements OnInit {
   ppro_ANIO_APROBACION: string;
   pdep_DEPARTAMENTO: string;
   ptipro_TIPO_PROGRAMA: string;
-  ppro_CODIGO_PRO_EED: number;
   ppro_OBJETIVO_PRO: string;
   ppro_CODIGO_RAPIDO: string;
   ptiper_TIPO_PERIODICIDAD: string;
@@ -349,32 +348,32 @@ export class CreacionComponent implements OnInit {
         this.ppro_CODIGO_ESTU_COSTOS.toUpperCase(), this.ppro_NOMBRE_PROY.toUpperCase(), this.ppro_CODIGO_RAPIDO.toUpperCase(),
         this.ppro_ANIO_APROBACION, this.ppro_PROCESO_CORPORATIVO_UN.toUpperCase(),
         this.ppro_PROYECTO_ARRASTRE.toUpperCase(), this.ppro_PROY_CALI_ESTUDIO_COSTOS.toUpperCase(), this.ppro_ANIO_CALIFICACION_EJECU,
-        this.ppro_CODIGO_PRO_EED, this.ppro_OBJETIVO_PRO.toUpperCase(), this.ppro_MONTO_APRO_ESTUDI_COSTOS, this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
+        this.ppro_OBJETIVO_PRO.toUpperCase(), this.ppro_MONTO_APRO_ESTUDI_COSTOS, this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
         this.ppro_COD_PARROQUIA);
 
-        this.servicePrincipal.insertaProyecto(nuevoProyecto).subscribe(
-          (response: any) => {
-            if (response && response.message === 'Proyecto creado correctamente') {
-              alert("Proyecto CREADO CON ÉXITO");
-              this.router.navigate(['cargarProyecto']);
-            } else {
-              alert("Error al crear el proyecto. Verifique los datos e inténtelo de nuevo.");
-            }
-          },
-          (error) => {
-            if (error.status === 400) {
-              alert("Error de solicitud. Verifique los datos e inténtelo de nuevo.");
-            } else if (error.status === 500) {
-              alert("Error interno del servidor. Por favor, inténtelo más tarde.");
-            } else {
-              alert("Error desconocido. Por favor, inténtelo más tarde.");
-            }
+      this.servicePrincipal.insertaProyecto(nuevoProyecto).subscribe(
+        (response: any) => {
+          if (response && response.message === 'Proyecto creado correctamente') {
+            alert("Proyecto CREADO CON ÉXITO");
+            this.router.navigate(['cargarProyecto']);
+          } else {
+            alert("Error al crear el proyecto. Verifique los datos e inténtelo de nuevo.");
           }
-        );
+        },
+        (error) => {
+          if (error.status === 400) {
+            alert("Error de solicitud. Verifique los datos e inténtelo de nuevo.");
+          } else if (error.status === 500) {
+            alert("Error interno del servidor. Por favor, inténtelo más tarde.");
+          } else {
+            alert("Error desconocido. Por favor, inténtelo más tarde.");
+          }
+        }
+      );
 
     }
   }
-  
+
 
 
 
@@ -568,74 +567,74 @@ export class CreacionComponent implements OnInit {
   }
 
 
- /* onSubmitProcesosSercop(form: any) {
-
-
-    const fechaProcesosSercop = new Date(this.pproser_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
-
-
-    if (form.valid) {
-      const sercop = new ProcesosSercop(
-        this.id_PPRO_CODIGO_UNICO_procesos_sercop,
-        this.pproser_PROCESOS_SERCOP.toUpperCase(),
-        fechaProcesosSercop,
-        this.pproser
-      );
-
-      this.servicePorocesosSercop.insertarProcesosSercop(sercop).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Procesos sercop creados correctamente') {
-            alert("DATOS DE PROCESOS SERCOP CREADOS CON ÉXITO");
-            form.reset();
-            //window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-          } else {
-            alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
-            form.reset();
-            //window.location.reload();
-          }
-        },
-        error => {
-          alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
-          form.reset();
-          //window.location.reload();
-        }
-      );
-    }
-  }
-
-  onSubmitPartidaPresupuestaria(form: any) {
-    const fechaPartidaPresupuestaria = new Date(this.prefoin_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
-
-
-    if (form.valid) {
-      const partidaPresupuestaria = new PartidaPresupuestaria(
-        this.selectTipoPartida,
-        this.ppart_PARTIDA_PRESUPUESTARIA.toUpperCase(),
-        fechaPartidaPresupuestaria
-      );
-
-      this.servicePartidaPrespuestaria.insertaPartidaPresuestaria(partidaPresupuestaria).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Partida Presupuestaria creada correctamente') {
-            alert("DATOS DE LA PARTIDA PRESUPUESTARIA CREADOS CON ÉXITO");
-            form.reset();
-            window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-          } else {
-            alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
-            form.reset();
-            window.location.reload();
-          }
-        },
-        error => {
-          alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
-          form.reset();
-          //window.location.reload();
-        }
-      );
-    }
-  }*/
+  /* onSubmitProcesosSercop(form: any) {
+ 
+ 
+     const fechaProcesosSercop = new Date(this.pproser_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
+ 
+ 
+     if (form.valid) {
+       const sercop = new ProcesosSercop(
+         this.id_PPRO_CODIGO_UNICO_procesos_sercop,
+         this.pproser_PROCESOS_SERCOP.toUpperCase(),
+         fechaProcesosSercop,
+         this.pproser
+       );
+ 
+       this.servicePorocesosSercop.insertarProcesosSercop(sercop).subscribe(
+         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
+           if (response && response.message === 'Procesos sercop creados correctamente') {
+             alert("DATOS DE PROCESOS SERCOP CREADOS CON ÉXITO");
+             form.reset();
+             //window.location.reload();
+             // Aquí puedes hacer lo que necesites con la respuesta del servidor
+           } else {
+             alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
+             form.reset();
+             //window.location.reload();
+           }
+         },
+         error => {
+           alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
+           form.reset();
+           //window.location.reload();
+         }
+       );
+     }
+   }
+ 
+   onSubmitPartidaPresupuestaria(form: any) {
+     const fechaPartidaPresupuestaria = new Date(this.prefoin_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
+ 
+ 
+     if (form.valid) {
+       const partidaPresupuestaria = new PartidaPresupuestaria(
+         this.selectTipoPartida,
+         this.ppart_PARTIDA_PRESUPUESTARIA.toUpperCase(),
+         fechaPartidaPresupuestaria
+       );
+ 
+       this.servicePartidaPrespuestaria.insertaPartidaPresuestaria(partidaPresupuestaria).subscribe(
+         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
+           if (response && response.message === 'Partida Presupuestaria creada correctamente') {
+             alert("DATOS DE LA PARTIDA PRESUPUESTARIA CREADOS CON ÉXITO");
+             form.reset();
+             window.location.reload();
+             // Aquí puedes hacer lo que necesites con la respuesta del servidor
+           } else {
+             alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
+             form.reset();
+             window.location.reload();
+           }
+         },
+         error => {
+           alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
+           form.reset();
+           //window.location.reload();
+         }
+       );
+     }
+   }*/
 
 
   onSubmitResponsableTecnico(form: any) {
@@ -685,35 +684,35 @@ export class CreacionComponent implements OnInit {
   }
 
 
- /* onSubmitDetalleResponsableTecnico(form: any) {
-
-    if (form.valid) {
-      const Detalleresponsable = new DetalleResponsableTecnico(
-        this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido,
-        this.ID_PPRO_CODIGO_UNICO_responsable
-      );
-
-      this.servicePrincipal.insertarDetalleResponsableTecnico(Detalleresponsable).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Dettale Responsable Tecnico creado correctamente') {
-            alert(" RESPONSABLE TECNICO ASIGNADO CON ÉXITO");
-            form.reset();
-            window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-          } else {
-            alert("NO SE PUDO ASIGNAR EL RESPONSABLE TECNICO");
-            form.reset();
-            //window.location.reload();
-          }
-        },
-        error => {
-          alert("NO SE PUDO ASIGNAR EL RESPONSABLE TECNICO");
-          form.reset();
-          //window.location.reload();
-        }
-      );
-    }
-  }*/
+  /* onSubmitDetalleResponsableTecnico(form: any) {
+ 
+     if (form.valid) {
+       const Detalleresponsable = new DetalleResponsableTecnico(
+         this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido,
+         this.ID_PPRO_CODIGO_UNICO_responsable
+       );
+ 
+       this.servicePrincipal.insertarDetalleResponsableTecnico(Detalleresponsable).subscribe(
+         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
+           if (response && response.message === 'Dettale Responsable Tecnico creado correctamente') {
+             alert(" RESPONSABLE TECNICO ASIGNADO CON ÉXITO");
+             form.reset();
+             window.location.reload();
+             // Aquí puedes hacer lo que necesites con la respuesta del servidor
+           } else {
+             alert("NO SE PUDO ASIGNAR EL RESPONSABLE TECNICO");
+             form.reset();
+             //window.location.reload();
+           }
+         },
+         error => {
+           alert("NO SE PUDO ASIGNAR EL RESPONSABLE TECNICO");
+           form.reset();
+           //window.location.reload();
+         }
+       );
+     }
+   }*/
 
 
   onSubmitDetallePartidaPresupuestaria(form: any) {
