@@ -22,14 +22,15 @@ body {
 }
 
 form {
-  width: 90%;
-  max-width: 100%;
+  width: 100%;
+  max-width: 110%;
   margin: 5% auto; /* Utilizando unidades relativas */
   padding: 3%;
   background-color: #f0f0f0;
   border: solid 3px #919191;
   border-radius: 2vmin; /* Utilizando unidades relativas */
   margin-top: 8%;
+  margin-left: 8%;
 }
 
 h1 {
@@ -45,12 +46,12 @@ h1 {
 .form-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around; /* O space-between según prefieras */
 }
 
 .form-group {
-  width: calc(30% - 1vmin); /* Utilizando unidades relativas */
-  margin-bottom: 2vmin; /* Utilizando unidades relativas */
+  width: calc(23% - 1vmin); /* Ajusta el ancho según tus necesidades */
+  margin-bottom: 2vmin;
   box-sizing: border-box;
 }
 

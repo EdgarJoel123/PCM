@@ -17,7 +17,7 @@
     
               <div class="form-group">
                 <label for="paste_FECHA_ASPEC_TECNICOS">Fecha de Ingreso de Aspectos Tecnicos:</label>
-                <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS"
+                <input type="date" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS" class="form-control"
                   [(ngModel)]="paste_FECHA_ASPEC_TECNICOS" disabled>
               </div>
     
@@ -30,6 +30,7 @@
                     {{aspectosTecnicos.ptipeam_TIPO_PER_AMBIENTAL}}
                   </option>
                 </select>
+                <br>
               </div>
     
               <!-- Sección 5: campos de número -->
@@ -233,12 +234,13 @@
     
     
               <div class="form-group">
-                <label  for="paste_EMPLE_DIRE_GENERA">Empleos
-                  directos generados (#):</label>
+                <label  for="paste_EMPLE_DIRE_GENERA">Empleos directos generados (#):</label>
                 <input  matInput type="number" placeholder="Empleos directos generados" class="form-group"
                   name="paste_EMPLE_DIRE_GENERA" [(ngModel)]="paste_EMPLE_DIRE_GENERA" required>
-    
               </div>
+              
+
+              
     
     
               <div class="submit-container">
