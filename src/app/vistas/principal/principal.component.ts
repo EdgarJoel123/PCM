@@ -42,9 +42,14 @@ export class PrincipalComponent {
   ppro_PROYECTO_ARRASTRE: string;
   ppro_PROCESO_CORPORATIVO_UN: string;
   ptisubp_TIPO_SUBPROGRAMA: string;
-  ppro_COD_PARROQUIA: string;
   id_PEJECP: number;
   id_PASTE: number;
+
+
+     //select parroquia
+     ppro_COD_PARROQUIA: string;
+     selectParroquia: number;
+     parroquia: Proyecto[];
 
 
   //select departamento 
@@ -186,6 +191,7 @@ export class PrincipalComponent {
   ngOnInit() {
 
     this.listarGeneracion();
+    this.cargarDatosParroquia();
     this.cargarDatosDepartamento();
     this.cargarDatosTipoPlan();
     this.cargarDatosTipoPeriodicidad();
@@ -246,9 +252,10 @@ export class PrincipalComponent {
         this.ptipro_TIPO_PROGRAMA = data[0].id_PTIPRO;
 
 
+
         this.cargarDatosTipoSubprograma();
 
-        //console.log(this.id_PTISUBP); // verifica si hay datos
+        console.log(this.ppro_COD_PARROQUIA); // verifica si hay datos
       })
   }
 
@@ -261,7 +268,13 @@ export class PrincipalComponent {
       })
   }
 
+  seleccionarParroquia(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectParroquia = parseFloat(target.value);
 
+    //console.log('Tipo de Plan seleccionado:', this.selectTipoPlan);
+
+  }
 
   seleccionarDepartamento(event: Event): void {
     const target = event.target as HTMLSelectElement;
@@ -403,11 +416,23 @@ export class PrincipalComponent {
     );
   }
 
+  cargarDatosParroquia() {
+    this.servicePrincipal.getListarParroquias().subscribe(
+      (data) => {
+        this.parroquia = data;
+        // console.log(this.departamentos);
+
+      },
+      (error) => {
+        console.error('Error al obtener los Datos:', error);
+      }
+    );
+  }
+
 
 
   openEditarModalproyecto(proyecto: Proyecto) {
 
-    this.id_PDEP = proyecto.id_PDEP;
     this.id_PDEP = proyecto.id_PDEP;
     this.id_PTIPLA = proyecto.id_PTIPLA;
     this.id_PTIPER = proyecto.id_PTIPER;
@@ -435,6 +460,12 @@ export class PrincipalComponent {
 
 
     this.ptisubp_TIPO_SUBPROGRAMA = proyecto.id_PTISUBP.toString();
+
+
+    this.ppro_COD_PARROQUIA = proyecto.ppro_COD_PARROQUIA.toString();
+
+    console.log(this.ppro_COD_PARROQUIA);
+    
 
 
   }

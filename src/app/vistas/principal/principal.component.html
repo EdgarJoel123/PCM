@@ -79,6 +79,7 @@
                                 <th>Nombre</th>
                                 <th>Código Rápido/EDD </th>
                                 <th>Año de Aprobacion</th>
+                                <th>Monto Aprobado en Estudios de Costos</th>
                                 <th>Proceso Corporativo (S/N)</th>
                                 <th>Arrastre (S/N)</th>
                                 <th>Calificado en estudios de Costos (S/N)</th>
@@ -108,6 +109,7 @@
                                 <td>{{ proyecto.ppro_NOMBRE_PROY }}</td>
                                 <td>{{ proyecto.ppro_CODIGO_RAPIDO }}</td>
                                 <td>{{ proyecto.ppro_ANIO_APROBACION }}</td>
+                                <td>{{ proyecto.ppro_MONTO_APRO_ESTUDI_COSTOS }}</td>
                                 <td>{{ proyecto.ppro_PROCESO_CORPORATIVO_UN }}</td>
                                 <td>{{ proyecto.ppro_PROYECTO_ARRASTRE }}</td>
                                 <td>{{ proyecto.ppro_PROY_CALI_ESTUDIO_COSTOS }}</td>
@@ -151,8 +153,9 @@
 
                                         <div class="form-group">
                                             <label for="departamento">Departamento:</label>
-                                            <select class="form-control" name="departamento" id="departamento" [(ngModel)]="id_PDEP"
-                                                (change)="seleccionarDepartamento($event)" required>
+                                            <select class="form-control" name="departamento" id="departamento"
+                                                [(ngModel)]="id_PDEP" (change)="seleccionarDepartamento($event)"
+                                                required>
                                                 <option disabled hidden selected>Seleccione un Departamento:</option>
                                                 <option *ngFor="let proyecto of departamentos"
                                                     [value]="proyecto.id_PDEP">{{proyecto.pdep_DEPARTAMENTO}}
@@ -169,8 +172,9 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label for="tipoPlan">Tipo de Plan</label>
-                                                <select class="form-control" name="tipoPlan" id="tipoPlan" [(ngModel)]="id_PTIPLA"
-                                                    (change)="seleccionarTipoPlan($event)" required>
+                                                <select class="form-control" name="tipoPlan" id="tipoPlan"
+                                                    [(ngModel)]="id_PTIPLA" (change)="seleccionarTipoPlan($event)"
+                                                    required>
                                                     <option disabled hidden selected>Seleccione un Tipo de Plan:
                                                     </option>
                                                     <option *ngFor="let proyecto of tipoPlan"
@@ -187,8 +191,8 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label for="tipoPeriodicidad">Tipo de Periodicidad</label>
-                                                <select class="form-control" name="tipoPeriodicidad" id="tipoPeriodicidad"
-                                                    [(ngModel)]="id_PTIPER"
+                                                <select class="form-control" name="tipoPeriodicidad"
+                                                    id="tipoPeriodicidad" [(ngModel)]="id_PTIPER"
                                                     (change)="seleccionarTipoPeriodicidad($event)" required>
                                                     <option disabled hidden selected>Seleccione un Tipo de Periodicidad:
                                                     </option>
@@ -204,8 +208,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="etapaFuncional">Etapa Funcional</label>
-                                            <select class="form-control" name="etapaFuncional" id="etapaFuncional" [(ngModel)]="id_PETAFUN"
-                                                (change)="seleccionarEtapaFuncional($event)" required>
+                                            <select class="form-control" name="etapaFuncional" id="etapaFuncional"
+                                                [(ngModel)]="id_PETAFUN" (change)="seleccionarEtapaFuncional($event)"
+                                                required>
                                                 <option disabled hidden selected>Seleccione la Etapa Funcional:
                                                 </option>
                                                 <option *ngFor="let proyecto of etapaFuncional"
@@ -219,9 +224,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="tipoPrograma">Tipo de Programa</label>
-                                            <select class="form-control" name="tipoPrograma" id="tipoPrograma" [(ngModel)]="ptipro_TIPO_PROGRAMA"
+                                            <select class="form-control" name="tipoPrograma" id="tipoPrograma"
+                                                [(ngModel)]="ptipro_TIPO_PROGRAMA"
                                                 (change)="seleccionarTipoPrograma($event)" required>
-                                                <option disabled hidden selected>Seleccione un Tipo de Programa:</option>
+                                                <option disabled hidden selected>Seleccione un Tipo de Programa:
+                                                </option>
                                                 <option *ngFor="let proyecto of tipoPrograma"
                                                     [value]="proyecto.id_PTIPRO">
                                                     {{proyecto.ptipro_TIPO_PROGRAMA}}
@@ -235,9 +242,9 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="tipoSubprograma">Tipo de Subprograma</label>
-                                                <select class="form-control" name="tipoSubprograma" id="tipoSubprograma" [(ngModel)]="id_PTISUBP"
-                                                    (change)="seleccionarTipoSubprograma($event)"
-                                                      required>
+                                                <select class="form-control" name="tipoSubprograma" id="tipoSubprograma"
+                                                    [(ngModel)]="id_PTISUBP"
+                                                    (change)="seleccionarTipoSubprograma($event)" required>
                                                     <option disabled hidden selected>Seleccione una Tipo de Subprograma:
                                                     </option>
                                                     <option *ngFor="let proyecto of tipoSubprograma"
@@ -248,6 +255,9 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+
 
                                 </div>
 
@@ -270,8 +280,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="nombreProyecto">Nombre del Proyecto:</label>
-                                                <textarea type="text" id="nombreProyecto" placeholder="Nombre del Proyecto"
-                                                    name="nombreProyecto" [(ngModel)]="ppro_NOMBRE_PROY" disabled>
+                                                <textarea type="text" id="nombreProyecto"
+                                                    placeholder="Nombre del Proyecto" name="nombreProyecto"
+                                                    [(ngModel)]="ppro_NOMBRE_PROY" disabled>
                                                 </textarea>
                                             </div>
                                         </div>
@@ -333,12 +344,19 @@
                                             </div>
                                         </div>
 
+
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="ppro_COD_PARROQUIA">CODIGO Parroquia:</label>
-                                                <input type="text" placeholder="CODIGO parroquia"
-                                                    id="ppro_COD_PARROQUIA" name="parroquia"
-                                                    [(ngModel)]="ppro_COD_PARROQUIA" required>
+                                                <label for="ppro_COD_PARROQUIA">CODIGO Parroquia</label>
+                                                <select class="form-control" name="ppro_COD_PARROQUIA"
+                                                    id="ppro_COD_PARROQUIA" [(ngModel)]="ppro_COD_PARROQUIA"
+                                                    (change)="seleccionarParroquia($event)" required>
+                                                    <option disabled hidden selected>Seleccione la Parroquia: </option>
+                                                    <option *ngFor="let proyecto of parroquia"
+                                                        [value]="proyecto.ppro_COD_PARROQUIA">
+                                                        {{proyecto.parroquia}} ({{proyecto.ppro_COD_PARROQUIA}})
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -374,9 +392,10 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            
+
                                             <div class="form-group">
-                                                <label for="ppro_PROY_CALI_ESTUDIO_COSTOS">Proyecto Calificado en Estudios de Costos (S/N):</label>
+                                                <label for="ppro_PROY_CALI_ESTUDIO_COSTOS">Proyecto Calificado en
+                                                    Estudios de Costos (S/N):</label>
                                                 <select class="form-control" name="ppro_PROY_CALI_ESTUDIO_COSTOS"
                                                     [(ngModel)]="ppro_PROY_CALI_ESTUDIO_COSTOS" required>
                                                     <option value="S">SI</option>
@@ -413,9 +432,9 @@
                                             <div class="form-group">
                                                 <label for="montoAprobado">Monto Aprobado en Estudios de
                                                     Costos:</label>
-                                                <input matInput type="number" placeholder="$$$$"
-                                                    class="form-control" name="montoAprobado"
-                                                    [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS" required>
+                                                <input matInput type="number" placeholder="$$$$" class="form-control"
+                                                    name="montoAprobado" [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS"
+                                                    required>
                                             </div>
                                         </div>
 
