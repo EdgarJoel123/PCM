@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AspectosFinancieros } from 'src/app/modelo/aspectosFinacieros';
@@ -61,18 +61,22 @@ export class InsertUpdateAspectosTecnicosComponent {
   tipoAmbiental: AspectosTecnicos[];
 
 
-  constructor(private serviceAspectosTecnicos: AspectosTecnicosRestService,    private sharedService: SharedIDService, private router: Router) {
-    this.id_PPRO_CODIGO_UNICO_aspectos_tecnicos =  this.sharedService.getCodigoUnico();
-
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private serviceAspectosTecnicos: AspectosTecnicosRestService,
+    private sharedService: SharedIDService,
+    private router: Router
+  ) {
+    this.id_PPRO_CODIGO_UNICO_aspectos_tecnicos = this.sharedService.getCodigoUnico();
   }
 
 
-  
+
   ngOnInit() {
 
     this.buscarDatosAspectosTecnicos();
     this.cargarDatosAmbiental();
- 
+
 
   }
 
@@ -128,7 +132,7 @@ export class InsertUpdateAspectosTecnicosComponent {
           if (response && response.message === 'Aspectos tecnicos creados correctamente') {
             alert("ASPECTOS TECNICOS CREADOS CON ÉXITO");
             //form.reset();
-            
+
             this.router.navigate(['aspectosTecnicos']);
             //window.location.reload();
             // Aquí puedes hacer lo que necesites con la respuesta del servidor
@@ -145,6 +149,9 @@ export class InsertUpdateAspectosTecnicosComponent {
         }
       );
     }
+  }
+  isNumeric(value: any): boolean {
+    return !isNaN(value);
   }
 
   cargarDatosAmbiental() {
@@ -179,7 +186,7 @@ export class InsertUpdateAspectosTecnicosComponent {
     // Formatear la fecha como "yyyy-MM-dd"
     return `${year}-${month}-${day}`;
   }
-  
+
 
   buscarDatosAspectosTecnicos() {
     this.serviceAspectosTecnicos.getListarAspectosTecnicos2(this.id_PPRO_CODIGO_UNICO_aspectos_tecnicos).subscribe(
@@ -222,7 +229,7 @@ export class InsertUpdateAspectosTecnicosComponent {
           this.paste_EMPLE_DIRE_GENERA = response[0].paste_EMPLE_DIRE_GENERA;
           this.id_PTIPEAM = response[0].id_PTIPEAM;
 
-          this.selectTipoAmbiental =  response[0].id_PTIPEAM;
+          this.selectTipoAmbiental = response[0].id_PTIPEAM;
 
 
           this.id_PASTE = response[0].id_PASTE;
@@ -233,19 +240,19 @@ export class InsertUpdateAspectosTecnicosComponent {
         } else {
           this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           alert("Todavía no existe ningún aspecto técnico, ingréselos");
-        
+
 
         }
       },
       (error) => {
-        
+
         console.error('Error al obtener los datos:', error);
       }
     );
   }
 
 
-  actualizarAspectosTecnicos(form: any){
+  actualizarAspectosTecnicos(form: any) {
 
     const fechaAspectosTecnicos = new Date(this.paste_FECHA_ASPEC_TECNICOS);
     const fechaAmbienPlani = new Date(this.paste_FECH_OB_PERM_AMBI_PLANI);
@@ -290,7 +297,7 @@ export class InsertUpdateAspectosTecnicosComponent {
         paste_SUBE_DISTRI_NUEV_PLANI: this.paste_SUBE_DISTRI_NUEV_PLANI,
         paste_SUBE_DISTRI_NUEV_EJEC: this.paste_SUBE_DISTRI_NUEV_EJEC,
         id_PASTE: this.id_PASTE,
-        ppro_CODIGO_RAPIDO : "",
+        ppro_CODIGO_RAPIDO: "",
 
 
 
@@ -324,5 +331,5 @@ export class InsertUpdateAspectosTecnicosComponent {
     }
   }
 
-  
+
 }
