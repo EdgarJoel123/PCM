@@ -476,7 +476,8 @@ export class PrincipalComponent {
       id_PEJECP: this.id_PEJECP,
       id_PASTE: this.id_PASTE,
       id_PRETE: this.id_PASTE,
-      responsableTecnico: ""
+      responsableTecnico: "",
+      parroquia: ""
 
   
     };

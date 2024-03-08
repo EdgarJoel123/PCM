@@ -71,6 +71,17 @@
           </div>
 
 
+          
+          <div class="form-group">
+            <label for="Parroquia">CODIGO Parroquia:</label>
+            <select name="Parroquia" id="Parroquia" (change)="seleccionarParroquia($event)" required>
+              <option disabled hidden selected>Seleccione una Parroquia</option>
+              <option *ngFor="let proyecto of parroquia" [value]="proyecto.ppro_COD_PARROQUIA">{{proyecto.parroquia}} ({{proyecto.ppro_COD_PARROQUIA}})
+              </option>
+            </select>
+          </div>
+
+
 
           <!-- Sección 2: Campos de texto -->
           <div class="form-group">
@@ -134,11 +145,7 @@
           </div>
 
 
-          <div class="form-group">
-            <label for="ppro_COD_PARROQUIA">CODIGO Parroquia:</label>
-            <input type="text" class="form-control" placeholder="CODIGO parroquia" id="ppro_COD_PARROQUIA"
-              name="parroquia" [(ngModel)]="ppro_COD_PARROQUIA" required>
-          </div>
+      
 
 
 

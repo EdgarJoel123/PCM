@@ -33,6 +33,7 @@ export class PrincipalRestService {
   apiListarEtapaFuncional = 'http://localhost:8080/proyecto/listarEtapaFuncional';
   apiListarTipoSubprograma = 'http://localhost:8080/proyecto/listarTipoSubprograma';
   apiListarTipoPrograma = 'http://localhost:8080/proyecto/listarTipoPrograma';
+  apiListarParroquias = 'http://localhost:8080/proyecto/listarParroquia';
 
 
   apiListarResponblesTecnico = 'http://localhost:8080/proyecto/listarResponsablesTecnico';
@@ -145,6 +146,13 @@ export class PrincipalRestService {
 
   getListarTipoPeriodicidad(): Observable<any> {
     return this.http.get<Proyecto>(this.apiListarTipoPeriodicidad);
+  }
+
+  
+  // listar parroquias
+
+  getListarParroquias(): Observable<any> {
+    return this.http.get<Proyecto>(this.apiListarParroquias);
   }
 
   // listar tipo de plan

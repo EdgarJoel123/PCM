@@ -38,6 +38,8 @@ export class Proyecto {
 
     responsableTecnico: string;
 
+    parroquia: string;
+
     
     constructor(
         id_PDEP: number,

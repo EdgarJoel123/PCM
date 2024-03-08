@@ -68,7 +68,6 @@ export class CreacionComponent implements OnInit {
   ppro_PROYECTO_ARRASTRE: string;
   ppro_PROCESO_CORPORATIVO_UN: string;
   ptisubp_TIPO_SUBPROGRAMA: string;
-  ppro_COD_PARROQUIA: string;
   id_PEJECP: number;
   id_PASTE: number;
 
@@ -208,6 +207,11 @@ export class CreacionComponent implements OnInit {
 
 
 
+    //select parroquia
+    ppro_COD_PARROQUIA: string;
+    selectParroquia: number;
+    parroquia: Proyecto[];
+
 
   //select tipo de plan
   id_PTIPLA: number;
@@ -325,6 +329,7 @@ export class CreacionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.cargarDatosParroquia();
     this.cargarDatosDepartamento();
     this.cargarDatosTipoPlan();
     this.cargarDatosTipoPeriodicidad();
@@ -349,7 +354,7 @@ export class CreacionComponent implements OnInit {
         this.ppro_ANIO_APROBACION, this.ppro_PROCESO_CORPORATIVO_UN.toUpperCase(),
         this.ppro_PROYECTO_ARRASTRE.toUpperCase(), this.ppro_PROY_CALI_ESTUDIO_COSTOS.toUpperCase(), this.ppro_ANIO_CALIFICACION_EJECU,
         this.ppro_OBJETIVO_PRO.toUpperCase(), this.ppro_MONTO_APRO_ESTUDI_COSTOS, this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
-        this.ppro_COD_PARROQUIA);
+        this.selectParroquia.toLocaleString());
 
       this.servicePrincipal.insertaProyecto(nuevoProyecto).subscribe(
         (response: any) => {
@@ -566,75 +571,6 @@ export class CreacionComponent implements OnInit {
     }
   }
 
-
-  /* onSubmitProcesosSercop(form: any) {
- 
- 
-     const fechaProcesosSercop = new Date(this.pproser_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
- 
- 
-     if (form.valid) {
-       const sercop = new ProcesosSercop(
-         this.id_PPRO_CODIGO_UNICO_procesos_sercop,
-         this.pproser_PROCESOS_SERCOP.toUpperCase(),
-         fechaProcesosSercop,
-         this.pproser
-       );
- 
-       this.servicePorocesosSercop.insertarProcesosSercop(sercop).subscribe(
-         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-           if (response && response.message === 'Procesos sercop creados correctamente') {
-             alert("DATOS DE PROCESOS SERCOP CREADOS CON ÉXITO");
-             form.reset();
-             //window.location.reload();
-             // Aquí puedes hacer lo que necesites con la respuesta del servidor
-           } else {
-             alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
-             form.reset();
-             //window.location.reload();
-           }
-         },
-         error => {
-           alert("NO SE PUDO CREAR LOS DATOS DE PROCESOS SERCOP");
-           form.reset();
-           //window.location.reload();
-         }
-       );
-     }
-   }
- 
-   onSubmitPartidaPresupuestaria(form: any) {
-     const fechaPartidaPresupuestaria = new Date(this.prefoin_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
- 
- 
-     if (form.valid) {
-       const partidaPresupuestaria = new PartidaPresupuestaria(
-         this.selectTipoPartida,
-         this.ppart_PARTIDA_PRESUPUESTARIA.toUpperCase(),
-         fechaPartidaPresupuestaria
-       );
- 
-       this.servicePartidaPrespuestaria.insertaPartidaPresuestaria(partidaPresupuestaria).subscribe(
-         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-           if (response && response.message === 'Partida Presupuestaria creada correctamente') {
-             alert("DATOS DE LA PARTIDA PRESUPUESTARIA CREADOS CON ÉXITO");
-             form.reset();
-             window.location.reload();
-             // Aquí puedes hacer lo que necesites con la respuesta del servidor
-           } else {
-             alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
-             form.reset();
-             window.location.reload();
-           }
-         },
-         error => {
-           alert("NO SE PUDO CREAR LOS DATOS DE LA PARTIDA PRESUPUESTARIA");
-           form.reset();
-           //window.location.reload();
-         }
-       );
-     }
-   }*/
 
 
   onSubmitResponsableTecnico(form: any) {
@@ -915,6 +851,14 @@ export class CreacionComponent implements OnInit {
 
   }
 
+  seleccionarParroquia(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectParroquia = parseFloat(target.value);
+
+    //console.log('Tipo de Plan seleccionado:', this.selectTipoPlan);
+
+  }
+
 
   cargarDatosTipoPeriodicidad() {
     this.servicePrincipal.getListarTipoPeriodicidad().subscribe(
@@ -947,6 +891,20 @@ export class CreacionComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener los departamentos:', error);
+      }
+    );
+  }
+
+
+  cargarDatosParroquia() {
+    this.servicePrincipal.getListarParroquias().subscribe(
+      (data) => {
+        this.parroquia = data;
+        //console.log(this.tipoPlan);
+
+      },
+      (error) => {
+        console.error('Error al obtener los parroquias:', error);
       }
     );
   }
