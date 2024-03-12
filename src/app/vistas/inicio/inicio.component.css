@@ -26,6 +26,18 @@ body {
   /* Evita que las esquinas redondeadas se vean cortadas */
 }
 
+
+.carousel-caption {
+  background-color: #ecf0f1; /* Puedes cambiar el código hexadecimal al color que desees */
+  border-radius: 10px; /* Ajusta el valor según el grado de redondeo que desees */
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+  color: #000000; /* Puedes cambiar el código hexadecimal al color que desees */
+}
+
+
 .logo {
   max-width: 100%;
   max-height: 80px;
@@ -94,7 +106,7 @@ footer {
 
 .carousel-control-prev,
 .carousel-control-next {
-  background-color: #1f4c7d;
+  
   /* Azul marino más oscuro */
   transition: background-color 0.3s ease;
 }
