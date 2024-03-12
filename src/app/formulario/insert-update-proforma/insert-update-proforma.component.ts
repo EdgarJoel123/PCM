@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Proforma } from 'src/app/modelo/proforma';
+import { PrincipalRestService } from 'src/app/services/principal-rest.service';
 import { ProformaRestService } from 'src/app/services/proforma-rest.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
 
@@ -25,13 +26,32 @@ export class InsertUpdateProformaComponent {
   currentYear: number; // Definir propiedad en la clase
 
 
-  constructor(private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
+  constructor(private servicePrincipal: PrincipalRestService, private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
     this.id_PPRO_CODIGO_UNICO_proforma = this.sharedService.getCodigoUnico();
 
   }
 
   ngOnInit() {
+    this.listarDatosProyecto();
     this.buscarDatosProforma();
+
+  }
+
+  listarDatosProyecto() {
+    this.servicePrincipal.getListarProyectos1(this.id_PPRO_CODIGO_UNICO_proforma)
+      .subscribe(data => {
+
+        //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
+
+        this.pproin_ANIO = data[0].ppro_ANIO_CALIFICACION_EJECU;
+        this.pproin_VALOR_TOTAL_PROYECTO_PR = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+        this.pproin_PROFORMA = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+  
+
+
+
+        console.log(this.pproin_ANIO); // verifica si hay datos
+      })
   }
 
   onSubmitProfroma(form: any) {
@@ -116,6 +136,8 @@ export class InsertUpdateProformaComponent {
 
 
           console.log(this.id_PPROIN);
+
+          this.listarDatosProyecto();
 
 
         } else {

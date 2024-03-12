@@ -19,7 +19,7 @@
           </div>
 
           <div class="form-group">
-            <label for="pejecp_FECHA_PROG_FINA_PRO">Fecha de Final Programa del Proyecto:</label>
+            <label for="pejecp_FECHA_PROG_FINA_PRO">Fecha de Final Programada del Proyecto:</label>
             <input type="date" id="pejecp_FECHA_PROG_FINA_PRO" placeholder="Fecha" name="pejecp_FECHA_PROG_FINA_PRO"
               [(ngModel)]="pejecp_FECHA_PROG_FINA_PRO" required>
           </div>
@@ -27,7 +27,7 @@
           <div class="form-group">
             <label for="pejecp_FECHA_FINAL_PRO">Fecha de Final del Proyecto:</label>
             <input type="date" id="pejecp_FECHA_FINAL_PRO" placeholder="Fecha" name="pejecp_FECHA_FINAL_PRO"
-              [(ngModel)]="pejecp_FECHA_FINAL_PRO" required>
+              [(ngModel)]="pejecp_FECHA_FINAL_PRO" >
           </div>
 
           <!-- Sección 1: Selecciones -->
@@ -62,7 +62,7 @@
 
           <div class="form-group">
             <label for="pejecp_AVANCE_EJECU_TOTAL_PRO">Avance de Ejecucion Total %:</label>
-            <input matInput type="number" placeholder="Avance de Ejecucion Total %" min="0" max="100" disabled
+            <input matInput type="number" placeholder="Avance de Ejecucion Total %" min="0" max="100" 
               class="form-control" name="pejecp_AVANCE_EJECU_TOTAL_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_TOTAL_PRO"
               required>
           </div>

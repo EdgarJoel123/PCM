@@ -21,7 +21,7 @@
           <label for="prefoin_ANIO">Año:</label>
           <input type="text" class="form-control" placeholder="Año de Reforma" name="prefoin_ANIO"
             [(ngModel)]="prefoin_ANIO" pattern="[0-9]{4}" title="El año debe tener 4 dígitos numéricos"
-            (keypress)="onKeyPressAnioReforma($event)" required (keyup)="onYearChangeAnioReforma()">
+            (keypress)="onKeyPressAnioReforma($event)" disabled (keyup)="onYearChangeAnioReforma()">
           <div
             *ngIf="form6.controls['prefoin_ANIO'].hasError('required') && (form6.controls['prefoin_ANIO'].dirty || form6.controls['prefoin_ANIO'].touched)">
             <div *ngIf="form6.controls['prefoin_ANIO'].errors && form6.controls['prefoin_ANIO'].errors['required']"
@@ -37,21 +37,21 @@
 
         <!-- Sección 5: campos de número -->
         <div class="form-group">
-          <label for="prefoin_VALOR_TOTAL_PROYECTO_R">Valor Total del Proyecto Reforma</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
-            name="prefoin_VALOR_TOTAL_PROYECTO_R" [(ngModel)]="prefoin_VALOR_TOTAL_PROYECTO_R" required>
+          <label for="prefoin_VALOR_TOTAL_PROYECTO_R">Valor Total del Proyecto Reforma:</label>
+          <input matInput type="number" placeholder="Valor Total del Proyecto Reforma" class="form-control"
+            name="prefoin_VALOR_TOTAL_PROYECTO_R" [(ngModel)]="prefoin_VALOR_TOTAL_PROYECTO_R">
         </div>
 
         <div class="form-group">
           <label for="prefoin_REFORMA">Proforma:</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control" name="prefoin_REFORMA"
-            [(ngModel)]="prefoin_REFORMA" required>
+          <input matInput type="number" placeholder="Proforma" class="form-control" name="prefoin_REFORMA"
+            [(ngModel)]="prefoin_REFORMA" disabled>
         </div>
 
 
         <div class="form-group">
           <label for="prefoin_PRESUPUESTO_REFORMA">Presupuesto Reforma</label>
-          <input matInput type="number" placeholder="$$$$" class="form-control"
+          <input matInput type="number" placeholder="Presupuesto Reforma" class="form-control"
             name="prefoin_PRESUPUESTO_REFORMA" [(ngModel)]="prefoin_PRESUPUESTO_REFORMA" required>
         </div>
 

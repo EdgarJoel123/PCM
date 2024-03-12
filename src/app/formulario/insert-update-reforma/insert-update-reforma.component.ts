@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Reforma } from 'src/app/modelo/reforma';
+import { PrincipalRestService } from 'src/app/services/principal-rest.service';
+import { ProformaRestService } from 'src/app/services/proforma-rest.service';
 import { ReformaRestService } from 'src/app/services/reforma-rest.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
 
@@ -31,7 +33,7 @@ export class InsertUpdateReformaComponent {
 
 
 
-  constructor(private serviceReforma: ReformaRestService, private sharedService: SharedIDService, private router: Router) {
+  constructor(private serviceProforma: ProformaRestService, private servicePrincipal: PrincipalRestService,private serviceReforma: ReformaRestService, private sharedService: SharedIDService, private router: Router) {
     this.id_PPRO_CODIGO_UNICO_reforma = this.sharedService.getCodigoUnico();
 
   }
@@ -39,6 +41,19 @@ export class InsertUpdateReformaComponent {
 
   ngOnInit() {
     this.buscarDatosReforma();
+    this.listarDatosProyecto();
+    this.buscarDatosProforma(); 
+  }
+
+  listarDatosProyecto() {
+    this.servicePrincipal.getListarProyectos1(this.id_PPRO_CODIGO_UNICO_reforma)
+      .subscribe(data => {
+
+        //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
+
+        this.prefoin_ANIO = data[0].ppro_ANIO_CALIFICACION_EJECU;
+        this.prefoin_VALOR_TOTAL_PROYECTO_R = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+      })
   }
 
   onSubmitReforma(form: any) {
@@ -109,6 +124,32 @@ export class InsertUpdateReformaComponent {
   }
 
 
+  buscarDatosProforma() {
+    this.serviceProforma.getListarProforma2(this.id_PPRO_CODIGO_UNICO_reforma).subscribe(
+      (response: any) => {
+        console.log('Datos de proforma:', response);
+
+        // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
+        if (response && response.length) {
+ 
+          this.prefoin_REFORMA = response[0].pproin_PRESUPUESTO_PROFORMA;
+
+        
+    
+
+
+        } else {
+          alert("Todavia no existe ninguna Proforma, ingresela")
+
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los departamentos:', error);
+      }
+    );
+  }
+
+
   buscarDatosReforma() {
     this.serviceReforma.getListarReforma2(this.id_PPRO_CODIGO_UNICO_reforma).subscribe(
       (response: any) => {
@@ -124,8 +165,13 @@ export class InsertUpdateReformaComponent {
           this.prefoin_FECHA = this.formatoFechaActual();
           this.id_PREFOIN = response[0].id_PREFOIN;
 
+          this.listarDatosProyecto();
+         this.buscarDatosProforma();
+
 
           console.log(this.id_PREFOIN);
+
+
 
 
         } else {

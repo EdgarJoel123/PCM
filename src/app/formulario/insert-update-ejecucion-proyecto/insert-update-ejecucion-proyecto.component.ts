@@ -44,6 +44,8 @@ export class InsertUpdateEjecucionProyectoComponent {
   isEtapaDisabled: boolean = false;
   previousIdPetajeepro: number; // Variable para almacenar el valor anterior de id_PETAEJEPRO
 
+  porcentaje: number;
+
 
   constructor(private serviceEjecuccionProyecto: EjecucionRestService, private sharedService: SharedIDService, private router: Router) {
     this.id_PPRO_CODIGO_UNICO_ejecucion_proyecto = sharedService.getCodigoUnico();
@@ -52,9 +54,36 @@ export class InsertUpdateEjecucionProyectoComponent {
   ngOnInit(): void {
     this.buscarDatosEjecucionProyecto();
     this.cargarDatosEstadoProyecto();
+  
 
 
   }
+
+
+  calcularPorcentaje(): void {
+    if (this.selectEstadoProyecto === 1) {
+      this.porcentaje = 0;
+    } else if (this.selectEstadoProyecto === 2) {
+      this.porcentaje = 15;
+    } else if (this.selectEstadoProyecto === 3) {
+      this.porcentaje = 30;
+    } else if (this.selectEstadoProyecto === 4) {
+      this.porcentaje = 40;
+    } else if (this.selectEstadoProyecto === 5) {
+      this.porcentaje = 40 + (this.selectEtapaEjecuccion * 0.5);
+    } else if (this.selectEstadoProyecto === 6) {
+      this.porcentaje = this.selectEtapaEjecuccion === 100 ? 95 : 0;
+    } else if (this.selectEstadoProyecto === 7) {
+      this.porcentaje = this.selectEtapaEjecuccion === 100 ? 100 : 0;
+    } else {
+      this.porcentaje = 0;
+    }
+  
+    // Asignar el resultado al input o realizar cualquier otra acción que necesites
+    // Supongo que tienes un input en tu componente llamado 'inputPorcentaje'
+    this.pejecp_AVANCE_EJECU_TOTAL_PRO = this.porcentaje;
+  }
+  
 
 
 
