@@ -2,7 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { GestionUsuariosService } from './gestion-usuarios.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AutentificacionService {
 
   private token: string;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private gestionUserService: GestionUsuariosService) {
     this.token = localStorage.getItem('authToken') || '';
   }
 
@@ -28,7 +29,7 @@ export class AutentificacionService {
 // autentificacion.service.ts
 // ... (código existente)
 
-validarUsuario(formulario: any) { 
+validarUsuario(formulario: any) {
   const url = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security/validarUsuario';
   const cuenta = btoa(formulario.username);
   const clave = btoa(formulario.password);
@@ -39,37 +40,42 @@ validarUsuario(formulario: any) {
   };
 
   this.http.get(url, { params }).pipe(
-    map((response: any) => {
+    switchMap((response: any) => {
       console.log(response.TOKEN);
 
- 
-
       this.setToken(response.TOKEN);
-
-      return {
-        MESSAGE: response.MESSAGE,
-        STATE: response.STATE,
-        TOKEN: response.TOKEN
-      };
-    })
-  ).subscribe(
-    (loginInstance: any) => {
-      console.log(loginInstance.MESSAGE);
-      alert(loginInstance.MESSAGE);
-      if (loginInstance.STATE === 'OK') {
-        localStorage.setItem('token', loginInstance.TOKEN);
-        localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(["inicio"]);
+      
+      if (response.STATE === 'OK') {
+        alert("Usuario Valido")
+        const username = formulario.username;
+        //console.log(username);
+        return this.gestionUserService.getUsername(username);
       } else {
-        // Limpiar campos de usuario y contraseña
-        formulario.username = '';
-        formulario.password = '';
+        throw new Error('Usuario no válido revise su username o su contraseña');
       }
+    }),
+    // ...
+
+    map((usernameResponseArray: any[]) => {
+      const usernameResponse = usernameResponseArray[0]; // Acceder al primer elemento
+      /*console.log('usernameResponse:', usernameResponse);
+      console.log('id_ROL:', usernameResponse.id_ROL);*/
+      if (usernameResponse.id_ROL === 1) {
+        return 'Usted es un admin y tiene al sistema.';
+      } else {
+        return 'Usted no es un admin y no tiene acceso al sistema';
+      }
+    })
+
+  ).subscribe(
+    (message: any) => {
+      alert(message);
+      localStorage.setItem('isLoggedIn', 'true');
+      this.router.navigate(['/inicio']);
     },
     (error) => {
       console.error(error);
-      alert(error.MESSAGE);
-      // Limpiar campos de usuario y contraseña
+      alert(error.message);
       formulario.username = '';
       formulario.password = '';
     }
