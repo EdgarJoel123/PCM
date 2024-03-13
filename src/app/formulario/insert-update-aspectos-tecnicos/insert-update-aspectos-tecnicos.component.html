@@ -39,9 +39,8 @@
           <label for="paste_BENEFI_DIRECT_PLANI">Beneficiarios Directos Planificado:</label>
           <input matInput type="number" placeholder="Beneficiarios Directos" class="form-control"
             name="paste_BENEFI_DIRECT_PLANI" [(ngModel)]="paste_BENEFI_DIRECT_PLANI"
-            [disabled]="isNumeric(paste_BENEFI_DIRECT_PLANI)" required>
+            [disabled]="disable_BENEFI_DIRECT_PLANI" required>
         </div>
-
 
         <div class="form-group">
           <label for="paste_BENEFI_DIRECT_EJEC">Beneficiarios Directos Ejecutado:</label>
@@ -52,7 +51,7 @@
         <div class="form-group">
           <label for="paste_VIVIENDAS_CON_SERVICIO_P">Viviendas con Servicio Planificado:</label>
           <input matInput type="number" placeholder="Viviendas con Servicio" class="form-control"
-            name="paste_VIVIENDAS_CON_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_CON_SERVICIO_P"    [disabled]="isNumeric(paste_VIVIENDAS_CON_SERVICIO_P)" required>
+            name="paste_VIVIENDAS_CON_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_CON_SERVICIO_P"   [disabled]="disable_VIVIENDAS_CON_SERVICIO_P" required>
         </div>
 
         <div class="form-group">
@@ -64,7 +63,7 @@
         <div class="form-group">
           <label for="paste_VIVIENDAS_SIN_SERVICIO_P">Viviendas sin Servicio Planificado:</label>
           <input matInput type="number" placeholder="Viviendas sin Servicio" class="form-control"
-            name="paste_VIVIENDAS_SIN_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_SIN_SERVICIO_P" [disabled]="isNumeric(paste_VIVIENDAS_SIN_SERVICIO_P)"  required>
+            name="paste_VIVIENDAS_SIN_SERVICIO_P" [(ngModel)]="paste_VIVIENDAS_SIN_SERVICIO_P" [disabled]="disable_VIVIENDAS_SIN_SERVICIO_P" required>
         </div>
 
         <div class="form-group">
@@ -76,7 +75,7 @@
         <div class="form-group">
           <label for="paste_TOTAL_VIVIENDA_PLANI">Total Viviendas Planificado:</label>
           <input matInput type="number" placeholder="Total Viviendas" class="form-control"
-            name="paste_TOTAL_VIVIENDA_PLANI" [(ngModel)]="paste_TOTAL_VIVIENDA_PLANI" [disabled]="isNumeric(paste_TOTAL_VIVIENDA_PLANI)"  required>
+            name="paste_TOTAL_VIVIENDA_PLANI" [(ngModel)]="paste_TOTAL_VIVIENDA_PLANI" [disabled]="disable_paste_TOTAL_VIVIENDA_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -88,7 +87,7 @@
         <div class="form-group">
           <label for="paste_LUMINARIA_NUEVAS_PLANI">Luminarias Nuevas Planificado:</label>
           <input matInput type="number" placeholder="Luminarias Nuevas" class="form-control"
-            name="paste_LUMINARIA_NUEVAS_PLANI" [(ngModel)]="paste_LUMINARIA_NUEVAS_PLANI" [disabled]="isNumeric(paste_LUMINARIA_NUEVAS_PLANI)" required>
+            name="paste_LUMINARIA_NUEVAS_PLANI" [(ngModel)]="paste_LUMINARIA_NUEVAS_PLANI" [disabled]="disable_paste_LUMINARIA_NUEVAS_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -100,7 +99,7 @@
         <div class="form-group">
           <label for="paste_AV_PLANFIICADO">AV (km) Planificado:</label>
           <input matInput type="number" placeholder="AV (km)" class="form-control" name="paste_AV_PLANFIICADO"
-            [(ngModel)]="paste_AV_PLANFIICADO" [disabled]="isNumeric(paste_AV_PLANFIICADO)"  required>
+            [(ngModel)]="paste_AV_PLANFIICADO" [disabled]="disable_paste_AV_PLANFIICADO" required>
         </div>
 
         <div class="form-group">
@@ -112,7 +111,7 @@
         <div class="form-group">
           <label for="paste_MV_PLANFIICADO">MV (km) Planificado:</label>
           <input matInput type="number" placeholder="MV (km)" class="form-control" name="paste_MV_PLANFIICADO"
-            [(ngModel)]="paste_MV_PLANFIICADO" [disabled]="isNumeric(paste_MV_PLANFIICADO)" required>
+            [(ngModel)]="paste_MV_PLANFIICADO" [disabled]="disable_paste_MV_PLANFIICADO"  required>
         </div>
 
         <div class="form-group">
@@ -124,7 +123,7 @@
         <div class="form-group">
           <label for="paste_BV_PLANFIICADO">BV (km) Planificado:</label>
           <input matInput type="number" placeholder="BV (km)" class="form-control" name="paste_BV_PLANFIICADO"
-            [(ngModel)]="paste_BV_PLANFIICADO" [disabled]="isNumeric(paste_BV_PLANFIICADO)" required>
+            [(ngModel)]="paste_BV_PLANFIICADO" [disabled]="disable_paste_BV_PLANFIICADO" required>
         </div>
 
         <div class="form-group">
@@ -137,7 +136,7 @@
           <label for="paste_ACOMO_MEDI_PLANI">Acometidas de Medidores
             (km) Planificado:</label>
           <input matInput type="number" placeholder="Acometidas de Medidores
-                (km)" class="form-control" name="paste_ACOMO_MEDI_PLANI" [(ngModel)]="paste_ACOMO_MEDI_PLANI" [disabled]="isNumeric(paste_ACOMO_MEDI_PLANI)" required>
+                (km)" class="form-control" name="paste_ACOMO_MEDI_PLANI" [(ngModel)]="paste_ACOMO_MEDI_PLANI" [disabled]="disable_paste_ACOMO_MEDI_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -152,7 +151,7 @@
         <div class="form-group">
           <label for="paste_MEDIDORES_PLANI">Medidores Planificado:</label>
           <input matInput type="number" placeholder="Medidores" class="form-control" name="paste_MEDIDORES_PLANI"
-            [(ngModel)]="paste_MEDIDORES_PLANI" [disabled]="isNumeric(paste_MEDIDORES_PLANI)" required>
+            [(ngModel)]="paste_MEDIDORES_PLANI" [disabled]="disable_paste_MEDIDORES_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -164,7 +163,7 @@
         <div class="form-group">
           <label for="paste_TRAN_DISTRIBUCION_EJEC">Transformadores de Distribución Planificado:</label>
           <input matInput type="number" placeholder="Transformadores de Distribución" class="form-control"
-            name="paste_TRAN_DISTRIBUCION_EJEC" [(ngModel)]="paste_TRAN_DISTRIBUCION_EJEC" [disabled]="isNumeric(paste_TRAN_DISTRIBUCION_EJEC)" required>
+            name="paste_TRAN_DISTRIBUCION_EJEC" [(ngModel)]="paste_TRAN_DISTRIBUCION_EJEC"  [disabled]="disable_paste_TRAN_DISTRIBUCION_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -178,7 +177,7 @@
             (kVA) Planificado:</label>
           <input matInput type="number" placeholder="Potencia Instalada en Transformadores de Distribución
                 (kVA)" class="form-control" name="paste_PO_IN_TRAN__DIST_PLANI"
-            [(ngModel)]="paste_PO_IN_TRAN__DIST_PLANI" [disabled]="isNumeric(paste_PO_IN_TRAN__DIST_PLANI)" required>
+            [(ngModel)]="paste_PO_IN_TRAN__DIST_PLANI" [disabled]="disable_paste_PO_IN_TRAN__DIST_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -192,7 +191,7 @@
         <div class="form-group">
           <label for="paste_SUBE_DISTRI_NUEV_PLANI">Subestaciones de Distribución Nuevas Planificado:</label>
           <input matInput type="number" placeholder="Subestaciones de Distribución Nuevas" class="form-control"
-            name="paste_SUBE_DISTRI_NUEV_PLANI" [(ngModel)]="paste_SUBE_DISTRI_NUEV_PLANI" [disabled]="isNumeric(paste_SUBE_DISTRI_NUEV_PLANI)" required>
+            name="paste_SUBE_DISTRI_NUEV_PLANI" [(ngModel)]="paste_SUBE_DISTRI_NUEV_PLANI" [disabled]="disable_paste_SUBE_DISTRI_NUEV_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -207,7 +206,7 @@
             (MVA) Planificado:</label>
           <input matInput type="number" placeholder="Potencia Instalada en Subestaciones de Distribución Nuevas
                 (MVA)" class="form-control" name="paste__PO_IN_SUB_DISTRI_NUEV_P"
-            [(ngModel)]="paste__PO_IN_SUB_DISTRI_NUEV_P" [disabled]="isNumeric(paste__PO_IN_SUB_DISTRI_NUEV_P)" required>
+            [(ngModel)]="paste__PO_IN_SUB_DISTRI_NUEV_P" [disabled]="disable_paste__PO_IN_SUB_DISTRI_NUEV_P" required>
         </div>
 
         <div class="form-group">
@@ -224,7 +223,7 @@
             (dd/mm/aaaa) Planificado:</label>
           <input type="date" placeholder="Fecha de Obtención del Permiso Ambiental
                 (dd/mm/aaaa)" class="form-group" name="paste_FECH_OB_PERM_AMBI_PLANI"
-            [(ngModel)]="paste_FECH_OB_PERM_AMBI_PLANI" [disabled]="isNumeric(paste_FECH_OB_PERM_AMBI_PLANI)" required>
+            [(ngModel)]="paste_FECH_OB_PERM_AMBI_PLANI" required>
         </div>
 
         <div class="form-group">
@@ -241,6 +240,9 @@
           <input matInput type="number" placeholder="Empleos directos generados" class="form-group"
             name="paste_EMPLE_DIRE_GENERA" [(ngModel)]="paste_EMPLE_DIRE_GENERA" required>
         </div>
+
+
+
 
         <div class="submit-container">
           <div class="submit">
@@ -262,5 +264,3 @@
 
     </div><!-- // End #container -->
   </div>
-
-</body>

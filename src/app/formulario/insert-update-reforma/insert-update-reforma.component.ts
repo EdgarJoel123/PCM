@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Reforma } from 'src/app/modelo/reforma';
 import { PrincipalRestService } from 'src/app/services/principal-rest.service';
@@ -52,7 +53,7 @@ export class InsertUpdateReformaComponent {
         //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
 
         this.prefoin_ANIO = data[0].ppro_ANIO_CALIFICACION_EJECU;
-        this.prefoin_VALOR_TOTAL_PROYECTO_R = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+       // this.prefoin_VALOR_TOTAL_PROYECTO_R = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
       })
   }
 
@@ -156,7 +157,7 @@ export class InsertUpdateReformaComponent {
         //console.log('Datos de proforma:', response);
 
         // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
-        if (response && response.length) {
+        if (response && response.length && response[0].id_PREFOIN !==0) {
           // this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           this.prefoin_ANIO = response[0].prefoin_ANIO;
           this.prefoin_VALOR_TOTAL_PROYECTO_R = response[0].prefoin_VALOR_TOTAL_PROYECTO_R;
@@ -224,5 +225,11 @@ export class InsertUpdateReformaComponent {
     }
   }
 
+
+  confirmarActualizacion(form: NgForm): void {
+    if (window.confirm('¿Estás seguro de que deseas actualizar el registro?')) {
+      this.actualizarReforma(form);
+    }
+  }
 
 }

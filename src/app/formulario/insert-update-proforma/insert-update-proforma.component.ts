@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Proforma } from 'src/app/modelo/proforma';
 import { PrincipalRestService } from 'src/app/services/principal-rest.service';
@@ -44,8 +45,8 @@ export class InsertUpdateProformaComponent {
         //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
 
         this.pproin_ANIO = data[0].ppro_ANIO_CALIFICACION_EJECU;
-        this.pproin_VALOR_TOTAL_PROYECTO_PR = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
-        this.pproin_PROFORMA = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+        //this.pproin_VALOR_TOTAL_PROYECTO_PR = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+        //this.pproin_PROFORMA = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
   
 
 
@@ -125,7 +126,7 @@ export class InsertUpdateProformaComponent {
         console.log('Datos de proforma:', response);
 
         // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
-        if (response && response.length) {
+        if (response && response.length && response[0].id_PPROIN !==0) {
           // this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           this.pproin_ANIO = response[0].pproin_ANIO;
           this.pproin_VALOR_TOTAL_PROYECTO_PR = response[0].pproin_VALOR_TOTAL_PROYECTO_PR;
@@ -193,4 +194,11 @@ export class InsertUpdateProformaComponent {
       );
     }
   }
+
+  confirmarActualizacion(form: NgForm): void {
+    if (window.confirm('¿Estás seguro de que deseas actualizar el registro?')) {
+      this.actualizarProforma(form);
+    }
+  }
+
 }

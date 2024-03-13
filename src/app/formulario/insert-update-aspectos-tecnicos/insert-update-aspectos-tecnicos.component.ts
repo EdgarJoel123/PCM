@@ -60,6 +60,21 @@ export class InsertUpdateAspectosTecnicosComponent {
   selectTipoAmbiental: number;
   tipoAmbiental: AspectosTecnicos[];
 
+  disable_BENEFI_DIRECT_PLANI: boolean = false;
+  disable_VIVIENDAS_CON_SERVICIO_P: boolean  = false;
+  disable_VIVIENDAS_SIN_SERVICIO_P : boolean = false;
+  disable_paste_TOTAL_VIVIENDA_PLANI : boolean = false;
+  disable_paste_LUMINARIA_NUEVAS_PLANI : boolean = false;
+  disable_paste_AV_PLANFIICADO : boolean = false;
+  disable_paste_MV_PLANFIICADO : boolean = false;
+  disable_paste_BV_PLANFIICADO : boolean = false;
+  disable_paste_ACOMO_MEDI_PLANI : boolean = false;
+  disable_paste_MEDIDORES_PLANI : boolean = false;
+  disable_paste_TRAN_DISTRIBUCION_PLANI : boolean = false;
+  disable_paste_PO_IN_TRAN__DIST_PLANI : boolean = false;
+  disable_paste_SUBE_DISTRI_NUEV_PLANI : boolean = false;
+  disable_paste__PO_IN_SUB_DISTRI_NUEV_P : boolean = false;
+
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -228,14 +243,31 @@ export class InsertUpdateAspectosTecnicosComponent {
           this.paste_FECH_OB_PERM_AMBI_EJEC = response[0].paste_FECH_OB_PERM_AMBI_EJEC;
           this.paste_EMPLE_DIRE_GENERA = response[0].paste_EMPLE_DIRE_GENERA;
           this.id_PTIPEAM = response[0].id_PTIPEAM;
-
           this.selectTipoAmbiental = response[0].id_PTIPEAM;
-
-
           this.id_PASTE = response[0].id_PASTE;
+          //console.log(this.paste_FECHA_ASPEC_TECNICOS);
 
+           // Verificar si los datos de planificado tienen algún valor numérico
+        const planificadoNumericos =
+        this.paste_BENEFI_DIRECT_PLANI ||
+        this.paste_VIVIENDAS_CON_SERVICIO_P ||
+        this.paste_VIVIENDAS_SIN_SERVICIO_P ||
+        this.paste_TOTAL_VIVIENDA_PLANI ||
+        this.paste_LUMINARIA_NUEVAS_PLANI ||
+        this.paste_AV_PLANFIICADO  ||
+        this.paste_MV_PLANFIICADO  ||
+        this.paste_BV_PLANFIICADO ||
+        this.paste_ACOMO_MEDI_PLANI ||
+        this.paste_MEDIDORES_PLANI ||
+        this.paste_TRAN_DISTRIBUCION_PLANI ||
+        this.paste_PO_IN_TRAN__DIST_PLANI ||
+        this.paste_SUBE_DISTRI_NUEV_PLANI ||
+        this.paste__PO_IN_SUB_DISTRI_NUEV_P
+        ;
 
-          console.log(this.paste_FECHA_ASPEC_TECNICOS);
+        if (planificadoNumericos) {
+          this.disablePlanificadoFields();
+        }
 
         } else {
           this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
@@ -249,6 +281,23 @@ export class InsertUpdateAspectosTecnicosComponent {
         console.error('Error al obtener los datos:', error);
       }
     );
+  }
+
+  disablePlanificadoFields() {
+    this.disable_BENEFI_DIRECT_PLANI = true;
+    this.disable_VIVIENDAS_CON_SERVICIO_P = true;
+    this.disable_VIVIENDAS_SIN_SERVICIO_P = true;
+    this.disable_paste_TOTAL_VIVIENDA_PLANI= true;
+    this.disable_paste_LUMINARIA_NUEVAS_PLANI = true;
+    this.disable_paste_AV_PLANFIICADO  = true;
+    this.disable_paste_MV_PLANFIICADO  = true;
+    this.disable_paste_BV_PLANFIICADO = true;
+    this.disable_paste_ACOMO_MEDI_PLANI = true;
+    this.disable_paste_MEDIDORES_PLANI = true;
+    this.disable_paste_TRAN_DISTRIBUCION_PLANI = true;
+    this.disable_paste_PO_IN_TRAN__DIST_PLANI = true;
+    this.disable_paste_SUBE_DISTRI_NUEV_PLANI = true;
+    this.disable_paste__PO_IN_SUB_DISTRI_NUEV_P = true;
   }
 
 
