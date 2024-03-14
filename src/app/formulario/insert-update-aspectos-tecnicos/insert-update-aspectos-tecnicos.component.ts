@@ -88,7 +88,7 @@ export class InsertUpdateAspectosTecnicosComponent {
 
 
   ngOnInit() {
-
+    
     this.buscarDatosAspectosTecnicos();
     this.cargarDatosAmbiental();
 
@@ -146,11 +146,8 @@ export class InsertUpdateAspectosTecnicosComponent {
         (response: any) => { // Usa 'any' para manejar el tipo de respuesta
           if (response && response.message === 'Aspectos tecnicos creados correctamente') {
             alert("ASPECTOS TECNICOS CREADOS CON ÉXITO");
-            //form.reset();
-
             this.router.navigate(['aspectosTecnicos']);
-            //window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
+            this.buscarDatosAspectosTecnicos();
           } else {
             alert("NO SE PUDO CREAR LOS ASPECTOS TECNICOS");
             form.reset();
@@ -208,7 +205,7 @@ export class InsertUpdateAspectosTecnicosComponent {
       (response: any) => {
         //console.log('Datos de aspectos tecnicos:', response);
         //console.log("id_PASTE:", response[0].id_PASTE);
-        if (response && response.length && response[0].id_PASTE !== 0) {
+        if (response && response.length && response[0].id_PASTE !==0) {
           this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           this.ptipeam_TIPO_PER_AMBIENTAL = response[0].ptipeam_TIPO_PER_AMBIENTAL;
           this.paste_BENEFI_DIRECT_PLANI = response[0].paste_BENEFI_DIRECT_PLANI;
@@ -248,27 +245,26 @@ export class InsertUpdateAspectosTecnicosComponent {
           //console.log(this.paste_FECHA_ASPEC_TECNICOS);
 
            // Verificar si los datos de planificado tienen algún valor numérico
-        const planificadoNumericos =
-        this.paste_BENEFI_DIRECT_PLANI ||
-        this.paste_VIVIENDAS_CON_SERVICIO_P ||
-        this.paste_VIVIENDAS_SIN_SERVICIO_P ||
-        this.paste_TOTAL_VIVIENDA_PLANI ||
-        this.paste_LUMINARIA_NUEVAS_PLANI ||
-        this.paste_AV_PLANFIICADO  ||
-        this.paste_MV_PLANFIICADO  ||
-        this.paste_BV_PLANFIICADO ||
-        this.paste_ACOMO_MEDI_PLANI ||
-        this.paste_MEDIDORES_PLANI ||
-        this.paste_TRAN_DISTRIBUCION_PLANI ||
-        this.paste_PO_IN_TRAN__DIST_PLANI ||
-        this.paste_SUBE_DISTRI_NUEV_PLANI ||
-        this.paste__PO_IN_SUB_DISTRI_NUEV_P
-        ;
+           if (
+            (this.isNumeric(this.paste_BENEFI_DIRECT_PLANI && this.paste_BENEFI_DIRECT_PLANI !== 0)) ||
+            (this.isNumeric(this.paste_VIVIENDAS_CON_SERVICIO_P && this.paste_VIVIENDAS_CON_SERVICIO_P !== 0)) ||
+            (this.isNumeric(this.paste_VIVIENDAS_SIN_SERVICIO_P && this.paste_VIVIENDAS_SIN_SERVICIO_P !== 0))||
+            (this.isNumeric(this.paste_TOTAL_VIVIENDA_PLANI && this.paste_TOTAL_VIVIENDA_PLANI !== 0 )) ||
+            (this.isNumeric(this.paste_LUMINARIA_NUEVAS_PLANI && this.paste_LUMINARIA_NUEVAS_PLANI !== 0)) ||
+            (this.isNumeric(this.paste_AV_PLANFIICADO && this.paste_AV_PLANFIICADO !== 0)) ||
+            (this.isNumeric(this.paste_MV_PLANFIICADO && this.paste_MV_PLANFIICADO !== 0)) ||
+            (this.isNumeric(this.paste_BV_PLANFIICADO && this.paste_BV_PLANFIICADO !== 0)) ||
+            (this.isNumeric(this.paste_ACOMO_MEDI_PLANI && this.paste_ACOMO_MEDI_PLANI !== 0)) ||
+            (this.isNumeric(this.paste_MEDIDORES_PLANI && this.paste_MEDIDORES_PLANI !== 0)) ||
+            (this.isNumeric(this.paste_TRAN_DISTRIBUCION_PLANI && this.paste_TRAN_DISTRIBUCION_PLANI !== 0 )) ||
+            (this.isNumeric(this.paste_PO_IN_TRAN__DIST_PLANI && this.paste_PO_IN_TRAN__DIST_PLANI !== 0 )) ||
+            (this.isNumeric(this.paste_SUBE_DISTRI_NUEV_PLANI && this.paste_SUBE_DISTRI_NUEV_PLANI !== 0 )) ||
+            (this.isNumeric(this.paste__PO_IN_SUB_DISTRI_NUEV_P && this.paste__PO_IN_SUB_DISTRI_NUEV_P !== 0 ))
 
-        if (planificadoNumericos) {
-          this.disablePlanificadoFields();
-        }
-
+            ) {
+              console.log("Campos planificados tienen valores numéricos diferentes de cero. Deshabilitando...");
+              this.disablePlanificadoFields(); // Llamada al método para deshabilitar campos planificados
+            }
         } else {
           this.paste_FECHA_ASPEC_TECNICOS = this.formatoFechaActual();
           alert("Todavía no existe ningún aspecto técnico, ingréselos");
