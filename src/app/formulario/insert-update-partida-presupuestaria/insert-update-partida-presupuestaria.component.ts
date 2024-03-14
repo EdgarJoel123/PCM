@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DetallePartidaPresupuestaria } from 'src/app/modelo/detallePartidaPrepuestaria';
 import { PartidaPresupuestaria } from 'src/app/modelo/partidaPresupuestaria';
 import { PartidaPresupuestariaRestService } from 'src/app/services/partida-presupuestaria-rest.service';
+import { PrincipalRestService } from 'src/app/services/principal-rest.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
 
 @Component({
@@ -38,7 +39,7 @@ export class InsertUpdatePartidaPresupuestariaComponent {
   partidas: PartidaPresupuestaria[];
 
 
-  constructor(private servicePartidaPrespuestaria: PartidaPresupuestariaRestService, private sharedService: SharedIDService, private router: Router) {
+  constructor(private servicePrincipal: PrincipalRestService, private servicePartidaPrespuestaria: PartidaPresupuestariaRestService, private sharedService: SharedIDService, private router: Router) {
     this.ID_PPRO_CODIGO_UNICO = this.sharedService.getCodigoUnico();
     this.nombre_proyecto_CODIGO = this.sharedService.getNombreProyecto();
     this.ppart_FECHA = this.formatoFechaActual();
@@ -46,9 +47,28 @@ export class InsertUpdatePartidaPresupuestariaComponent {
   }
 
   ngOnInit(): void {
+    this.listarDatosProyecto();
     this.cargarDatosPartidaPresupuestaria();
     this.listarPartidaPresupuestaria();
     // this.buscarDatosPartidaPresupuestaria();
+  }
+
+
+  listarDatosProyecto() {
+    this.servicePrincipal.getListarProyectos1(this.ID_PPRO_CODIGO_UNICO)
+      .subscribe(data => {
+
+        //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
+
+        this.ppart_CODIGO_PARTIDA = data[0].ppro_CODIGO_RAPIDO;
+        //this.pproin_VALOR_TOTAL_PROYECTO_PR = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+        //this.pproin_PROFORMA = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
+  
+
+
+
+       // console.log(this.ppart_CODIGO_PARTIDA); // verifica si hay datos
+      })
   }
 
   listarPartidaPresupuestaria() {

@@ -128,15 +128,12 @@ export class InsertUpdateReformaComponent {
   buscarDatosProforma() {
     this.serviceProforma.getListarProforma2(this.id_PPRO_CODIGO_UNICO_reforma).subscribe(
       (response: any) => {
-        console.log('Datos de proforma:', response);
+        //console.log('Datos de proforma:', response);
 
         // Verifica si hay datos en el array y si ppro_NOMBRE_PROY está presente
         if (response && response.length) {
  
           this.prefoin_REFORMA = response[0].pproin_PRESUPUESTO_PROFORMA;
-
-        
-    
 
 
         } else {

@@ -51,7 +51,7 @@ export class InsertUpdateProformaComponent {
 
 
 
-        console.log(this.pproin_ANIO); // verifica si hay datos
+        //console.log(this.pproin_ANIO); // verifica si hay datos
       })
   }
 
