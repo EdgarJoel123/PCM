@@ -96,7 +96,7 @@
                     <table #aspectosFinancieros class="table table-striped table-hover" id="aspectosFinancieros">
                         <thead>
                             <tr>
-                                <th>Código de Rópido</th>
+                                <th>Código Referencial</th>
                                 <th>Fecha</th>
                                 <th>Presupuesto Codificado (USD)</th>
                                 <th>Devengado (USD)</th>
@@ -111,7 +111,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let aspectosFinancieros of resultadosBusquedaGeneracion of listadoGeneracion ">
-                                <td>{{aspectosFinancieros.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{aspectosFinancieros.id_PPRO_CODIGO_UNICO}}</td>
                                 <td>{{aspectosFinancieros.pasfina_FECHA}}</td>
                                 <td>{{aspectosFinancieros.pasfina_PRESU_CODIFICADO}}</td>
                                 <td>{{aspectosFinancieros.pasfina_DEVENGADO}}</td>

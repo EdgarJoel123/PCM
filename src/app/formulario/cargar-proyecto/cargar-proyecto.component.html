@@ -7,22 +7,21 @@
                   <h1>Formulario para Cargar un Proyecto</h1>
               </legend>
 
-              <div class="form-group">
-                  <label for="Codigorapido">Código Rápido:</label>
-                  <input type="text" placeholder="Ingrese el Código Rápido" name="Codigorapido" id="ppro_CODIGO_RAPIDO"
-                      [(ngModel)]="codigo_rapido" required>
-              </div>
+          
 
-              <div class="form-group">
-                  <label for="nombreProyecto">Nombre del Proyecto:</label>
-                  <textarea type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
-                      [(ngModel)]="nombre_proyecto" disabled> </textarea>
+              <div class="form-container">
+                <label class="form-group" for="Nombre">Nombre del Proyecto:</label>
+                <select name="Nombre" id="Nombre" (change)="seleccionarNombre($event)" class="form-control form-control-lg" required>
+                  <option disabled hidden selected>Seleccione un Proyecto:</option>
+                  <option *ngFor="let proyecto of proyectos" [value]="proyecto.ppro_NOMBRE_PROY">{{proyecto.ppro_NOMBRE_PROY}}
+                  </option>
+                </select>
               </div>
 
               <div class="submit-container">
                   <div class="submit">
                       <input type="submit" value="Cargar Proyecto" id="form_button" [disabled]="!form1.valid"
-                          class="btn btn-primary" (click)="buscarDatosCodigoRapido()" />
+                          class="btn btn-success" (click)="buscarDatosCodigoRapido()" />
                   </div>
               </div>
           </form>

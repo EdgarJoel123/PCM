@@ -96,7 +96,7 @@
                     <table #aspectosTecnicos class="table table-striped table-hover" id="aspectosTecnicos">
                         <thead>
                             <tr>
-                                <th rowspan="2">Codigo de Rapido</th>
+                                <th rowspan="2">Código Referencial</th>
                                 <th rowspan="2">Fecha</th>
                                 <th colspan="2">Beneficiarios Directos<br />(número)</th>
                                 <th colspan="2">Viviendas con Servicio<br />(número)</th>
@@ -155,7 +155,7 @@
                                 *ngFor="let aspectosTecnicos of resultadosBusquedaGeneracion of listadoGeneracion ">
 
                           
-                                <td>{{aspectosTecnicos.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{aspectosTecnicos.id_PPRO_CODIGO_UNICO}}</td>
                                 <td>{{aspectosTecnicos.paste_FECHA_ASPEC_TECNICOS}}</td>
                                 <td>{{aspectosTecnicos.paste_BENEFI_DIRECT_PLANI}}</td>
                                 <td>{{aspectosTecnicos.paste_BENEFI_DIRECT_EJEC}}</td>

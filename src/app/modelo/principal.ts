@@ -11,7 +11,6 @@ export class Proyecto {
     ptipro_TIPO_PROGRAMA: string;
     ppro_OBJETIVO_PRO: string;
     prete_APELLIDOS: string;
-    ppro_CODIGO_RAPIDO: string;
     ptiper_TIPO_PERIODICIDAD: string;
     ppro_PROY_CALI_ESTUDIO_COSTOS: string;
     ppro_ANIO_CALIFICACION_EJECU: string;
@@ -49,7 +48,6 @@ export class Proyecto {
         id_PTISUBP: number,
         ppro_CODIGO_ESTU_COSTOS: string,
         ppro_NOMBRE_PROY: string,
-        ppro_CODIGO_RAPIDO: string,
         ppro_ANIO_APROBACION: string,
         ppro_PROCESO_CORPORATIVO_UN: string,
         ppro_PROYECTO_ARRASTRE: string,
@@ -67,7 +65,6 @@ export class Proyecto {
         this.id_PTISUBP = id_PTISUBP;
         this.ppro_CODIGO_ESTU_COSTOS = ppro_CODIGO_ESTU_COSTOS;
         this.ppro_NOMBRE_PROY = ppro_NOMBRE_PROY;
-        this.ppro_CODIGO_RAPIDO = ppro_CODIGO_RAPIDO;
         this.ppro_ANIO_APROBACION = ppro_ANIO_APROBACION;
         this.ppro_PROCESO_CORPORATIVO_UN = ppro_PROCESO_CORPORATIVO_UN;
         this.ppro_PROYECTO_ARRASTRE = ppro_PROYECTO_ARRASTRE;

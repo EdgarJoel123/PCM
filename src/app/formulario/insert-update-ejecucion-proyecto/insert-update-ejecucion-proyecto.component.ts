@@ -209,7 +209,7 @@ export class InsertUpdateEjecucionProyectoComponent {
           this.pestpro_ESTADO_PRO = data.pestpro_ESTADO_PRO;
           this.petaejepro_ETAPA_EJE_PROYEC = data.petaejepro_ETAPA_EJE_PROYEC;
           this.pejecp_AVANCE_EJECU_FISICA_PRO = data.pejecp_AVANCE_EJECU_FISICA_PRO;
-         // this.pejecp_AVANCE_EJECU_TOTAL_PRO = data.pejecp_AVANCE_EJECU_TOTAL_PRO;
+          this.pejecp_AVANCE_EJECU_TOTAL_PRO = data.pejecp_AVANCE_EJECU_TOTAL_PRO;
           this.selectEstadoProyecto = data.id_PESTPRO;
           this.id_PESTPRO = data.id_PESTPRO;
           this.selectEtapaEjecuccion = data.id_PETAEJEPRO;

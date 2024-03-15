@@ -209,7 +209,6 @@ export class PrincipalComponent {
       return (generacion.id_PPRO_CODIGO_UNICO && generacion.id_PPRO_CODIGO_UNICO.toLocaleString().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_CODIGO_ESTU_COSTOS && generacion.ppro_CODIGO_ESTU_COSTOS.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_NOMBRE_PROY && generacion.ppro_NOMBRE_PROY.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
-        (generacion.ppro_CODIGO_RAPIDO && generacion.ppro_CODIGO_RAPIDO.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_ANIO_APROBACION && generacion.ppro_ANIO_APROBACION.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_PROCESO_CORPORATIVO_UN && generacion.ppro_PROCESO_CORPORATIVO_UN.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
         (generacion.ppro_PROYECTO_ARRASTRE && generacion.ppro_PROYECTO_ARRASTRE.toLocaleLowerCase().includes(palabra.toLocaleLowerCase())) ||
@@ -443,7 +442,6 @@ export class PrincipalComponent {
 
     this.ppro_CODIGO_ESTU_COSTOS = proyecto.ppro_CODIGO_ESTU_COSTOS;
     this.ppro_NOMBRE_PROY = proyecto.ppro_NOMBRE_PROY;
-    this.ppro_CODIGO_RAPIDO = proyecto.ppro_CODIGO_RAPIDO;
     this.ppro_ANIO_APROBACION = proyecto.ppro_ANIO_APROBACION;
     this.ppro_ANIO_CALIFICACION_EJECU = proyecto.ppro_ANIO_CALIFICACION_EJECU;
     this.ppro_COD_PARROQUIA = proyecto.ppro_COD_PARROQUIA;
@@ -483,7 +481,6 @@ export class PrincipalComponent {
       ptipro_TIPO_PROGRAMA: this.ptipro_TIPO_PROGRAMA,
       ppro_OBJETIVO_PRO: this.ppro_OBJETIVO_PRO.toUpperCase(),
       prete_APELLIDOS: "",
-      ppro_CODIGO_RAPIDO: this.ppro_CODIGO_RAPIDO,
       ptiper_TIPO_PERIODICIDAD: this.ptiper_TIPO_PERIODICIDAD,
       ppro_PROY_CALI_ESTUDIO_COSTOS: this.ppro_PROY_CALI_ESTUDIO_COSTOS,
       ppro_ANIO_CALIFICACION_EJECU: this.ppro_ANIO_CALIFICACION_EJECU,

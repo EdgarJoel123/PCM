@@ -90,7 +90,7 @@
                         <thead>
                             <tr>
 
-                                <th>Código Rápido</th>
+                                <th>Código Referencial</th>
                                 <th>Fecha</th>
                                 <th>Valor total del Proyecto Proforma</th>
                                 <th>Proforma</th>
@@ -102,7 +102,7 @@
                             <tr *ngFor="let proforma of resultadosBusquedaGeneracion of listadoGeneracion ">
 
 
-                                <td>{{ proforma.ppro_CODIGO_RAPIDO }}</td>
+                                <td>{{ proforma.id_PPRO_CODIGO_UNICO }}</td>
                                 <td>{{ proforma.pproin_FECHA}}</td>
                                 <td>{{ proforma.pproin_VALOR_TOTAL_PROYECTO_PR }}</td>
                                 <td>{{ proforma.pproin_PROFORMA }}</td>

@@ -9,7 +9,7 @@ import { SharedIDService } from 'src/app/services/shared-id.service';
   styleUrls: ['./eliminacion.component.css']
 })
 export class EliminacionComponent {
-  codigo_rapido: string;
+
   nombre_proyecto: string;
 
   id_PPRO_CODIGO_UNICO: number;
@@ -29,7 +29,7 @@ export class EliminacionComponent {
   }
 
   buscarDatosCodigoRapido() {
-    this.servicePrincipal.getListarCodigoUnico(this.codigo_rapido).subscribe(
+    this.servicePrincipal.getListarCodigoUnico(this.nombre_proyecto).subscribe(
       (response: any) => {
         if (response && response.length > 0 && response[0].ppro_NOMBRE_PROY) {
           const codigoUnico = response[0].id_PPRO_CODIGO_UNICO;
@@ -48,7 +48,6 @@ export class EliminacionComponent {
         } else {
           console.error('El campo ppro_NOMBRE_PROY no está presente en la respuesta.');
           alert("El código rápido que ingresó no existe. Verifíquelo.");
-          this.codigo_rapido = "";
           this.nombre_proyecto = "";
           window.location.reload();
         }

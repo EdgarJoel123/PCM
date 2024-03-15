@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
 
-                                <th>Codigo de Rapido (USD)</th>
+                                <th>Código Referencial </th>
                                 <th>Avance de Ejecución Fisica</th>
                                 <th>Avance de Ejecución Total</th>
                                 <th>Fecha de Inicio</th>
@@ -74,7 +74,7 @@
                             <tr *ngFor="let ejecucionProyecto of resultadosBusquedaGeneracion of listadoGeneracion">
 
 
-                                <td>{{ejecucionProyecto.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{ejecucionProyecto.id_PPRO_CODIGO_UNICO}}</td>
                                 <td>{{ejecucionProyecto.pejecp_AVANCE_EJECU_FISICA_PRO}}</td>
                                 <td>{{ejecucionProyecto.pejecp_AVANCE_EJECU_TOTAL_PRO}}</td>
                                 <td>{{ejecucionProyecto.pejecp_FECHA_INICIO_PRO}}</td>

@@ -68,7 +68,6 @@ export class PrincipalRestService {
       .set('ID_PTISUBP', proyecto.id_PTISUBP)
       .set('PPRO_CODIGO_ESTU_COSTOS', proyecto.ppro_CODIGO_ESTU_COSTOS)
       .set('PPRO_NOMBRE_PROY', proyecto.ppro_NOMBRE_PROY)
-      .set('PPRO_CODIGO_RAPIDO', proyecto.ppro_CODIGO_RAPIDO)
       .set('PPRO_ANIO_APROBACION', proyecto.ppro_ANIO_APROBACION)
       .set('PPRO_PROCESO_CORPORATIVO_UN', proyecto.ppro_PROCESO_CORPORATIVO_UN)
       .set('PPRO_PROYECTO_ARRASTRE', proyecto.ppro_PROYECTO_ARRASTRE)
@@ -115,7 +114,7 @@ export class PrincipalRestService {
   // listar cigo unico 
 
   getListarCodigoUnico(id: String): Observable<any> {
-    const params = { PPRO_CODIGO_RAPIDO: id.toString() };
+    const params = { PPRO_NOMBRE_PROY: id.toString() };
     return this.http.get<Proyecto>(`${this.apiBuscarCodigoUnico}`, { params });
 
   }

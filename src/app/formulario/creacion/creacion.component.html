@@ -71,12 +71,13 @@
           </div>
 
 
-          
+
           <div class="form-group">
             <label for="Parroquia">CODIGO Parroquia:</label>
             <select name="Parroquia" id="Parroquia" (change)="seleccionarParroquia($event)" required>
               <option disabled hidden selected>Seleccione una Parroquia</option>
-              <option *ngFor="let proyecto of parroquia" [value]="proyecto.ppro_COD_PARROQUIA">{{proyecto.parroquia}} ({{proyecto.ppro_COD_PARROQUIA}})
+              <option *ngFor="let proyecto of parroquia" [value]="proyecto.ppro_COD_PARROQUIA">{{proyecto.parroquia}}
+                ({{proyecto.ppro_COD_PARROQUIA}})
               </option>
             </select>
           </div>
@@ -98,12 +99,6 @@
             </textarea>
           </div>
 
-
-          <div class="form-group">
-            <label for="Codigorapido">Código Rápido/EDD:</label>
-            <input type="text" placeholder="Código Rápido" name="Codigorapido" id="ppro_CODIGO_RAPIDO"
-              [(ngModel)]="ppro_CODIGO_RAPIDO" required>
-          </div>
           <div class="form-group">
             <label for="ppro_ANIO_APROBACION">Año de Aprobación:</label>
             <input type="text" class="form-control" placeholder="Año de Aprobación" name="ppro_ANIO_APROBACION"
@@ -145,7 +140,13 @@
           </div>
 
 
-      
+
+          <!-- Sección 5: campos de número -->
+          <div class="form-group">
+            <label for="montoAprobado">Monto Aprobado en Estudios de Costos:</label>
+            <input matInput type="number" placeholder="Monto Aprobado en Estudios de Costos" class="form-control"
+              name="montoAprobado" [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS" required>
+          </div>
 
 
 
@@ -176,26 +177,23 @@
             </select>
           </div>
 
+
+
           <!-- Sección 4: Área de texto adicional y campos de número -->
           <div class="form-group">
-            <label for="objetivoProyecto">Objetivo del Proyecto:</label>
+            <label class="form-container" for="objetivoProyecto">Objetivo del Proyecto:</label>
             <textarea name="objetivoProyecto" placeholder="Objetivo del Proyecto" name="objetivoProyecto" cols="30"
               rows="5" [(ngModel)]="ppro_OBJETIVO_PRO" required></textarea>
           </div>
 
 
           <div class="form-group">
-            <label for="ppro_OBSERVACIONES_JUSTIFICACI">Observacion del Proyecto:</label>
+            <label class="form-container" for="ppro_OBSERVACIONES_JUSTIFICACI">Observacion del Proyecto:</label>
             <textarea name="message" placeholder="Observaciones del Proyecto" cols="30" rows="5"
               [(ngModel)]="ppro_OBSERVACIONES_JUSTIFICACI" required></textarea>
           </div>
 
-          <!-- Sección 5: campos de número -->
-          <div class="form-group">
-            <label for="montoAprobado">Monto Aprobado en Estudios de Costos:</label>
-            <input matInput type="number" placeholder="Monto Aprobado en Estudios de Costos" class="form-control" name="montoAprobado"
-              [(ngModel)]="ppro_MONTO_APRO_ESTUDI_COSTOS" required>
-          </div>
+
 
 
 

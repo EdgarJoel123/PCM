@@ -96,9 +96,9 @@
                         <thead>
                             <tr>
                           
-                                <th>Codigo de Rápido</th>
+                                <th>Codigo de Referencial</th>
                                 <th>Fecha</th>
-                                <th>Código partida Presupuestaria</th>
+                                <th>Código Rapido Partida Presupuestaria</th>
                                 <th>Partida Presupuestaria</th>
                                 <th>Monto partida Presupuestaria</th>
                                 <th>Tipo de Partida Prespuestaria</th>
@@ -112,7 +112,7 @@
                               
                                 <!-- ... Otras celdas de la primera tabla -->
 
-                                <td>{{partidaPresupuestaria.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{partidaPresupuestaria.id_PPRO_CODIGO_UNICO}}</td>
                                 <td>{{partidaPresupuestaria.ppart_FECHA}}</td>
                                 <td>{{partidaPresupuestaria.ppart_CODIGO_PARTIDA}}</td>
                                 <td>{{partidaPresupuestaria.ppart_PARTIDA_PRESUPUESTARIA}}</td>
@@ -163,7 +163,7 @@
                         <div class="form-group">
                           <label for="ppart_CODIGO_PARTIDA" class="form-label">Código Rapido partida Presupuestaria:</label>
                           <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control"
-                            name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA" disabled>
+                            name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA" required="">
                         </div>
                       </div>
       

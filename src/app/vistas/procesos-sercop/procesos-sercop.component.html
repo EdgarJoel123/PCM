@@ -103,7 +103,7 @@
                         <thead>
                             <tr>
 
-                                <th>Código Rápido</th>
+                                <th>Código Referencial</th>
                                 <th>Fecha</th>
                                 <th>Código de Procesos SERCOP</th>
                                 <th>Procesos SERCOP</th>
@@ -114,7 +114,7 @@
 
                             <tr *ngFor="let procesosSercop of resultadosBusquedaGeneracion of listadoGeneracion">
 
-                                <td>{{procesosSercop.ppro_CODIGO_RAPIDO}}</td>
+                                <td>{{procesosSercop.id_PPRO_CODIGO_UNICO}}</td>
                                 <td>{{procesosSercop.pproser_FECHA}}</td>
                                 <td>{{procesosSercop.pproser_CODIGO_SERCOP}}</td>
                                 <td>{{procesosSercop.pproser_PROCESOS_SERCOP}}</td>

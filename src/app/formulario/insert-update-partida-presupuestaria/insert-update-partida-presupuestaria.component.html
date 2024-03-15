@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <label for="ppart_CODIGO_PARTIDA" class="form-label">Código Rápido Partida Presupuestaria:</label>
                     <div class="col-sm">
-                        <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control" name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA"  disabled>
+                        <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control" name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA"  required>
                     </div>
                 </div>
             
@@ -75,7 +75,7 @@
                         (change)="seleccionarPartidaPresupuestaria($event)" required>
                         <option value="" disabled hidden selected>Seleccione una Partida Presupuestaria</option>
                         <option *ngFor="let partidaPresupuestaria of partidas" [value]="partidaPresupuestaria.id_PPART">
-                            {{ partidaPresupuestaria.ppart_PARTIDA_PRESUPUESTARIA }}
+                          {{ partidaPresupuestaria.ppart_CODIGO_PARTIDA }} Partida {{ partidaPresupuestaria.ppart_PARTIDA_PRESUPUESTARIA }}
                         </option>
                     </select>
                 </div>

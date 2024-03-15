@@ -77,7 +77,6 @@
                                 <th>Acciones</th>
                                 <th>Código Referencial</th>
                                 <th>Nombre</th>
-                                <th>Código Rápido/EDD </th>
                                 <th>Año de Aprobacion</th>
                                 <th>Monto Aprobado en Estudios de Costos</th>
                                 <th>Proceso Corporativo (S/N)</th>
@@ -107,7 +106,6 @@
                                 </td>
                                 <td>{{ proyecto.id_PPRO_CODIGO_UNICO }}</td>
                                 <td>{{ proyecto.ppro_NOMBRE_PROY }}</td>
-                                <td>{{ proyecto.ppro_CODIGO_RAPIDO }}</td>
                                 <td>{{ proyecto.ppro_ANIO_APROBACION }}</td>
                                 <td>{{ proyecto.ppro_MONTO_APRO_ESTUDI_COSTOS }}</td>
                                 <td>{{ proyecto.ppro_PROCESO_CORPORATIVO_UN }}</td>
@@ -284,15 +282,6 @@
                                                     placeholder="Nombre del Proyecto" name="nombreProyecto"
                                                     [(ngModel)]="ppro_NOMBRE_PROY" disabled>
                                                 </textarea>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="Codigorapido">Codigo Rapido/EDD:</label>
-                                                <input type="text" placeholder="Codigo rapido" name="Codigorapido"
-                                                    id="ppro_CODIGO_RAPIDO" [(ngModel)]="ppro_CODIGO_RAPIDO" disabled>
                                             </div>
                                         </div>
 

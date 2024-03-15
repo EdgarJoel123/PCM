@@ -58,7 +58,6 @@ export class CreacionComponent implements OnInit {
   pdep_DEPARTAMENTO: string;
   ptipro_TIPO_PROGRAMA: string;
   ppro_OBJETIVO_PRO: string;
-  ppro_CODIGO_RAPIDO: string;
   ptiper_TIPO_PERIODICIDAD: string;
   ppro_PROY_CALI_ESTUDIO_COSTOS: string;
   ppro_ANIO_CALIFICACION_EJECU: string;
@@ -350,7 +349,7 @@ export class CreacionComponent implements OnInit {
     if (form.valid) {
       const nuevoProyecto = new Proyecto(this.selectDepartamento, this.selectTipoPlan, this.selectTipoPeriodicidad,
         this.selectEtpaFuncional, this.selectTipoSubprograma,
-        this.ppro_CODIGO_ESTU_COSTOS.toUpperCase(), this.ppro_NOMBRE_PROY.toUpperCase(), this.ppro_CODIGO_RAPIDO.toUpperCase(),
+        this.ppro_CODIGO_ESTU_COSTOS.toUpperCase(), this.ppro_NOMBRE_PROY.toUpperCase(),
         this.ppro_ANIO_APROBACION, this.ppro_PROCESO_CORPORATIVO_UN.toUpperCase(),
         this.ppro_PROYECTO_ARRASTRE.toUpperCase(), this.ppro_PROY_CALI_ESTUDIO_COSTOS.toUpperCase(), this.ppro_ANIO_CALIFICACION_EJECU,
         this.ppro_OBJETIVO_PRO.toUpperCase(), this.ppro_MONTO_APRO_ESTUDI_COSTOS, this.ppro_OBSERVACIONES_JUSTIFICACI.toUpperCase(),
