@@ -44,7 +44,7 @@ export class InsertUpdateEjecucionProyectoComponent {
   isEtapaDisabled: boolean = false;
   previousIdPetajeepro: number; // Variable para almacenar el valor anterior de id_PETAEJEPRO
 
-  porcentaje: number;
+  porcentajeTotal: number;
 
 
   constructor(private serviceEjecuccionProyecto: EjecucionRestService, private sharedService: SharedIDService, private router: Router) {
@@ -52,7 +52,9 @@ export class InsertUpdateEjecucionProyectoComponent {
   }
 
   ngOnInit(): void {
+ 
     this.buscarDatosEjecucionProyecto();
+
     this.cargarDatosEstadoProyecto();
   
 
@@ -61,28 +63,36 @@ export class InsertUpdateEjecucionProyectoComponent {
 
 
   calcularPorcentaje(): void {
+    let porcentaje: number;
+    
     if (this.selectEstadoProyecto === 1) {
-      this.porcentaje = 0;
+      porcentaje = 0; // Porcentaje para "No iniciado"
     } else if (this.selectEstadoProyecto === 2) {
-      this.porcentaje = 15;
+      porcentaje = 0; // Porcentaje para "Iniciado"
     } else if (this.selectEstadoProyecto === 3) {
-      this.porcentaje = 30;
+      porcentaje = 100; // Porcentaje para "Finalizado"
     } else if (this.selectEstadoProyecto === 4) {
-      this.porcentaje = 40;
+      porcentaje = 0; // Porcentaje para "Paralizado"
     } else if (this.selectEstadoProyecto === 5) {
-      this.porcentaje = 40 + (this.selectEtapaEjecuccion * 0.5);
+      // Calculamos el porcentaje según la etapa de ejecución para "En ejecución 41%-90%"
+      if (this.selectEtapaEjecuccion === 5) {
+        porcentaje = 40 + (this.pejecp_AVANCE_EJECU_FISICA_PRO * 0.5); // Usamos el valor de O28
+      } else {
+        porcentaje = 0; // Si el estado no es "En ejecución 41%-90%", el porcentaje es 0
+      }
     } else if (this.selectEstadoProyecto === 6) {
-      this.porcentaje = this.selectEtapaEjecuccion === 100 ? 95 : 0;
+      porcentaje = 95; // Porcentaje para "Acta de entrega - recepción"
     } else if (this.selectEstadoProyecto === 7) {
-      this.porcentaje = this.selectEtapaEjecuccion === 100 ? 100 : 0;
+      porcentaje = 100; // Porcentaje para "Registro contable"
     } else {
-      this.porcentaje = 0;
+      porcentaje = 0; // Valor predeterminado
     }
   
-    // Asignar el resultado al input o realizar cualquier otra acción que necesites
-    // Supongo que tienes un input en tu componente llamado 'inputPorcentaje'
-    this.pejecp_AVANCE_EJECU_TOTAL_PRO = this.porcentaje;
+    this.porcentajeTotal = porcentaje; // Asignamos el resultado a la variable porcentajeTotal
+    
   }
+  
+  
   
 
 
@@ -199,7 +209,7 @@ export class InsertUpdateEjecucionProyectoComponent {
           this.pestpro_ESTADO_PRO = data.pestpro_ESTADO_PRO;
           this.petaejepro_ETAPA_EJE_PROYEC = data.petaejepro_ETAPA_EJE_PROYEC;
           this.pejecp_AVANCE_EJECU_FISICA_PRO = data.pejecp_AVANCE_EJECU_FISICA_PRO;
-          this.pejecp_AVANCE_EJECU_TOTAL_PRO = data.pejecp_AVANCE_EJECU_TOTAL_PRO;
+         // this.pejecp_AVANCE_EJECU_TOTAL_PRO = data.pejecp_AVANCE_EJECU_TOTAL_PRO;
           this.selectEstadoProyecto = data.id_PESTPRO;
           this.id_PESTPRO = data.id_PESTPRO;
           this.selectEtapaEjecuccion = data.id_PETAEJEPRO;
@@ -215,6 +225,8 @@ export class InsertUpdateEjecucionProyectoComponent {
 
           // Guardar el valor actual de id_PETAEJEPRO
           this.previousIdPetajeepro = data.id_PETAEJEPRO;
+
+          this.calcularPorcentaje();
 
           // Establecer el valor de id_PETAEJEPRO solo si no está deshabilitado
           if (!this.isEtapaDisabled) {
