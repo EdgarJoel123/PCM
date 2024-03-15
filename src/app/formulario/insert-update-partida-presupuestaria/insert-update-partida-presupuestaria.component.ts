@@ -75,7 +75,7 @@ export class InsertUpdatePartidaPresupuestariaComponent {
     this.servicePartidaPrespuestaria.getListarPartidaPresupuestaria()
       .subscribe(data => {
         this.partidas = data;
-        console.log(this.partidas);
+       // console.log(this.partidas);
 
       })
   }
