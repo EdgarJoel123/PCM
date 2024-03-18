@@ -68,7 +68,7 @@ h1 {
   box-sizing: border-box;
 }
 
-.form-group label {
+.form-container label {
   display: block;
   font-weight: bold;
   margin-bottom: 1vmin;
@@ -141,3 +141,4 @@ h1 {
 .modal-title {
   color: #192a67;
 }
+

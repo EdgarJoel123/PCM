@@ -10,7 +10,7 @@
           
 
               <div class="form-container">
-                <label class="form-group" for="Nombre">Nombre del Proyecto:</label>
+                <label class="form-label"  for="Nombre">Nombre del Proyecto:</label>
                 <select name="Nombre" id="Nombre" (change)="seleccionarNombre($event)" class="form-control form-control-lg" required>
                   <option disabled hidden selected>Seleccione un Proyecto:</option>
                   <option *ngFor="let proyecto of proyectos" [value]="proyecto.ppro_NOMBRE_PROY">{{proyecto.ppro_NOMBRE_PROY}}
