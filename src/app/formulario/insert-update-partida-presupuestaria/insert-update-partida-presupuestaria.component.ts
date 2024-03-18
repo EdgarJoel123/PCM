@@ -39,6 +39,10 @@ export class InsertUpdatePartidaPresupuestariaComponent {
   partidas: PartidaPresupuestaria[];
 
 
+  detallesPartidasAsignadas: DetallePartidaPresupuestaria[]; // Define una propiedad para almacenar los detalles de las partidas asignadas al proyecto
+
+
+
   constructor(private servicePrincipal: PrincipalRestService, private servicePartidaPrespuestaria: PartidaPresupuestariaRestService, private sharedService: SharedIDService, private router: Router) {
     this.ID_PPRO_CODIGO_UNICO = this.sharedService.getCodigoUnico();
     this.nombre_proyecto_CODIGO = this.sharedService.getNombreProyecto();
@@ -50,6 +54,7 @@ export class InsertUpdatePartidaPresupuestariaComponent {
     this.listarDatosProyecto();
     this.cargarDatosPartidaPresupuestaria();
     this.listarPartidaPresupuestaria();
+    this.listarPartidaDetalle()
     // this.buscarDatosPartidaPresupuestaria();
   }
 
@@ -71,6 +76,18 @@ export class InsertUpdatePartidaPresupuestariaComponent {
       })
   }
 
+
+  listarPartidaDetalle() {
+    this.servicePartidaPrespuestaria.getListarPartidaPresupuestariaDetalle()
+      .subscribe(data => {
+        this.detallesPartidasAsignadas = data;
+        //console.log(this.detallesPartidasAsignadas);
+
+      })
+  }
+
+
+
   listarPartidaPresupuestaria() {
     this.servicePartidaPrespuestaria.getListarPartidaPresupuestaria()
       .subscribe(data => {
@@ -80,37 +97,57 @@ export class InsertUpdatePartidaPresupuestariaComponent {
       })
   }
 
+
   onSubmitDetallePartidaPresupuestaria(form: any) {
-
     if (form.valid) {
-      const DetallePartida = new DetallePartidaPresupuestaria(
-        this.ID_PPRO_CODIGO_UNICO,
-        this.ID_PPRO_CODIGO_UNICO_partida
-      );
-
-      this.servicePartidaPrespuestaria.insertaDetallePartidaPresuestaria(DetallePartida).subscribe(
-        (response: any) => { // Usa 'any' para manejar el tipo de respuesta
-          if (response && response.message === 'Detalle Partida Presupuestaria creada correctamente') {
-            alert(" PARTIDA PRESUPUESTARIA ASIGNADA CON ÉXITO");
-            //form.reset();
-            //window.location.reload();
-            // Aquí puedes hacer lo que necesites con la respuesta del servidor
-            
-            this.router.navigate(['partipaPresupuestaria']);
-          } else {
-            alert("NO SE PUDO ASIGNAR LA PARTIDA PRESUPUESTARIA");
-            //form.reset();
-            //window.location.reload();
-          }
-        },
-        error => {
-          alert("NO SE PUDO ASIGNAR LA PARTIDA PRESUPUESTARIA");
-          //form.reset();
-          //window.location.reload();
+        // Realizar una verificación antes de enviar la solicitud al servidor
+        
+        
+        if (this.partidaYaAsignada()) {
+            alert("La partida presupuestaria ya ha sido asignada a este proyecto.");
+            return; // Detener el proceso de asignación
         }
-      );
+
+        const DetallePartida = new DetallePartidaPresupuestaria(
+            this.ID_PPRO_CODIGO_UNICO,
+            this.ID_PPRO_CODIGO_UNICO_partida
+        );
+
+        this.servicePartidaPrespuestaria.insertaDetallePartidaPresuestaria(DetallePartida).subscribe(
+            (response: any) => {
+                if (response && response.message === 'Detalle Partida Presupuestaria creada correctamente') {
+                    alert("PARTIDA PRESUPUESTARIA ASIGNADA CON ÉXITO");
+                    this.router.navigate(['partipaPresupuestaria']);
+                } else {
+                    alert("NO SE PUDO ASIGNAR LA PARTIDA PRESUPUESTARIA");
+                }
+            },
+            error => {
+                alert("NO SE PUDO ASIGNAR LA PARTIDA PRESUPUESTARIA");
+            }
+        );
     }
+}
+
+partidaYaAsignada(): boolean {
+  // Suponiendo que this.ID_PPRO_CODIGO_UNICO y this.ID_PPRO_CODIGO_UNICO_partida representan el proyecto y la partida que se intenta asignar
+  const proyecto = this.ID_PPRO_CODIGO_UNICO;
+  const partida = this.ID_PPRO_CODIGO_UNICO_partida;
+
+  // Verificar si la partida ya está asignada al proyecto
+  for (const detalle of this.detallesPartidasAsignadas) {
+      if (detalle.id_PPRO_CODIGO_UNICO === proyecto && detalle.id_PPART === partida) {
+          // La partida ya está asignada a este proyecto
+          return true;
+      }
   }
+
+  // La partida no está asignada a este proyecto
+  return false;
+}
+
+
+  
   onSubmitPartidaPresupuestaria(form: any) {
 
     const fechaPartidaPresupuestaria = new Date(this.ppart_FECHA + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria

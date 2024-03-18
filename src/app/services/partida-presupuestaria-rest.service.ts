@@ -20,6 +20,7 @@ export class PartidaPresupuestariaRestService {
 
   apiUrlPartidaPresupuestaria = 'http://localhost:8080/partidaPresupuestaria/listar';
 
+  apiUrlPartidaPresupuestariaDetalle = 'http://localhost:8080/partidaPresupuestaria/listardetalle';
 
 
 
@@ -79,6 +80,10 @@ export class PartidaPresupuestariaRestService {
     return this.http.get<PartidaPresupuestaria>(this.apiUrlPartidaPresupuestaria);
   }
 
+
+  getListarPartidaPresupuestariaDetalle(): Observable<any> {
+    return this.http.get<PartidaPresupuestaria>(this.apiUrlPartidaPresupuestariaDetalle);
+  }
 
 
 
