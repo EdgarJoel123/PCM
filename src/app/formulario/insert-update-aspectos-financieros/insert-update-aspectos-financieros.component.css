@@ -48,6 +48,7 @@ h1 {
   justify-content: space-between;
 }
 
+
 .form-group {
   width: calc(30% - 1vmin); /* Utilizando unidades relativas */
   margin-bottom: 2vmin; /* Utilizando unidades relativas */

@@ -27,12 +27,25 @@
         </div>-->
 
 
+        <div class="form-control">
         <div class="form-group">
           <label for="pasfina_FECHA">Fecha de Ingreso de Aspectos Financieros:</label>
           <input type="date" id="pasfina_FECHA" placeholder="Fecha" name="pasfina_FECHA" [(ngModel)]="pasfina_FECHA"
             disabled>
         </div>
+      </div>
 
+      <div class="form-group">
+        <label for="pasfina_ASIGNACION_INICIAL">Asignacion Inicial (USD):</label>
+        <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control"
+          name="pasfina_ASIGNACION_INICIAL" [(ngModel)]="pasfina_ASIGNACION_INICIAL" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pasfina_REFORMAS">Reformas (USD):</label>
+        <input matInput type="number" placeholder="Reformas (USD)" class="form-control" name="pasfina_REFORMAS"
+          [(ngModel)]="pasfina_REFORMAS" required>
+      </div>
 
         <!-- Sección 5: campos de número -->
         <div class="form-group">
@@ -48,25 +61,7 @@
         </div>
 
         <div class="form-group">
-          <label for="pasfina_EJECUTADO">Ejecutado (USD):</label>
-          <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control" name="pasfina_EJECUTADO"
-            [(ngModel)]="pasfina_EJECUTADO" required>
-        </div>
-
-        <div class="form-group">
-          <label for="pasfina_ASIGNACION_INICIAL">Asignacion Inicial (USD):</label>
-          <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control"
-            name="pasfina_ASIGNACION_INICIAL" [(ngModel)]="pasfina_ASIGNACION_INICIAL" required>
-        </div>
-
-        <div class="form-group">
-          <label for="pasfina_REFORMAS">Reformas (USD):</label>
-          <input matInput type="number" placeholder="Reformas (USD)" class="form-control" name="pasfina_REFORMAS"
-            [(ngModel)]="pasfina_REFORMAS" required>
-        </div>
-
-        <div class="form-group">
-          <label for="pasfina_PRE_COMPROMISO">Pre Compromiso (USD):</label>
+          <label for="pasfina_PRE_COMPROMISO">Certificado (Pre Compromiso) (USD):</label>
           <input matInput type="number" placeholder="Pre Compromiso (USD)" class="form-control"
             name="pasfina_PRE_COMPROMISO" [(ngModel)]="pasfina_PRE_COMPROMISO" required>
         </div>
@@ -75,6 +70,12 @@
           <label for="pasfina_COMPROMISO">Compromiso (USD):</label>
           <input matInput type="number" placeholder="Compromiso (USD)" class="form-control" name="pasfina_COMPROMISO"
             [(ngModel)]="pasfina_COMPROMISO" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pasfina_EJECUTADO">Ejecutado (USD):</label>
+          <input matInput type="number" placeholder="Ejecutado (USD)" class="form-control" name="pasfina_EJECUTADO"
+            [(ngModel)]="pasfina_EJECUTADO" required>
         </div>
 
         <div class="form-group">
@@ -87,6 +88,13 @@
           <label for="pasfina_ANTICIPO_NO_AMORTI">Anticipo no Amortizado (USD):</label>
           <input matInput type="number" placeholder="Anticipo no Amortizado (USD)" class="form-control"
             name="pasfina_ANTICIPO_NO_AMORTI" [(ngModel)]="pasfina_ANTICIPO_NO_AMORTI" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="total_trasferido">Total Trasferido (USD):</label>
+          <input matInput type="number" placeholder="Anticipo no Amortizado (USD)" class="form-control"
+            name="total_trasferido" [(ngModel)]="total_trasferido"  disabled>
         </div>
 
         <div class="submit-container">

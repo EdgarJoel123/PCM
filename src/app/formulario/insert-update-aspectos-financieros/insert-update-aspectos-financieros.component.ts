@@ -28,6 +28,9 @@ export class InsertUpdateAspectosFinancierosComponent {
 
   id_PPRO_CODIGO_UNICO_aspectos_finacieros: number;
 
+  
+  total_trasferido: number;
+
   constructor(private serviceAspectosFinacieros: AspectosFinancierosRestService, private sharedService: SharedIDService, private router: Router) { 
     this.id_PPRO_CODIGO_UNICO_aspectos_finacieros = sharedService.getCodigoUnico();
   }
@@ -127,8 +130,13 @@ export class InsertUpdateAspectosFinancierosComponent {
 
           this.id_PASFINA = response[0].id_PASFINA
 
+          this.total_trasferido = this.pasfina_EJECUTADO + this.pasfina_ANTICIPO_NO_AMORTI;
 
-          //console.log(this.id_PASFINA);
+
+          console.log(this.pasfina_EJECUTADO);
+
+
+          console.log(this.total_trasferido);
 
 
         } else {
