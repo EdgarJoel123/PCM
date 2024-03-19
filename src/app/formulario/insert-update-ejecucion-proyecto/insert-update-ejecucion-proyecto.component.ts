@@ -44,7 +44,8 @@ export class InsertUpdateEjecucionProyectoComponent {
   isEtapaDisabled: boolean = false;
   previousIdPetajeepro: number; // Variable para almacenar el valor anterior de id_PETAEJEPRO
 
-  porcentajeTotal: number;
+  porcentaje: number;
+
 
 
   constructor(private serviceEjecuccionProyecto: EjecucionRestService, private sharedService: SharedIDService, private router: Router) {
@@ -52,48 +53,54 @@ export class InsertUpdateEjecucionProyectoComponent {
   }
 
   ngOnInit(): void {
- 
-    this.buscarDatosEjecucionProyecto();
 
+    this.buscarDatosEjecucionProyecto();
     this.cargarDatosEstadoProyecto();
-  
+
+
+
 
 
   }
 
 
   calcularPorcentaje(): void {
-    let porcentaje: number;
-    
-    if (this.selectEstadoProyecto === 1) {
-      porcentaje = 0; // Porcentaje para "No iniciado"
-    } else if (this.selectEstadoProyecto === 2) {
-      porcentaje = 0; // Porcentaje para "Iniciado"
-    } else if (this.selectEstadoProyecto === 3) {
-      porcentaje = 100; // Porcentaje para "Finalizado"
-    } else if (this.selectEstadoProyecto === 4) {
-      porcentaje = 0; // Porcentaje para "Paralizado"
-    } else if (this.selectEstadoProyecto === 5) {
-      // Calculamos el porcentaje según la etapa de ejecución para "En ejecución 41%-90%"
-      if (this.selectEtapaEjecuccion === 5) {
-        porcentaje = 40 + (this.pejecp_AVANCE_EJECU_FISICA_PRO * 0.5); // Usamos el valor de O28
-      } else {
-        porcentaje = 0; // Si el estado no es "En ejecución 41%-90%", el porcentaje es 0
-      }
-    } else if (this.selectEstadoProyecto === 6) {
-      porcentaje = 95; // Porcentaje para "Acta de entrega - recepción"
-    } else if (this.selectEstadoProyecto === 7) {
-      porcentaje = 100; // Porcentaje para "Registro contable"
+    console.log(this.selectEstadoProyecto);
+    console.log(this.selectEtapaEjecuccion);
+    console.log(this.pejecp_AVANCE_EJECU_FISICA_PRO);
+
+    if (this.selectEtapaEjecuccion === 1) {
+        this.porcentaje = 0;
+    } else if (this.selectEtapaEjecuccion === 2) {
+        this.porcentaje = 5;
+    } else if (this.selectEtapaEjecuccion === 3) {
+        this.porcentaje = 10;
+    } else if (this.selectEtapaEjecuccion === 4) {
+        this.porcentaje = 15;
+    } else if (this.selectEtapaEjecuccion === 5) {
+        this.porcentaje = 30;
+    } else if (this.selectEtapaEjecuccion === 6) {
+        this.porcentaje = 40;
+    } else if (this.selectEtapaEjecuccion === 7) {
+            this.porcentaje = 40 + (this.pejecp_AVANCE_EJECU_FISICA_PRO * 0.5);
+    } else if (this.selectEtapaEjecuccion === 8 || this.selectEtapaEjecuccion === 9) {
+        if (this.pejecp_AVANCE_EJECU_FISICA_PRO === 100) {
+            this.porcentaje = (this.selectEtapaEjecuccion === 8) ? 95 : 100;
+        } else {
+            this.porcentaje = 0; // o un valor adecuado en caso de no cumplir la condición de ser 100%
+        }
     } else {
-      porcentaje = 0; // Valor predeterminado
+        this.porcentaje = 0; // Manejo de caso por defecto
     }
-  
-    this.porcentajeTotal = porcentaje; // Asignamos el resultado a la variable porcentajeTotal
-    
-  }
-  
-  
-  
+
+    console.log("este es el porcentaje: " + this.porcentaje);
+    this.pejecp_AVANCE_EJECU_TOTAL_PRO = this.porcentaje;
+}
+
+
+
+
+
 
 
 
@@ -151,7 +158,7 @@ export class InsertUpdateEjecucionProyectoComponent {
   seleccionarEstadoProyecto(event: Event): void {
     const target = event.target as HTMLSelectElement;
     this.selectEstadoProyecto = parseFloat(target.value);
-  
+
     // Restaurar el valor anterior de id_PETAEJEPRO si el nuevo estado es "PARALIZADO"
     if (this.selectEstadoProyecto === 4) {
       this.isEtapaDisabled = true;
@@ -168,6 +175,8 @@ export class InsertUpdateEjecucionProyectoComponent {
     this.selectEtapaEjecuccion = parseFloat(target.value);
 
     console.log('Tipo de seleccionado:', this.selectEtapaEjecuccion);
+
+    //this.calcularPorcentaje();
 
   }
 
@@ -217,7 +226,7 @@ export class InsertUpdateEjecucionProyectoComponent {
           this.id_PEJECP = data.id_PEJECP;
 
 
-        //  console.log(this.id_PESTPRO);
+          //  console.log(this.id_PESTPRO);
           //console.log(this.id_PETAEJEPRO);
 
           // Establecer el valor de isEtapaDisabled
@@ -226,13 +235,15 @@ export class InsertUpdateEjecucionProyectoComponent {
           // Guardar el valor actual de id_PETAEJEPRO
           this.previousIdPetajeepro = data.id_PETAEJEPRO;
 
-          this.calcularPorcentaje();
+
+
 
           // Establecer el valor de id_PETAEJEPRO solo si no está deshabilitado
           if (!this.isEtapaDisabled) {
             this.id_PETAEJEPRO = data.id_PETAEJEPRO;
           }
           this.cargarDatosEpataEjecuccion();
+          // this.calcularPorcentaje();
         } else {
           alert("Todavía no existe ningún dato de Ejecución del Proyecto, ingréselos");
         }
