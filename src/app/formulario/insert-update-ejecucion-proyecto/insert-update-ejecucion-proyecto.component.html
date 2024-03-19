@@ -4,8 +4,7 @@
     <div id="container">
       <div class="underline"></div>
       <h1>Formulario de Ejecucion del Proyecto</h1>
-      <form id="EjecucionProyecto_form" #form4="ngForm" (ngSubmit)="onSubmitEjecucionProyecto(form4)"
-        class="form-container">
+      <form id="EjecucionProyecto_form" #form4="ngForm" (ngSubmit)="onSubmitEjecucionProyecto(form4)" class="form-container">
 
         <legend>
           <h1>Formulario de Ejecucion del Proyecto</h1>
@@ -58,7 +57,7 @@
         <div class="form-group">
           <label for="pejecp_AVANCE_EJECU_FISICA_PRO">Avance de Ejecucion Fisica %:</label>
           <input matInput type="number" placeholder="Avance de Ejecucion Fisica %" min="0" max="100"
-            class="form-control" name="pejecp_AVANCE_EJECU_FISICA_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_FISICA_PRO"
+            class="form-control" name="pejecp_AVANCE_EJECU_FISICA_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_FISICA_PRO" (keyup.enter)="calcularPorcentaje()"
             required>
 
 
@@ -66,29 +65,24 @@
         </div>
 
 
-
-
-
-
         <div class="form-group">
           <label for="pejecp_AVANCE_EJECU_TOTAL_PRO">Avance de Ejecucion Total %:</label>
           <input matInput type="number" placeholder="Avance de Ejecucion Total %" min="0" max="100" class="form-control"
-            name="pejecp_AVANCE_EJECU_TOTAL_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_TOTAL_PRO" disabled >
-
-            <button type="button" (click)="calcularPorcentaje()" class="btn btn-outline-secondary">Calcular</button>
+            name="pejecp_AVANCE_EJECU_TOTAL_PRO" [(ngModel)]="pejecp_AVANCE_EJECU_TOTAL_PRO" disabled
+            >
+      
+          <button type="button" (click)="calcularPorcentaje()" class="btn btn-outline-danger">Calcular</button>
         </div>
 
         <div class="submit-container">
           <div class="submit">
-            <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form4.valid"
-              class="btn btn-primary" />
+            <input type="submit" value="Grabar Registro" id="form_button" (keyup.enter)= "false" [disabled]="!form4.valid" class="btn btn-primary" />
           </div>
-
+      
           <div class="submit">
-            <input type="button" value="Actualizar Registro" [disabled]="!form4.valid"
-              (click)="confirmarActualizacion(form4)" class="btn btn-success" />
+            <input type="button" value="Actualizar Registro" [disabled]="!form4.valid" (click)="confirmarActualizacion(form4)"
+              class="btn btn-success" />
           </div>
-
         </div>
 
 
