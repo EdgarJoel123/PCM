@@ -53,6 +53,7 @@ export class InsertUpdateReformaComponent {
         //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
 
         this.prefoin_ANIO = data[0].ppro_ANIO_CALIFICACION_EJECU;
+     
        // this.prefoin_VALOR_TOTAL_PROYECTO_R = data[0].ppro_MONTO_APRO_ESTUDI_COSTOS;
       })
   }
@@ -134,6 +135,10 @@ export class InsertUpdateReformaComponent {
         if (response && response.length) {
  
           this.prefoin_REFORMA = response[0].pproin_PRESUPUESTO_PROFORMA;
+          this.prefoin_VALOR_TOTAL_PROYECTO_R = response[0].pproin_VALOR_TOTAL_PROYECTO_PR;
+
+          console.log(this.prefoin_VALOR_TOTAL_PROYECTO_R);
+          
 
 
         } else {
@@ -173,6 +178,7 @@ export class InsertUpdateReformaComponent {
 
 
         } else {
+          this.prefoin_FECHA = this.formatoFechaActual();
           alert("Todavia no existe ninguna Proforma, ingresela")
 
         }
