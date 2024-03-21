@@ -1,137 +1,169 @@
-/* General styles */
+/* DEMO STYLE */
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: #001f3f; /* Color de fondo del cuerpo */
 }
 
-.container-fluid {
-    display: flex;
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #fff; /* Color del texto de párrafo */
 }
+.imagen-contraste {
+    filter: invert(100%); /* Cambia el color de la imagen a blanco */
+    width: 200px; /* Cambia el tamaño de la imagen a 50px */
+}
+ 
 
-.col-md-3 {
-    width: 300px;
-    min-width: 50px;
-    background-color: #001f3f;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow-y: scroll;
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
     transition: all 0.3s;
 }
 
-.menu-hidden {
-    transform: translateX(-250px); /* Cambiado a -250px para que el menú quede oculto */
-}
-
-.col-md-3.menu-hidden {
-    width: 50px;
-}
-
-.col-md-3.menu-visible {
-    transform: translateX(0);
-}
-
-.col-md-12 {
-    padding: 0;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #001f3f; /* Color de fondo del header */
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-}
-
-.menu-toggle {
-    background: transparent;
+.navbar {
+    padding: 15px 10px;
+    background: #001f3f; /* Color de fondo de la barra de navegación */
     border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* SIDEBAR STYLE */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #001f3f; /* Color de fondo del menú lateral */
+    color: #fff; /* Color del texto del menú lateral */
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #001f3f; /* Color de fondo del encabezado del menú lateral */
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
     color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: 10px; /* Ajusta según sea necesario para separar visualmente la imagen del ícono */
-}
-
-.menu-toggle:hover {
-    color: #173b5f;
-}
-
-.menu-container {
-    margin-top: 60px; /* Ajusta según sea necesario para separar visualmente el menú del encabezado */
-}
-
-.menu-abierto .menu-container {
-    margin-top: 10px; /* Ajusta según sea necesario para separar visualmente el menú del encabezado cuando está abierto */
-}
-
-.nav.flex-column {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-item {
     padding: 10px;
 }
 
-.nav-link {
-    text-decoration: none;
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #001f3f; /* Color del texto del menú lateral al pasar el cursor */
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
     color: #fff;
-    font-size: 13px;
+    background: #001f3f; /* Color de fondo del elemento activo del menú lateral */
 }
 
-.nav-link:hover {
-    background-color: #003366;
+a[data-toggle="collapse"] {
+    position: relative;
 }
 
-.imagen-contraste {
-    width: 230px;
-    height: 60px;
-    margin-right: 10px;
-    filter: invert(100%);
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
 }
 
-.image-visible {
-    visibility: visible;
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #001f3f;
 }
 
-.image-hidden {
-    visibility: hidden;
+ul.CTAs {
+    padding: 20px;
 }
 
-/* Resto del código ... */
-
-#nombreProyecto {
-    margin: auto;
-    text-align: center; /* Añadido para centrar el texto horizontalmente */
-    margin-left: 40px;
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-.col-md-9 {
-    transition: margin-left 0.3s; /* Agregado para suavizar la transición del margen izquierdo */
+a.download {
+    background: #fff;
+    color: #001f3f;
 }
 
-.menu-visible .col-md-9 {
-    margin-left: 300px; /* Ancho del menú cuando está abierto */
+a.article,
+a.article:hover {
+    background: #001f3f !important;
+    color: #fff !important;
 }
+
+
+#content {
+    width: 100%;
+    transition: all 0.3s;
+    margin-top: 0; /* Elimina el margen superior */
+    margin-bottom: 0; /* Elimina el margen inferior */
+    background-color: #001f3f;
+    margin-bottom: 0%;
+}
+
+
+/* MEDIAQUERIES */
 
 @media (max-width: 768px) {
-    .col-md-3 {
-        width: 50px;
+    #sidebar {
+        margin-left: -250px;
     }
-
-    .col-md-3.menu-visible {
-        transform: translateX(0);
-        width: 100%;
-        z-index: 1;
-    }
-
-    .menu-visible .col-md-9 {
+    #sidebar.active {
         margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
     }
 }

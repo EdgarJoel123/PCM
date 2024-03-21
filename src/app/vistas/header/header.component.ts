@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { SharedIDService } from 'src/app/services/shared-id.service';
@@ -10,6 +10,31 @@ import { SharedIDService } from 'src/app/services/shared-id.service';
 })
 export class HeaderComponent {
 
+
+  constructor(private elementRef: ElementRef,private router: Router, private sharedService: SharedIDService, private authService: AutentificacionService) {
+    // Inicializa la matriz de visibilidad con 'false' para cada grupo de opciones
+    this.opcionesVisibles = new Array(3).fill(true);
+
+    // Puedes acceder al nombre del proyecto directamente
+    this.nombre_proyecto = this.sharedService.getNombreProyecto();
+  }
+
+  ngOnInit(): void {
+    this.setupSidebarCollapse();
+  }
+
+  private setupSidebarCollapse(): void {
+    const sidebarCollapse = this.elementRef.nativeElement.querySelector('#sidebarCollapse');
+    const sidebar = this.elementRef.nativeElement.querySelector('#sidebar');
+
+    if (sidebarCollapse && sidebar) {
+      sidebarCollapse.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+    }
+  }
+
+
   public menuVisible = true;
 
   nombre_proyecto: string;
@@ -20,13 +45,7 @@ export class HeaderComponent {
   // Puedes mantener un seguimiento del estado de visibilidad de las opciones
   opcionesVisibles: boolean[];
 
-  constructor(private router: Router, private sharedService: SharedIDService, private authService: AutentificacionService) {
-    // Inicializa la matriz de visibilidad con 'false' para cada grupo de opciones
-    this.opcionesVisibles = new Array(3).fill(true);
 
-    // Puedes acceder al nombre del proyecto directamente
-    this.nombre_proyecto = this.sharedService.getNombreProyecto();
-  }
 
   toggleMenu() {
     this.menuVisible = !this.menuVisible;
@@ -55,6 +74,7 @@ export class HeaderComponent {
         this.toggleMenu();
     }
 }
+
 
 
 }
