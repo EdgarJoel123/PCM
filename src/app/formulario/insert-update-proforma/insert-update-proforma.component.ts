@@ -18,13 +18,18 @@ export class InsertUpdateProformaComponent {
 
   pproin_VALOR_TOTAL_PROYECTO_PR: number;
   pproin_PRESUPUESTO_PROFORMA: number;
+  pproin_PRESUPUESTO_PROFORMA_iva: number;
   pproin_ANIO: string;
   id_PPRO_CODIGO_UNICO_proforma: number;
   pproin_PROFORMA: number;
   id_PPROIN: number;
   pproin_FECHA: string;
   //anio
-  currentYear: number; // Definir propiedad en la clase
+  currentYear: number; 
+  
+  selectedIva: number;
+  
+  seleccionIVA: number;// Definir propiedad en la clase
 
 
   constructor(private servicePrincipal: PrincipalRestService, private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
@@ -35,6 +40,7 @@ export class InsertUpdateProformaComponent {
   ngOnInit() {
     this.listarDatosProyecto();
     this.buscarDatosProforma();
+
 
   }
 
@@ -54,6 +60,13 @@ export class InsertUpdateProformaComponent {
         //console.log(this.pproin_ANIO); // verifica si hay datos
       })
   }
+
+  calcularPresupuesto() {
+    this.pproin_PRESUPUESTO_PROFORMA_iva = this.pproin_PROFORMA / this.seleccionIVA;
+    this.pproin_PRESUPUESTO_PROFORMA = +this.pproin_PRESUPUESTO_PROFORMA_iva.toFixed(3);
+    console.log(this.pproin_PRESUPUESTO_PROFORMA);
+}
+
 
   onSubmitProfroma(form: any) {
 
@@ -142,6 +155,7 @@ export class InsertUpdateProformaComponent {
 
 
         } else {
+          this.pproin_FECHA = this.formatoFechaActual();
           alert("Todavia no existe ninguna Proforma, ingresela")
 
         }
@@ -200,5 +214,15 @@ export class InsertUpdateProformaComponent {
       this.actualizarProforma(form);
     }
   }
+
+  selectIva(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.seleccionIVA = parseFloat(target.value);
+
+    console.log('Tipo de seleccionado:', this.seleccionIVA);
+    this.calcularPresupuesto();
+  }
+
+    //this.calcularPorcentaje();
 
 }

@@ -37,23 +37,33 @@
 
                 <!-- Sección 5: campos de número -->
                 <div class="form-group">
-                    <label for="pproin_VALOR_TOTAL_PROYECTO_PR">Valor Total del Proyecto Proforma</label>
+                    <label for="pproin_VALOR_TOTAL_PROYECTO_PR">Valor Total del Proyecto Proforma (IVA)</label>
                     <input matInput type="number" placeholder="Valor Total del Proyecto Proforma" class="form-control"
                         name="pproin_VALOR_TOTAL_PROYECTO_PR" [(ngModel)]="pproin_VALOR_TOTAL_PROYECTO_PR">
                 </div>
 
                 <div class="form-group">
-                    <label for="pproin_PROFORMA">Proforma:</label>
+                    <label class="col-form-label" for="pproin_PROFORMA">Proforma(SIN IVA):</label>
                     <input matInput type="number" placeholder="Proforma" class="form-control" name="pproin_PROFORMA"
                         [(ngModel)]="pproin_PROFORMA">
                 </div>
 
-
                 <div class="form-group">
-                    <label for="pproin_PRESUPUESTO_PROFORMA">Presupuesto Proforma:</label>
-                    <input matInput type="number" placeholder="Presupuesto Proforma" class="form-control"
-                        name="pproin_PRESUPUESTO_PROFORMA" [(ngModel)]="pproin_PRESUPUESTO_PROFORMA" required>
+                    <label for="pproin_PRESUPUESTO_PROFORMA" class="col-form-label">Presupuesto Proforma (IVA):</label>
+                    <div class="input-group">
+                        <input matInput type="number" placeholder="Presupuesto Proforma" class="form-control"
+                            name="pproin_PRESUPUESTO_PROFORMA" [(ngModel)]="pproin_PRESUPUESTO_PROFORMA" disabled>
+                        <div class="input-group-append">
+                            <select class="custom-select" id="ivaSelect" (change)="selectIva($event)">
+                                <option disabled hidden selected>Seleccione el IVA:</option>
+                                <option value="1.12">IVA 12%</option>
+                                <option value="1.14">IVA 14%</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                
+              
 
                 <div class="submit-container">
                     <div class="submit">

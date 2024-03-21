@@ -135,3 +135,7 @@ h1 {
 .btn-regresar:hover {
   background: #555555;
 }
+
+.input-group-append select {
+  margin-left: -2px; /* Ajusta el margen izquierdo del select para reducir el espacio */
+}
