@@ -201,7 +201,6 @@ margin-left: auto;
 /* Estilo para los mensajes de error */
 .form-group div[style*="color: red;"] {
     font-size: 0.9em;
-    margin-top: 5px;
 }
 
 /* Agrega un poco de espacio entre las opciones de los select */

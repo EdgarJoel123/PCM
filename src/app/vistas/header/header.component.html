@@ -110,29 +110,29 @@
 
     <!-- Page Content  -->
     <div id="content">
+
+        
         <!-- Menú de navegación -->
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                    <div id="nombreProyecto" class="nombre">
+                        <h2  style="margin-left: 300px; color: aliceblue;">{{ nombre_proyecto }}</h2>
+                    </div>
+                    
+                    <!-- Agrega más elementos de menú según tus necesidades -->
+                </ul>
+            </div>
+            
+            <div class="button-container">
                 <button type="button" id="sidebarCollapse" class="btn btn-light">
                     <i class="bi bi-list"></i>
                 </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <div id="nombreProyecto">
-                            <h2  style="color: aliceblue;">{{ nombre_proyecto }}</h2>
-                        </div>
-                        
-                        <!-- Agrega más elementos de menú según tus necesidades -->
-                    </ul>
-                </div>
+             
             </div>
         </nav>
-
-        <router-outlet style="margin-top: 0;"></router-outlet>
 
 
         <!-- Fin del menú de navegación -->

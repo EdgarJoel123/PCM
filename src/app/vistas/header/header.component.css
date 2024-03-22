@@ -167,3 +167,23 @@ a.article:hover {
         display: none;
     }
 }
+
+
+.button-container {
+    margin-left: auto;
+}
+
+
+
+/* CSS para la barra lateral */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 900; /* Asegura que la barra lateral esté detrás del header */
+    color: #fff; /* Cambia el color del texto de la barra lateral según sea necesario */
+}
+
+
+

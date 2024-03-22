@@ -22,7 +22,6 @@ body {
   box-shadow: 0 0 15px rgba(18, 36, 137, 0.6);
   border-radius: 15px;
   overflow: hidden;
-  margin-top: 200px;
   margin-left: 350px;
 }
 
@@ -43,9 +42,7 @@ header, section, footer {
   margin: 0 auto;
 }
 
-.content-container {
-  margin-top: 30px; /* Adjust margin-top as needed */
-}
+
 
 .section-title {
   font-size: 2em;
@@ -103,9 +100,6 @@ header, section, footer {
     width: 95%;
   }
 
-  .content-container {
-    margin-top: 20px; /* Adjust margin-top as needed for smaller screens */
-  }
 
   .section-title {
     font-size: 1.5em; /* Adjust font-size as needed for smaller screens */
