@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
             <!-- Menú Principal -->
             <li class="nav-item title" (click)="toggleOpciones(0)">
-                Menú Principal
+                <span style="margin-left: 5px;"></span> Menú Principal
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
                 <li class="nav-item">
@@ -42,7 +42,7 @@
 
             <!-- Proyectos -->
             <li class="nav-item title" (click)="toggleOpciones(1)">
-                Proyectos
+                <span style="margin-left: 5px;"></span> Proyectos
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[1]">
                 <li class="nav-item">
@@ -89,7 +89,7 @@
 
             <!-- Opciones -->
             <li class="nav-item title" (click)="toggleOpciones(2)">
-                Opciones
+                <span style="margin-left: 5px;"></span>  Opciones
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[2]">
                 <li class="nav-item" >
