@@ -54,12 +54,13 @@
                         <input matInput type="number" placeholder="Presupuesto Proforma" class="form-control"
                             name="pproin_PRESUPUESTO_PROFORMA" [(ngModel)]="pproin_PRESUPUESTO_PROFORMA" disabled>
                         <div class="input-group-append">
-                            <select class="custom-select" id="ivaSelect" (change)="selectIva($event)">
-                                <option disabled hidden selected>Seleccione el IVA:</option>
-                                <option value="1.12">IVA 12%</option>
-                                <option value="1.14">IVA 14%</option>
-                            </select>
+                            <input type="text" placeholder="IVA" class="form-control"
+                            name="IVA" [(ngModel)]="pivac_MOMBRE" disabled>
                         </div>
+                    </div>
+                   
+                <div class="submit-container">
+                    <button type="button" class="btn btn-info" (click)="calcularIva()" id="form_button" value="cslcular">Calcular</button>
                     </div>
                 </div>
                 

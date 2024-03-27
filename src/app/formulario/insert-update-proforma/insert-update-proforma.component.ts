@@ -24,12 +24,12 @@ export class InsertUpdateProformaComponent {
   pproin_PROFORMA: number;
   id_PPROIN: number;
   pproin_FECHA: string;
+  pivac_MOMBRE: string;
   //anio
   currentYear: number; 
+  porcetanje : number;
   
-  selectedIva: number;
-  
-  seleccionIVA: number;// Definir propiedad en la clase
+  pivac_IVA : number;
 
 
   constructor(private servicePrincipal: PrincipalRestService, private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
@@ -61,11 +61,19 @@ export class InsertUpdateProformaComponent {
       })
   }
 
-  calcularPresupuesto() {
-    this.pproin_PRESUPUESTO_PROFORMA_iva = this.pproin_PROFORMA / this.seleccionIVA;
-    this.pproin_PRESUPUESTO_PROFORMA = +this.pproin_PRESUPUESTO_PROFORMA_iva.toFixed(3);
+
+  calcularIva(){
+   
+    this.porcetanje = parseFloat((this.pproin_PROFORMA / this.pivac_IVA).toFixed(2));
+
+
+    this.pproin_PRESUPUESTO_PROFORMA = this.porcetanje;
+
     console.log(this.pproin_PRESUPUESTO_PROFORMA);
-}
+    
+    
+  }
+
 
 
   onSubmitProfroma(form: any) {
@@ -147,9 +155,11 @@ export class InsertUpdateProformaComponent {
           this.pproin_PRESUPUESTO_PROFORMA = response[0].pproin_PRESUPUESTO_PROFORMA;
           this.pproin_FECHA = this.formatoFechaActual();
           this.id_PPROIN =  response[0].id_PPROIN;
+          this.pivac_MOMBRE = response[0].pivac_MOMBRE;
+          this.pivac_IVA =  response[0].pivac_IVA;
 
 
-          console.log(this.id_PPROIN);
+          console.log(this.pivac_IVA);
 
           this.listarDatosProyecto();
 
@@ -215,14 +225,5 @@ export class InsertUpdateProformaComponent {
     }
   }
 
-  selectIva(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.seleccionIVA = parseFloat(target.value);
-
-    console.log('Tipo de seleccionado:', this.seleccionIVA);
-    this.calcularPresupuesto();
-  }
-
-    //this.calcularPorcentaje();
 
 }
