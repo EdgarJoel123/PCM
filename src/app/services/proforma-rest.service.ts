@@ -11,7 +11,7 @@ export class ProformaRestService {
   constructor(private http: HttpClient) { }
 
   apiUrlProforma1 = 'http://localhost:8080/proforma/listarGeneracion';
- apiUrlProforma2 = 'http://localhost:8080/proforma/listarSubtrasmision';
+  apiUrlProforma2 = 'http://localhost:8080/proforma/listarSubtrasmision';
   /*apiUrlProforma3 = 'http://localhost:8080/proforma/listarDistribucion';
   apiUrlProforma4 = 'http://localhost:8080/proforma/listarAlumPublico';
   apiUrlProforma5 = 'http://localhost:8080/proforma/listarAcoMedidores';
@@ -19,6 +19,16 @@ export class ProformaRestService {
 
 
   apiUrlInsertar = 'http://localhost:8080/proforma/insertar';
+
+
+  apiListarIvA = 'http://localhost:8080/proforma/listarIVA';
+
+
+
+
+  getListarIva(): Observable<any> {
+    return this.http.get<Proforma>(this.apiListarIvA);
+  }
 
 
 

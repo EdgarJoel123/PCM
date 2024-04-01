@@ -32,6 +32,8 @@ export class InsertUpdateProformaComponent {
   pivac_IVA : number;
 
 
+
+
   constructor(private servicePrincipal: PrincipalRestService, private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
     this.id_PPRO_CODIGO_UNICO_proforma = this.sharedService.getCodigoUnico();
 
@@ -40,6 +42,7 @@ export class InsertUpdateProformaComponent {
   ngOnInit() {
     this.listarDatosProyecto();
     this.buscarDatosProforma();
+    this.listarDatosIva();
 
 
   }
@@ -62,7 +65,28 @@ export class InsertUpdateProformaComponent {
   }
 
 
+  listarDatosIva() {
+    this.serviceProforma.getListarIva()
+      .subscribe(data => {
+
+        //console.log(data[0].ppro_ANIO_CALIFICACION_EJECU);
+
+        this.pivac_MOMBRE = data[0].pivac_MOMBRE;
+        this.pivac_IVA = data[0].pivac_IVA;
+
+
+        console.log(this.pivac_IVA); // verifica si hay datos
+      })
+  }
+
+
+
   calcularIva(){
+
+
+
+    console.log(this.pproin_PROFORMA);
+    
    
     this.porcetanje = parseFloat((this.pproin_PROFORMA / this.pivac_IVA).toFixed(2));
 
@@ -155,11 +179,11 @@ export class InsertUpdateProformaComponent {
           this.pproin_PRESUPUESTO_PROFORMA = response[0].pproin_PRESUPUESTO_PROFORMA;
           this.pproin_FECHA = this.formatoFechaActual();
           this.id_PPROIN =  response[0].id_PPROIN;
-          this.pivac_MOMBRE = response[0].pivac_MOMBRE;
-          this.pivac_IVA =  response[0].pivac_IVA;
+         // this.pivac_MOMBRE = response[0].pivac_MOMBRE;
+         //this.pivac_IVA =  response[0].pivac_IVA;
 
 
-          console.log(this.pivac_IVA);
+          //console.log(this.pivac_IVA);
 
           this.listarDatosProyecto();
 
