@@ -16,7 +16,7 @@
     
            
             <div class="form-group">
-                <label for="role"></label>
+                <label for="role">Seleccione un Rol</label>
                 <select name="role" id="role" (change)="seleccionarRol($event)">
                     <option disabled hidden selected>Seleccionar un rol:</option>
                     <option *ngFor="let rol of roles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group">
-                <label for="modulo"></label>
+                <label for="modulo">Selecione un Modulo</label>
                 <select name="modulo" id="modulo" (change)="seleccionarModulo($event)">
                     <option disabled hidden selected>Seleccione un modulo:</option>
                     <option *ngFor="let modulo of modulos" [value]="modulo.id_MODULO">{{modulo.nombre_MODULO}}
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <label for="modulo"></label>
+                <label for="modulo">Selecione una operacion</label>
                 <select name="modulo" id="modulo" (change)="seleccionarOperacion($event)">
                     <option disabled hidden selected>Seleccione una operacion:</option>
                     <option *ngFor="let operacion of operaciones" [value]="operacion.id_OPERACION">

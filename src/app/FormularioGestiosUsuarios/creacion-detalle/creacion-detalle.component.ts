@@ -26,6 +26,38 @@ export class CreacionDetalleComponent {
   constructor(private service: GestionUsuariosService){}
 
 
+  
+  ngOnInit(): void {
+    // this.currentFormIndex = Number(sessionStorage.getItem('currentFormIndex')) || 0; // Recuperar el índice almacenado o establecerlo en 0 si no hay ninguno
+    
+     this.cargarRoles();
+     this.cargarModulos();
+     this.cargarOperaciones();
+ 
+   }
+
+
+   cargarRoles(): void {
+    this.service.getListarRoles().subscribe(
+      (data) => {
+        this.roles = data;
+      },
+      (error) => {
+        console.error('Error al obtener los roles:', error);
+      }
+    );
+  }
+
+  cargarModulos(): void {
+    this.service.getListarModulos().subscribe(
+      (data) => {
+        this.modulos= data;
+      },
+      (error) => {
+        console.error('Error al obtener los modulos:', error);
+      }
+    );
+  }
 
   onFormSubmitRolOperacion(form: any) {
     if (form.valid) {
