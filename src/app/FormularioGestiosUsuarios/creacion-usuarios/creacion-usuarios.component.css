@@ -17,7 +17,6 @@ body {
 }
 
 .container {
-  margin-top: 0;
   margin-bottom: 5%; /* Utilizando unidades relativas */
 }
 
@@ -29,7 +28,7 @@ form {
   background-color: #f0f0f0;
   border: solid 3px #919191;
   border-radius: 2vmin; /* Utilizando unidades relativas */
-  margin-top: 8%;
+
 }
 
 h1 {
@@ -47,6 +46,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 
 .form-group {
   width: calc(30% - 1vmin); /* Utilizando unidades relativas */

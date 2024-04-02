@@ -618,8 +618,8 @@
   <div class="modal fade" id="usuariosEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+        <div class="modal-header" >
+          <h5 class="modal-title" style="color: #fffbfb ;" id="exampleModalLabel">EDITAR USUARIOS</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -639,20 +639,20 @@
 
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" [(ngModel)]="username">
+              <input type="text" class="form-control" id="username" [(ngModel)]="username" disabled>
             </div>
 
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="nombreUser" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nombreUser" [(ngModel)]="nombreUser">
+                  <input type="text" class="form-control" id="nombreUser" [(ngModel)]="nombreUser"  disabled>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="apeliidoUser" class="form-label">Apellido</label>
-                  <input type="text" class="form-control" id="apeliidoUser" [(ngModel)]="apeliidoUser">
+                  <input type="text" class="form-control" id="apeliidoUser" [(ngModel)]="apeliidoUser"  disabled>
                 </div>
               </div>
             </div>
@@ -683,13 +683,13 @@
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="dmperUser" class="form-label">DMPER CODIGO</label>
-                  <input type="text" class="form-control" id="dmperUser" [(ngModel)]="dmperUser">
+                  <input type="text" class="form-control" id="dmperUser" [(ngModel)]="dmperUser"  disabled>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="dmperRolUser" class="form-label">DMPER NUMERO ROL</label>
-                  <input type="text" class="form-control" id="dmperRolUser" [(ngModel)]="dmperRolUser">
+                  <input type="text" class="form-control" id="dmperRolUser" [(ngModel)]="dmperRolUser"  disabled>
                 </div>
               </div>
             </div>
@@ -708,7 +708,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Desea eliminar el Usuario?</h1>
+          <h1 class="modal-title fs-5" style="color: #fffbfb;" id="exampleModalLabel">¿ESTA SEGURO QUE QUIERE ELIMINAR ESTE USUARIO?</h1>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -26,12 +26,27 @@ h1 {
 
 /* Table styles */
 .table-responsive {
-  width: 100%;
+  width: 120%; /* Ocupa todo el ancho disponible */
   overflow-x: auto;
+  overflow-y: auto;
   border: 1px solid #cfedffa4;
   border-radius: 8px;
   margin: 10px 0;
 }
+
+/* Resto del código ... */
+
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 2px solid #cfedffa4;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
 
 .table th {
   background-color: #174e9683;
@@ -158,4 +173,8 @@ h1 {
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
 
+}
+
+.modal-header{
+  background-color: #192A67;
 }

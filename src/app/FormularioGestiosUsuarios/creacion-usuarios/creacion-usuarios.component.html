@@ -3,11 +3,15 @@
         <div id="container">
             <div class="underline"></div>
             <form id="contact_form" #form2="ngForm" (ngSubmit)="onFormSubmitUsuarios(form2)" class="form-container">
+                <legend>
+                    <h1>Formulario de Usuario</h1>
+                    <br>
+                  </legend>
 
                 <div class="form-group">
                     <label for="role"></label>
                     <select name="role" id="role" (change)="seleccionarRol($event)">
-                        <option disabled hidden selected>Seleccionar un rol:</option>
+                        <option disabled hidden selected>Seleccione un rol:</option>
                         <option *ngFor="let rol of roles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
                     </select>
                 </div>

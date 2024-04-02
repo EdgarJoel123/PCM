@@ -41,14 +41,14 @@ validarUsuario(formulario: any) {
 
   this.http.get(url, { params }).pipe(
     switchMap((response: any) => {
-      console.log(response.TOKEN);
+    //console.log(response.TOKEN);
 
       this.setToken(response.TOKEN);
       
       if (response.STATE === 'OK') {
         alert("Usuario Valido")
         const username = formulario.username;
-        //console.log(username);
+        console.log(username);
         return this.gestionUserService.getUsername(username);
       } else {
         throw new Error('Usuario no válido revise su username o su contraseña');
@@ -58,8 +58,8 @@ validarUsuario(formulario: any) {
 
     map((usernameResponseArray: any[]) => {
       const usernameResponse = usernameResponseArray[0]; // Acceder al primer elemento
-      /*console.log('usernameResponse:', usernameResponse);
-      console.log('id_ROL:', usernameResponse.id_ROL);*/
+      console.log('usernameResponse:', usernameResponse);
+      console.log('id_ROL:', usernameResponse.id_ROL);
       if (usernameResponse.id_ROL === 1) {
         return 'Usted es un admin y tiene al sistema.';
       } else {
