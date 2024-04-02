@@ -35,6 +35,7 @@ import { ListarComponent } from './FormularioGestiosUsuarios/listar/listar.compo
 import { CreacionDetalleComponent } from './FormularioGestiosUsuarios/creacion-detalle/creacion-detalle.component';
 import { CreacionUsuariosComponent } from './FormularioGestiosUsuarios/creacion-usuarios/creacion-usuarios.component';
 import { CreacionModulosComponent } from './FormularioGestiosUsuarios/creacion-modulos/creacion-modulos.component';
+import { CreacionOperacionesComponent } from './FormularioGestiosUsuarios/creacion-operaciones/creacion-operaciones.component';
 
 //const config: SocketIoConfig = { url: 'http://localhost:8080/ejecucionProyecto', options: {} };
 
@@ -71,7 +72,8 @@ import { CreacionModulosComponent } from './FormularioGestiosUsuarios/creacion-m
     ListarComponent,
     CreacionDetalleComponent,
     CreacionUsuariosComponent,
-    CreacionModulosComponent
+    CreacionModulosComponent,
+    CreacionOperacionesComponent
     
   ],
   imports: [

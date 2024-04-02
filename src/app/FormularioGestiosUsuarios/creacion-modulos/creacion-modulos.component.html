@@ -2,8 +2,8 @@
 
     <div class="container">
         <div id="container">
-            <div class="underline"></div>
-    <form id="Reforms" #form3="ngForm" (ngSubmit)="onFormSubmitModulo(form3)" class="form-container">
+
+    <form id="Modulo" #form3="ngForm" (ngSubmit)="onFormSubmitModulo(form3)" class="form-container">
 
         <legend>
           <h1>Formulario de Modulo</h1>
@@ -28,7 +28,7 @@
 
         <div class="submit-container">
             <div class="submit">
-              <input type="submit" value="Crear Modulo" id="form_button"
+              <input type="submit" value="Crear Modulo" id="form_button" [disabled]="!form3.valid"
                 class="btn btn-primary" />
             </div>
 
