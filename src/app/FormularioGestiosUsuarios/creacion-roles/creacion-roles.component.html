@@ -1,1 +1,36 @@
-<p>creacion-roles works!</p>
+<body>
+    <div class="container">
+        <div id="container">
+            <form id="rol" #form1="ngForm" (ngSubmit)="onFormSubmitRol(form1)" class="form-container">
+        
+                <legend>
+                    <h1>Formulario de Rol</h1>
+                  </legend>
+
+                <div class="form-group">
+                    <label class="form-label" for="rol">Rol</label>
+                    <input type="text" placeholder="rol" name="rol" id="rol" (keypress)="permitirSoloLetras($event)"
+                        [(ngModel)]="nombre_ROL" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rol">Descripcion</label>
+                    <textarea name="message" placeholder="descripcion del rol" id="descripcion" cols="30" rows="5"
+                        [(ngModel)]="descripcion_ROL" required></textarea>
+                </div>
+
+                <div class="submit-container">
+                    <div class="submit">
+                        <input type="submit" value="Crear Rol" id="form_button" [disabled]="!form1.valid"
+                            class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div><!-- // End #container -->
+
+
+</body>
