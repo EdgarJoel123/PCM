@@ -3,6 +3,7 @@ import { Listar } from 'src/app/modelo_usuarios/listar';
 import { Rol } from 'src/app/modelo_usuarios/rol';
 import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { GestionUsuariosService } from 'src/app/services/gestion-usuarios.service';
+import { PrincipalRestService } from 'src/app/services/principal-rest.service';
 
 @Component({
   selector: 'app-creacion-usuarios',
@@ -23,7 +24,7 @@ export class CreacionUsuariosComponent {
   roles: Rol[];
 
 
-  constructor(private service: GestionUsuariosService, private authService: AutentificacionService){}
+  constructor(private service: GestionUsuariosService, private authService: AutentificacionService, private servicePrincipal: PrincipalRestService,){}
 
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class CreacionUsuariosComponent {
     if (form.valid) {
       const nuevoUsuario = new Listar(
         this.idRolSeleccion,
-        this.user_NAME.toUpperCase(),
+        this.user_NAME,
         this.nomb_USUARIO.toUpperCase(),
         this.ape_USUARIO.toUpperCase(),
         this.bloqueado,
@@ -98,34 +99,35 @@ export class CreacionUsuariosComponent {
   }
 
   buscarDatosUser() {
-    const username = this.user_NAME
-
+    const username = this.user_NAME;
+  
     const token = this.authService.getToken();
-
-    this.service.getDatosUser(username, token).subscribe(
-     (response: any) => {
-    
-      console.log('Datos de usuario:', response);
-        this.nomb_USUARIO = response.DATA.NOMBRES; 
-        this.ape_USUARIO = response.DATA.APELLIDOS;
-        this.dmper_CODIGO = response.DATA.DMPER_CODIGO;
-        this.dmper_NUMERO_ROL = response.DATA.DMPER_NUMERO_ROL;
-
-        console.log(this.nomb_USUARIO);
-        
-     },
-     (error) => {
-      // Maneja errores aquí
-      console.error('Error al obtener datos de usuario:', error);
-    }
-  );
-
+  
+    this.servicePrincipal.getDatosResponsable(username, token).subscribe(
+      (response: any) => {
+        if (Object.keys(response.DATA).length === 0) {
+          // El objeto devuelto está vacío, muestra un alert al usuario
+          alert("NO SE ENCONTRARON DATOS DE ESTE USUARIO. REVISELO");
+          this.user_NAME = "";
+        } else {
+          console.log('Datos de usuario:', response);
+          this.nomb_USUARIO = response.DATA.NOMBRES;
+          this.ape_USUARIO = response.DATA.APELLIDOS;
+          this.dmper_NUMERO_ROL = response.DATA.DMPER_NUMERO_ROL;
+          this.dmper_CODIGO = response.DATA.DMPER_CODIGO;
+ 
+        }
+      },
+      (error) => {
+        // Maneja errores aquí
+        console.error('Error al obtener datos de usuario:', error);
+        alert("NO SE ENCONTRARON DATOS DE ESTE USUARIO. REVISELO");
+        this.user_NAME = "";
+      }
+    );
+  
     console.log(token);
     console.log(username);
-    
-    
-
-
-}
+  }
 
 }

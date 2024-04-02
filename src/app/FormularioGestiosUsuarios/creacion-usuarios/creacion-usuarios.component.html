@@ -9,7 +9,7 @@
                   </legend>
 
                 <div class="form-group">
-                    <label for="role"></label>
+                    <label for="role">Seleccione el Rol</label>
                     <select name="role" id="role" (change)="seleccionarRol($event)">
                         <option disabled hidden selected>Seleccione un rol:</option>
                         <option *ngFor="let rol of roles" [value]="rol.id_ROL">{{ rol.nombre_ROL }}</option>
@@ -18,39 +18,39 @@
 
 
                 <div class="form-group">
-                    <label for="system_name"></label>
-                    <input type="text" placeholder="INGRESE EL USERNAME" name="system_username" id="system_username_input"
+                    <label for="system_name">Ingrese el Username</label>
+                    <input type="text" placeholder="Ingrese el Username" name="system_username" id="system_username_input"
                       [(ngModel)]="user_NAME" required>
-                    <button class="subject-button" type="button" (click)="buscarDatosUser()">Buscar los Datos del User</button>
+                    <button class="btn btn-outline-danger" type="button" (click)="buscarDatosUser()">Buscar los Datos del User</button>
                   </div>
                   
                   <div class="form-group">
-                    <label for="system_name"></label>
+                    <label for="system_name">Nombres</label>
                     <input type="text" placeholder="Nombre" name="system_name" id="system_name_input"
-                      [(ngModel)]="nomb_USUARIO" required>
+                      [(ngModel)]="nomb_USUARIO" disabled>
                   </div>
                   
                   
 
                   <div class="form-group">
-                    <label for="system_name"></label>
+                    <label for="system_name">Apellidos</label>
                     <input type="text" placeholder="Apellido" name="system_ape" id="system_ape_input"
-                        [(ngModel)]="ape_USUARIO" required>
+                        [(ngModel)]="ape_USUARIO" disabled>
                 </div>
 
   
 
 
                 <div class="form-group">
-                    <label for="system_name"></label>
+                    <label for="system_name">DMPER_CODIGO</label>
                     <input type="text" placeholder="DMPER_CODIGO" name="system_DMPER_CODIGO" id="system_DMPER_CODIGO_input"
-                        [(ngModel)]="dmper_CODIGO" required>
+                        [(ngModel)]="dmper_CODIGO" disabled>
                 </div>
 
                 <div class="form-group">
-                    <label for="system_name"></label>
+                    <label for="system_name">DMPER_NUMERO_ROL</label>
                     <input type="text" placeholder="DMPER_NUMERO_ROL" name="system_DMPER_NUMERO_ROL" id="system_name_DMPER_NUMERO_ROL"
-                        [(ngModel)]="dmper_NUMERO_ROL" required>
+                        [(ngModel)]="dmper_NUMERO_ROL" disabled>
                 </div>
 
 
