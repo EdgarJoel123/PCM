@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/eliminar">
+                    <a *ngIf="tienepermisoAcceder" class="nav-link text-uppercase" routerLink="/eliminar">
                         <i class="bi bi-trash"></i><span style="margin-left: 5px;"></span> Eliminar un Proyecto
                     </a>
                 </li>

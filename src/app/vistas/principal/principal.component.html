@@ -34,7 +34,7 @@
 
                     <div id="ingresar">
                         <div class="col-md-50 d-flex">
-                            <button routerLink="/crearActualizarResponsableTecnico"
+                            <button *ngIf="tienePermisoIngresar" routerLink="/crearActualizarResponsableTecnico"
                                 class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar los Datos del
                                 Responsable Técnico </button>
 
@@ -59,7 +59,7 @@
 
 
 
-                <div class="table-responsive">
+                <div *ngIf="tienePermisoListar" class="table-responsive">
 
                     <!-- Add these buttons in your template -->
                     <div id="descargar">
@@ -98,11 +98,15 @@
                         <tbody>
                             <tr *ngFor="let proyecto of resultadosBusquedaGeneracion of listadoGeneracion ">
                                 <td class="d-flex">
-                                    <button class="btn btn-sm btn-outline-primary me-2"
+                                    <button *ngIf="tienePermisoEditar" class="btn btn-sm btn-outline-primary me-2"
                                         (click)="openEditarModalproyecto(proyecto)" data-bs-toggle="modal"
                                         data-bs-target="#Editar">
                                         <i class="bi bi-pencil-fill"></i> Editar
                                     </button>
+
+                                    <div *ngIf="!tienePermisoEditar">
+                                        <p style="color: brown;">No tienes permisos para ver este contenido.</p>
+                                      </div>
                                 </td>
                                 <td>{{ proyecto.id_PPRO_CODIGO_UNICO }}</td>
                                 <td>{{ proyecto.ppro_NOMBRE_PROY }}</td>
@@ -128,6 +132,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div *ngIf="!tienePermisoListar">
+                    <p style="color: brown;">No tienes permisos para ver este contenido.</p>
+                  </div>
             </div>
         </div>
     </div>

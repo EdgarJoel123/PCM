@@ -92,7 +92,10 @@ export class PrincipalComponent {
   id_PPRO_CODIGO_UNICO: number;
 
 
-  
+  tienePermisoListar: boolean = false;
+  tienePermisoEditar: boolean = false;
+  tienePermisoIngresar: boolean = false;
+
 
   constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService, private el: ElementRef) {
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
@@ -200,6 +203,24 @@ export class PrincipalComponent {
     this.cargarDatosTipoPeriodicidad();
     this.cargarDatosEtapaFuncional();
     this.cargarDatosTipoPrograma();
+
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.nombre_MODULO === 'DATOS PRINCIPALES') {
+        if (operacion.op_NOMBRE === 'LISTAR') {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.op_NOMBRE === 'EDITAR') {
+          this.tienePermisoEditar = true;
+        }
+        if (operacion.op_NOMBRE === 'INGRESAR') {
+          this.tienePermisoIngresar = true;
+        }
+      }
+    });
 
 
 

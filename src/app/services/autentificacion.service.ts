@@ -95,6 +95,15 @@ export class AutentificacionService {
     );
   }
 
+// autentificacion.service.ts
+
+// Método para verificar si el usuario es administrador
+esAdministrador(): boolean {
+  const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  // Aquí debes implementar la lógica para verificar si el usuario tiene el rol de administrador
+  // Por ejemplo, puedes buscar si el ID_ROL del usuario es igual al ID del rol de administrador
+  return userData.some((data: any) => data.id_ROL === 1); // Suponiendo que el ID del rol de administrador es 1
+}
 
 
   setToken(token: string): void {

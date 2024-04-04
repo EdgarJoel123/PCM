@@ -11,6 +11,9 @@ import { SharedIDService } from 'src/app/services/shared-id.service';
 export class HeaderComponent {
 
 
+  tienepermisoAcceder: boolean = false;
+
+
   constructor(private elementRef: ElementRef,private router: Router, private sharedService: SharedIDService, private authService: AutentificacionService) {
     // Inicializa la matriz de visibilidad con 'false' para cada grupo de opciones
     this.opcionesVisibles = new Array(3).fill(true);
@@ -21,6 +24,16 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.setupSidebarCollapse();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    userData.forEach((operacion: any) => {
+      if (operacion.nombre_MODULO === 'HEADER') {
+        if (operacion.op_NOMBRE === 'ACCEDER') {
+          this.tienepermisoAcceder = true;
+        }
+      }
+      }); 
   }
 
   private setupSidebarCollapse(): void {
