@@ -91,6 +91,9 @@ export class PrincipalComponent {
 
   id_PPRO_CODIGO_UNICO: number;
 
+
+  
+
   constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService, private el: ElementRef) {
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
   }

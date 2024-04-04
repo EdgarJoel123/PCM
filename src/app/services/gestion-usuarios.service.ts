@@ -17,7 +17,6 @@ export class GestionUsuariosService {
   constructor(private http: HttpClient) { }
 
   apiUrlListar = 'http://localhost:8080/usuarios/listar';
-
   apiUrlRol = 'http://localhost:8080/roles/insertar';
   apiUrlRoles = 'http://localhost:8080/roles/listar';
   apiRolId = 'http://localhost:8080/roles'
@@ -42,6 +41,8 @@ export class GestionUsuariosService {
   apiBuscarOPModulos = 'http://localhost:8080/operaciones/';
 
   apiBuscarUsuarios = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security';
+
+
 
   getDatosUser(username: string, token: string): Observable<any> {
     // Configura los encabezados con el token
@@ -113,8 +114,6 @@ export class GestionUsuariosService {
     );
 
   }
-
-
 
 
   getListarUsuarios(): Observable<any> {
@@ -201,6 +200,7 @@ export class GestionUsuariosService {
     const params = { USER_NAME: username};
     return this.http.get<Listar>(`${this.apiValidarUsername}obtenerPorUsername/username`, { params });
   }
+
 
   getOpreacionModulos(id: number): Observable<any> {
     const params = { ID_MODULO: id.toString()};

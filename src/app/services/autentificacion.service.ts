@@ -1,8 +1,6 @@
-// autentificacion.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
 import { GestionUsuariosService } from './gestion-usuarios.service';
 
 @Injectable({
@@ -26,61 +24,76 @@ export class AutentificacionService {
     }
   }
 
-// autentificacion.service.ts
-// ... (código existente)
+  guardarDatosUsuario(datos: any) {
+    localStorage.setItem('userData', JSON.stringify(datos));
+    console.log(datos);
+    
+  }
 
-validarUsuario(formulario: any) {
-  const url = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security/validarUsuario';
-  const cuenta = btoa(formulario.username);
-  const clave = btoa(formulario.password);
+  validarUsuario(formulario: any) {
+    const url = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security/validarUsuario';
+    const cuenta = btoa(formulario.username);
+    const clave = btoa(formulario.password);
 
-  const params = {
-    inDsgus_cuenta: cuenta,
-    inDsgus_clave: clave
-  };
+    const params = {
+      inDsgus_cuenta: cuenta,
+      inDsgus_clave: clave
+    };
 
-  this.http.get(url, { params }).pipe(
-    switchMap((response: any) => {
-    //console.log(response.TOKEN);
+    this.http.get(url, { params }).subscribe(
+      (response: any) => {
+        if (response.STATE === 'OK') {
+          alert("Usuario Válido");
+          const username = formulario.username;
+          console.log(username);
 
-      this.setToken(response.TOKEN);
-      
-      if (response.STATE === 'OK') {
-        alert("Usuario Valido")
-        const username = formulario.username;
-        console.log(username);
-        return this.gestionUserService.getUsername(username);
-      } else {
-        throw new Error('Usuario no válido revise su username o su contraseña');
+          // Obtener información del usuario
+          this.gestionUserService.getUsername(username).subscribe(
+            (userData: any[]) => {
+              if (userData.length === 0) {
+                throw new Error('El usuario no existe');
+              } else {
+                console.log(userData[0].id_ROL);
+
+                // Obtener información del rol asociado al usuario
+                this.gestionUserService.getIdRol(userData[0].id_ROL).subscribe(
+                  (rolData: any[]) => {
+                    //console.log('rolData:', rolData);
+                    alert("Su rol de usuario es  "+ rolData[0].nombre_ROL)
+
+                    // Guardar la información del rol en el servicio de gestión de usuarios
+                    this.guardarDatosUsuario(rolData);
+
+                    // Marcar al usuario como autenticado
+                    localStorage.setItem('isLoggedIn', 'true');
+
+                    // Redirigir al usuario a la página de inicio
+                    this.router.navigate(['/inicio']);
+                  },
+                  (error) => {
+                    console.error(error);
+                    alert('Error al obtener la información del rol');
+                  }
+                );
+              }
+            },
+            (error) => {
+              console.error(error);
+              alert('Error al obtener la información del usuario');
+            }
+          );
+        } else {
+          throw new Error('Usuario no válido, revise su username o su contraseña');
+        }
+      },
+      (error) => {
+        console.error(error);
+        alert(error.message);
+        formulario.username = '';
+        formulario.password = '';
       }
-    }),
-    // ...
-
-    map((usernameResponseArray: any[]) => {
-      const usernameResponse = usernameResponseArray[0]; // Acceder al primer elemento
-      console.log('usernameResponse:', usernameResponse);
-      console.log('id_ROL:', usernameResponse.id_ROL);
-      if (usernameResponse.id_ROL === 1) {
-        return 'Usted es un admin y tiene al sistema.';
-      } else {
-        return 'Usted no es un admin y no tiene acceso al sistema';
-      }
-    })
-
-  ).subscribe(
-    (message: any) => {
-      alert(message);
-      localStorage.setItem('isLoggedIn', 'true');
-      this.router.navigate(['/inicio']);
-    },
-    (error) => {
-      console.error(error);
-      alert(error.message);
-      formulario.username = '';
-      formulario.password = '';
-    }
-  );
-}
+    );
+  }
 
 
 
@@ -92,6 +105,4 @@ validarUsuario(formulario: any) {
   getToken(): string {
     return this.token;
   }
-
-
 }
