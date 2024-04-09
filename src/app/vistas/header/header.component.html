@@ -14,12 +14,12 @@
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/">
+                    <a *ngIf="tienepermisoInicio" class="nav-link text-uppercase" routerLink="/">
                         <i class="bi bi-house-fill"></i><span style="margin-left: 5px;"></span> Inicio
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="tienepermisoAcceder" class="nav-link text-uppercase" routerLink="/listarUsuarios">
+                    <a  class="nav-link text-uppercase" routerLink="/listarUsuarios">
                         <i class="bi bi-people-fill"></i><span style="margin-left: 5px;"></span> Gestionar Usuarios
                     </a>
                 </li>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="tienepermisoAcceder" class="nav-link text-uppercase" routerLink="/eliminar">
+                    <a  class="nav-link text-uppercase" routerLink="/eliminar">
                         <i class="bi bi-trash"></i><span style="margin-left: 5px;"></span> Eliminar un Proyecto
                     </a>
                 </li>

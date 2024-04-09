@@ -11,7 +11,9 @@ import { SharedIDService } from 'src/app/services/shared-id.service';
 export class HeaderComponent {
 
 
-  tienepermisoAcceder: boolean = false;
+  tienepermisoInicio: boolean = false;
+  
+  tienepermisoCreaciuonProyecto: boolean = false;
 
 
   constructor(private elementRef: ElementRef,private router: Router, private sharedService: SharedIDService, private authService: AutentificacionService) {
@@ -28,9 +30,9 @@ export class HeaderComponent {
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
     userData.forEach((operacion: any) => {
-      if (operacion.nombre_MODULO === 'HEADER') {
-        if (operacion.op_NOMBRE === 'ACCEDER') {
-          this.tienepermisoAcceder = true;
+      if (operacion.id_MODULO === 50) {
+        if (operacion.id_OPERACION === 27) {
+          this.tienepermisoInicio = true;
         }
       }
       }); 
