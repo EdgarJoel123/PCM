@@ -26,7 +26,7 @@ export class AutentificacionService {
 
   guardarDatosUsuario(datos: any) {
     localStorage.setItem('userData', JSON.stringify(datos));
-    console.log(datos);
+    //console.log(datos);
     
   }
 
@@ -34,66 +34,66 @@ export class AutentificacionService {
     const url = 'https://app.eeasa.com.ec/WSSisgerhServices/rest/security/validarUsuario';
     const cuenta = btoa(formulario.username);
     const clave = btoa(formulario.password);
-
+  
     const params = {
       inDsgus_cuenta: cuenta,
       inDsgus_clave: clave
     };
-
+  
     this.http.get(url, { params }).subscribe(
       (response: any) => {
         if (response.STATE === 'OK') {
           alert("Usuario Válido");
           const username = formulario.username;
-          console.log(username);
-
+  
+          this.setToken(response.TOKEN);
+  
           // Obtener información del usuario
           this.gestionUserService.getUsername(username).subscribe(
             (userData: any[]) => {
               if (userData.length === 0) {
-                throw new Error('El usuario no existe');
+                alert('El usuario no esta habilitado para este sistema');
               } else {
-                console.log(userData[0].id_ROL);
-
                 // Obtener información del rol asociado al usuario
                 this.gestionUserService.getIdRol(userData[0].id_ROL).subscribe(
                   (rolData: any[]) => {
-                    //console.log('rolData:', rolData);
-                    alert("Su rol de usuario es  "+ rolData[0].nombre_ROL)
-
-                    // Guardar la información del rol en el servicio de gestión de usuarios
-                    this.guardarDatosUsuario(rolData);
-
-                    // Marcar al usuario como autenticado
-                    localStorage.setItem('isLoggedIn', 'true');
-
-                    // Redirigir al usuario a la página de inicio
-                    this.router.navigate(['/inicio']);
+                    if (rolData.length === 0) {
+                      alert('El usuario no tiene ningun permiso asignado');
+                    } else {
+                      alert("Su rol de usuario es  " + rolData[0].nombre_ROL)
+  
+                      // Guardar la información del rol en el servicio de gestión de usuarios
+                      this.guardarDatosUsuario(rolData);
+  
+                      // Marcar al usuario como autenticado
+                      localStorage.setItem('isLoggedIn', 'true');
+  
+                      // Redirigir al usuario a la página de inicio
+                      this.router.navigate(['/inicio']);
+                    }
                   },
                   (error) => {
-                    console.error(error);
                     alert('Error al obtener la información del rol');
                   }
                 );
               }
             },
             (error) => {
-              console.error(error);
               alert('Error al obtener la información del usuario');
             }
           );
         } else {
-          throw new Error('Usuario no válido, revise su username o su contraseña');
+          alert('Usuario no válido, revise su username o su contraseña');
         }
       },
       (error) => {
-        console.error(error);
-        alert(error.message);
+        alert('Error al validar el usuario, revise su username o su contraseña');
         formulario.username = '';
         formulario.password = '';
       }
     );
   }
+  
 
 // autentificacion.service.ts
 
