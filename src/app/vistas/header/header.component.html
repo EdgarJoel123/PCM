@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
             <!-- Menú Principal -->
             <li class="nav-item title" (click)="toggleOpciones(0)">
-                <span style="margin-left: 5px;"></span> Menú Principal
+                <span style="margin-left: 10px;"></span> Menú Principal
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[0]">
                 <li class="nav-item">
@@ -19,22 +19,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link text-uppercase" routerLink="/listarUsuarios">
+                    <a *ngIf="tienepermisoGestionarUsuarios"  class="nav-link text-uppercase" routerLink="/listarUsuarios">
                         <i class="bi bi-people-fill"></i><span style="margin-left: 5px;"></span> Gestionar Usuarios
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/crear">
+                    <a *ngIf="tienepermisoCrearProyecto" class="nav-link text-uppercase" routerLink="/crear">
                         <i class="bi bi-node-plus-fill"></i><span style="margin-left: 5px;"></span> Crear un Proyecto
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/cargarProyecto">
+                    <a *ngIf="tienepermisoCargarProyecto" class="nav-link text-uppercase" routerLink="/cargarProyecto">
                         <i class="bi bi-arrow-clockwise"></i><span style="margin-left: 5px;"></span> Cargar un Proyecto
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link text-uppercase" routerLink="/eliminar">
+                    <a *ngIf="tienepermisoEliminarProyecto" class="nav-link text-uppercase" routerLink="/eliminar">
                         <i class="bi bi-trash"></i><span style="margin-left: 5px;"></span> Eliminar un Proyecto
                     </a>
                 </li>
@@ -42,46 +42,46 @@
 
             <!-- Proyectos -->
             <li class="nav-item title" (click)="toggleOpciones(1)">
-                <span style="margin-left: 5px;"></span> Proyectos
+                <span style="margin-left: 10px;"></span> Proyectos
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[1]">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/principal">
+                    <a *ngIf="tienepermisoDatosPrincipales" class="nav-link text-uppercase" routerLink="/principal">
                         <i class="bi bi-boxes"></i> <span style="margin-left: 5px;"></span> Datos Principales
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/aspectosTecnicos">
+                    <a *ngIf="tienepermisoAspectosTecnicos" class="nav-link text-uppercase" routerLink="/aspectosTecnicos">
                         <i class="bi bi-laptop"> <span style="margin-left: 5px;"></span></i> Aspectos Técnicos
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/aspectosFinancieros">
+                    <a *ngIf="tienepermisoAspectosFinancieros" class="nav-link text-uppercase" routerLink="/aspectosFinancieros">
                         <i class="bi bi-coin"></i> <span style="margin-left: 5px;"></span> Aspectos Financieros
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/ejecucioProyecto">
+                    <a *ngIf="tienepermisoEjecucion" class="nav-link text-uppercase" routerLink="/ejecucioProyecto">
                         <i class="bi bi-percent"></i><span style="margin-left: 5px;"></span> Ejecución
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/proforma">
+                    <a *ngIf="tienepermisoProforma" class="nav-link text-uppercase" routerLink="/proforma">
                         <i class="bi bi-receipt"></i><span style="margin-left: 5px;"></span> Proforma
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/reforma">
+                    <a *ngIf="tienepermisoReforma" class="nav-link text-uppercase" routerLink="/reforma">
                         <i class="bi bi-receipt-cutoff"></i><span style="margin-left: 5px;"></span> Reforma
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/partipaPresupuestaria">
+                    <a *ngIf="tienepermisoPartidaPresupuestaria" class="nav-link text-uppercase" routerLink="/partipaPresupuestaria">
                         <i class="bi bi-cash-coin"></i><span style="margin-left: 5px;"></span> Partida Presupuestaria 
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" routerLink="/procesosSercop">
+                    <a *ngIf="tienepermisoProcesoSercop" class="nav-link text-uppercase" routerLink="/procesosSercop">
                         <i class="bi bi-cash-coin"></i><span style="margin-left: 5px;"></span> Procesos de la SERCOP
                     </a>
                 </li>
@@ -89,11 +89,11 @@
 
             <!-- Opciones -->
             <li class="nav-item title" (click)="toggleOpciones(2)">
-                <span style="margin-left: 5px;"></span>  Opciones
+                <span style="margin-left: 10px;"></span>  Opciones
             </li>
             <ul class="nav flex-column" *ngIf="opcionesVisibles[2]">
                 <li class="nav-item" >
-                    <a class="nav-link text-uppercase" routerLink="/contacto">
+                    <a *ngIf="tienepermisoContacto" class="nav-link text-uppercase" routerLink="/contacto">
                         <i class="bi bi-person-lines-fill"></i><span style="margin-left: 5px;"></span> Contacto
                     </a>
                 </li>
