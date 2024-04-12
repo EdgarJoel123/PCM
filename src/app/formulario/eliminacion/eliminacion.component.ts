@@ -16,7 +16,8 @@ export class EliminacionComponent {
 
   claveConfirmacion: string = ''; // Variable para almacenar la clave ingresada
 
-
+  tienePermisodeEliminar: boolean = false;
+ 
   constructor(private router: Router, private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService) {
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
 
@@ -26,6 +27,16 @@ export class EliminacionComponent {
     // Recuperar el valor al inicializar el componente
     this.sharedService.getCodigoUnico();
     this.nombre_proyecto = this.sharedService.getNombreProyecto();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 45) {
+        if (operacion.id_OPERACION === 45) {
+          this.tienePermisodeEliminar = true;
+        }
+      }
+      }); 
   }
 
   buscarDatosCodigoRapido() {
@@ -70,6 +81,7 @@ export class EliminacionComponent {
       this.eliminarProyecto();
     } else {
       alert("Clave incorrecta. No se pudo eliminar el proyecto.");
+      this.claveConfirmacion = "";
     }
   }
 

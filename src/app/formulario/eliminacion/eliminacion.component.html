@@ -13,9 +13,12 @@
           </textarea>
         </div>
 
-        <div class="submit-container">
+        <div class="form-group">
           <div class="submit">
-            <input type="submit" value="Eliminar Proyecto" id="form_button" class="btn btn-danger" (click)="openEditarModalEliminacion()" data-bs-toggle="modal" data-bs-target="#Eliminar" />
+            <button *ngIf="tienePermisodeEliminar" type="button" class="btn btn-danger" (click)="openEditarModalEliminacion()" data-bs-toggle="modal" data-bs-target="#Eliminar">Eliminar Proyecto</button>
+            <div *ngIf="!tienePermisodeEliminar" class="text-danger">
+              <p>No tienes permisos para eliminar un proyecto</p>
+            </div>
           </div>
         </div>
       </form>
