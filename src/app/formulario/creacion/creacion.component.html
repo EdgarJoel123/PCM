@@ -199,8 +199,12 @@
 
           <div class="submit-container">
             <div class="submit">
-              <input type="submit" value="Crear Proyecto" id="form_button" [disabled]="!form1.valid"
+              <input *ngIf="tienePermisodeCrear" type="submit" value="Crear Proyecto" id="form_button" [disabled]="!form1.valid"
                 class="btn btn-primary" />
+
+                <div *ngIf="!tienePermisodeCrear">
+                  <p style="color: brown;">No tienes permisos para crear un proyecto</p>
+                </div>
             </div>
 
           </div>

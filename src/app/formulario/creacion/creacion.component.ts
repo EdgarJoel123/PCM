@@ -266,7 +266,7 @@ export class CreacionComponent implements OnInit {
   nombre_proyecto_CODIGO: string;
 
 
-
+  tienePermisodeCrear: boolean = false;
 
 
   constructor(private servicePrincipal: PrincipalRestService, private serviceAspectosTecnicos: AspectosTecnicosRestService, private serviceAspectosFinacieros: AspectosFinancierosRestService,
@@ -341,6 +341,17 @@ export class CreacionComponent implements OnInit {
     this.cargarDatosPartidaPresupuestaria();
     this.listarResponsableTecnico();
     this.listarPartidaPresupuestaria();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 43) {
+        if (operacion.id_OPERACION === 44) {
+          this.tienePermisodeCrear = true;
+        }
+      }
+      }); 
+
   }
 
 

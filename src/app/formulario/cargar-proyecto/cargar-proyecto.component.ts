@@ -23,6 +23,9 @@ export class CargarProyectoComponent implements OnInit {
 
   selectNombre: String;
 
+  tienePermisodeCargar: boolean = false;
+
+
   constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService) { }
 
   ngOnInit() {
@@ -31,6 +34,17 @@ export class CargarProyectoComponent implements OnInit {
     this.ppro_NOMBRE_PROY = this.sharedService.getNombreProyecto();
 
     this.listarProyectos();
+
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 44) {
+        if (operacion.id_OPERACION === 26) {
+          this.tienePermisodeCargar = true;
+        }
+      }
+      }); 
   }
 
 

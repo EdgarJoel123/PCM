@@ -20,9 +20,12 @@
 
               <div class="submit-container">
                   <div class="submit">
-                      <input type="submit" value="Cargar Proyecto" id="form_button" [disabled]="!form1.valid"
+                      <input *ngIf="tienePermisodeCargar" type="submit" value="Cargar Proyecto" id="form_button" [disabled]="!form1.valid"
                           class="btn btn-success" (click)="buscarDatosCodigoRapido()" />
-                  </div>
+                          <div *ngIf="!tienePermisodeCargar">
+                            <p style="color: brown;">No tienes permisos para cargar un proyecto</p>
+                          </div>
+                        </div>
               </div>
           </form>
       </div><!-- // End #container -->
