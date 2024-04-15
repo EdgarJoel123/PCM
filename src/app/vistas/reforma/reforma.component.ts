@@ -18,41 +18,13 @@ export class ReformaComponent {
   contadorResultadosGeneracion: number = 0;
   resultadosBusquedaGeneracion: Reforma[];
   listadoGeneracion: Reforma[];
-  //listadoGeneracionTodos: Reforma[];
-
-
-  /*palabraBusquedaSubtrasmicion: string;
-  contadorResultadosSubtrasmicion: number = 0;
-  resultadosBusquedaSubtrasmicion: Reforma[];
-  listadoSubtrasmicion: Reforma[];
-
-  palabraBusquedaDistribucion: string;
-  contadorResultadosDistribucion: number = 0;
-  resultadosBusquedaDistribucion: Reforma[];
-  listadoDistribucion: Reforma[];
-
-
-  palabraBusquedaAlumbrado: string;
-  contadorResultadosAlumbrado: number = 0;
-  resultadosBusquedaAlumbrado: Reforma[];
-  listadoAlumbrado: Reforma[];
-
-
-  palabraBusquedaAcometidasMedidores: string;
-  contadorResultadosAcometidasMedidores: number = 0;
-  resultadosBusquedaAcometidasMedidores: Reforma[];
-  listadoAcometidasMedidores: Reforma[];
-
-
-  palabraBusquedaInversiones: string;
-  contadorResultadosInversiones: number = 0;
-  resultadosBusquedaInversiones: Reforma[];
-  listadoInversiones: Reforma[];*/
 
   id_PPRO_CODIGO_UNICO: number;
 
 
 
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
 
 
 
@@ -107,16 +79,20 @@ export class ReformaComponent {
   ngOnInit() {
 
     this.listarGeneracion();
-    /*this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
 
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
-    // this.listarGeneracionActual();*/
-
-
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 47) {
+        if (operacion.id_OPERACION === 62) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 63) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
   }
 

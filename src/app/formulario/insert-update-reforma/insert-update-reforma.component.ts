@@ -32,6 +32,9 @@ export class InsertUpdateReformaComponent {
   currentYear: number; // Definir propiedad en la clase
 
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoActualizar: boolean = false;
+
 
 
   constructor(private serviceProforma: ProformaRestService, private servicePrincipal: PrincipalRestService,private serviceReforma: ReformaRestService, private sharedService: SharedIDService, private router: Router) {
@@ -44,6 +47,20 @@ export class InsertUpdateReformaComponent {
     this.buscarDatosReforma();
     this.listarDatosProyecto();
     this.buscarDatosProforma(); 
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 47) {
+        if (operacion.id_OPERACION === 64) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 65) {
+          this.tienePermisoActualizar = true;
+        }
+      }
+    });
   }
 
   listarDatosProyecto() {

@@ -19,28 +19,6 @@
         <p class="text-uppercase text-center h1" style="color: #192A67;"> 
             <strong>DATOS DE LA REFORMA</strong></p>
     </div>
-    <!-- <div class="container">
-        <p class="text-uppercase text-center h1" style="color: #192A67;">Datos<strong> principales de la
-                Reforma</strong>
-        </p>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="label-container">
-                    <label class="custom-label" for="vistaSelect">Seleccionar el tipo de Programa:</label>
-                    <select id="vistaSelect" class="form-select custom-select" [(ngModel)]="opcionSeleccionada">
-                        <option value="GENERACION">GENERACION</option>
-                        <option value="SUBTRASMISION">SUBTRASMISION</option>
-                        <option value="DISTRIBUCION">DISTRIBUCION</option>
-                        <option value="ALUMBRADO PUBLICO"> ALUMBRADO PUBLICO</option>
-                        <option value="ACOMETIDAS Y MEDIDORES">ACOMETIDAS Y MEDIDORES</option>
-                        <option value="INVERSIONES GENERALES">INVERSIONES GENERALES</option>
-
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>-->
 
     <div>
         <div class="container my-5">
@@ -59,25 +37,16 @@
                     
                     <div id="ingresar">
                         <div class="col-md-50 d-flex">
-                            <button routerLink="/crearActualizarReforma" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar
+                            <button *ngIf="tienePermisoIngresarBoton" routerLink="/crearActualizarReforma" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar
                                 la Reforma</button>
                         </div>
 
                     </div>
                 </div>
 
-               <!-- <div class="form-container">
-                    <form #formularioReforma="ngForm" class="row g-3 needs-validation" novalidate>
-                        <div class="col-md-10 d-flex">
-                            <button (click)="listarTodosGeneracion()" class="btn btn-outline-info my-btn mx-2" type="submit">Listar Todos los Datos Existentes</button>
-                            <button class="btn btn-outline-info my-btn mx-2" type="submit">Listar los Proyectos Especial</button>
-                        </div>
-                    </form>
-                </div>-->
-                
 
 
-                <div class="table-responsive">
+                <div *ngIf="tienePermisoListar" class="table-responsive">
                           <!-- Add these buttons in your template -->
                           <div id="descargar">
                             <button class="btn btn-primary" (click)="downloadPDF()"><i
@@ -117,6 +86,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div *ngIf="!tienePermisoListar">
+                    <p style="color: brown;">No tienes permisos para ver este contenido.</p>
+                  </div>
             </div>
         </div>
     </div>
