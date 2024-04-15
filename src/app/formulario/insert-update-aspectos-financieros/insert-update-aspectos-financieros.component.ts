@@ -31,6 +31,9 @@ export class InsertUpdateAspectosFinancierosComponent {
   
   total_trasferido: number;
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoActualizar: boolean = false;
+
   constructor(private serviceAspectosFinacieros: AspectosFinancierosRestService, private sharedService: SharedIDService, private router: Router) { 
     this.id_PPRO_CODIGO_UNICO_aspectos_finacieros = sharedService.getCodigoUnico();
   }
@@ -38,14 +41,20 @@ export class InsertUpdateAspectosFinancierosComponent {
   ngOnInit() {
 
     this.buscarDatosAspectosFinancieros();
-   /* this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
+  
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
-
-    // this.listarGeneracionActual();*/
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 41) {
+        if (operacion.id_OPERACION === 52) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 53) {
+          this.tienePermisoActualizar = true;
+        }
+      }
+    });
 
 
 

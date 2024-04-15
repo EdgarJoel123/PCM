@@ -99,12 +99,12 @@
 
         <div class="submit-container">
           <div class="submit">
-            <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form3.valid"
+            <input *ngIf="tienePermisoCrear" type="submit" value="Grabar Registro" id="form_button" [disabled]="!form3.valid"
               class="btn btn-primary"/>
 
 
               <div class="submit">
-                <input type="button" value="Actualizar Registro" [disabled]="!form3.valid" (click)="confirmarActualizacion(form3)"
+                <input *ngIf="tienePermisoActualizar" type="button" value="Actualizar Registro" [disabled]="!form3.valid" (click)="confirmarActualizacion(form3)"
                   class="btn btn-success" />
               </div>
           </div>

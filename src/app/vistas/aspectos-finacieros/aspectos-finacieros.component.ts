@@ -26,6 +26,12 @@ export class AspectosFinancierosComponent {
 
   id_PPRO_CODIGO_UNICO: number;
 
+  total_trasferido: number;
+
+
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
+
 
   constructor(private service: AspectosFinancierosRestService, private sharedService: SharedIDService) { 
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
@@ -78,14 +84,20 @@ export class AspectosFinancierosComponent {
   ngOnInit() {
 
     this.listarGeneracion();
-   /* this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
+  
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
-
-    // this.listarGeneracionActual();*/
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 41) {
+        if (operacion.id_OPERACION === 50) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 51) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
 
 
@@ -122,7 +134,9 @@ export class AspectosFinancierosComponent {
     this.service.getListarAspectosFinancieros1(this.id_PPRO_CODIGO_UNICO)
       .subscribe(data => {
         this.listadoGeneracion = data;
-        //console.log(this.listadoGeneracion);
+
+        this.total_trasferido = data[0].pasfina_EJECUTADO + data[0].pasfina_ANTICIPO_NO_AMORTI;
+        //console.log(this.total_trasferido);
 
       })
   }
