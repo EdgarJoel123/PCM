@@ -41,6 +41,12 @@ export class PartidaPresupuestariaComponent {
   tipoPartida: PartidaPresupuestaria[];
 
 
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
+
+
+
+
   constructor(private service: PartidaPresupuestariaRestService, private sharedService: SharedIDService, private servicePartidaPrespuestaria: PartidaPresupuestariaRestService) {
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
   }
@@ -96,6 +102,19 @@ export class PartidaPresupuestariaComponent {
     this.listarGeneracion();
     this.cargarDatosPartidaPresupuestaria();
 
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 48) {
+        if (operacion.id_OPERACION === 66) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 67) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
 
   }

@@ -39,6 +39,12 @@ export class InsertUpdatePartidaPresupuestariaComponent {
   partidas: PartidaPresupuestaria[];
 
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoAsignar: boolean = false;
+
+
+
+
   detallesPartidasAsignadas: DetallePartidaPresupuestaria[]; // Define una propiedad para almacenar los detalles de las partidas asignadas al proyecto
 
 
@@ -56,6 +62,21 @@ export class InsertUpdatePartidaPresupuestariaComponent {
     this.listarPartidaPresupuestaria();
     this.listarPartidaDetalle()
     // this.buscarDatosPartidaPresupuestaria();
+
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 48) {
+        if (operacion.id_OPERACION === 69) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 70) {
+          this.tienePermisoAsignar = true;
+        }
+      }
+    });
   }
 
 

@@ -9,14 +9,14 @@
                     <h1>Formulario de Partida Presupuestaria del Proyecto</h1>
                 </legend>
             
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="paste_FECHA_ASPEC_TECNICOS" class="form-label">Fecha de Ingreso:</label>
                     <div class="col-sm">
                         <input type="date" class="form-control" id="paste_FECHA_ASPEC_TECNICOS" placeholder="Fecha" name="paste_FECHA_ASPEC_TECNICOS" [(ngModel)]="ppart_FECHA" disabled>
                     </div>
                 </div>
             
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="Presupuestaria" class="form-label">Tipo de Partida Presupuestaria:</label>
                     <div class="col-sm">
                         <select name="Presupuestaria" class="form-control" id="Presupuestaria" (change)="seleccionarPartidaPrespuestaria($event)" required>
@@ -28,14 +28,14 @@
                     </div>
                 </div>
             
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="ppart_CODIGO_PARTIDA" class="form-label">Código Rápido Partida Presupuestaria:</label>
                     <div class="col-sm">
                         <input type="text" placeholder="Codigo partida Presupuestaria" class="form-control" name="ppart_CODIGO_PARTIDA" [(ngModel)]="ppart_CODIGO_PARTIDA"  required>
                     </div>
                 </div>
             
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="ppart_PARTIDA_PRESUPUESTARIA" class="form-label">Nombre de Partida Presupuestaria:</label>
                     <div class="col-sm">
                         <textarea type="text" placeholder="Partida Presupuestaria" class="form-control" name="ppart_PARTIDA_PRESUPUESTARIA" [(ngModel)]="ppart_PARTIDA_PRESUPUESTARIA" required>
@@ -43,17 +43,21 @@
                         </div>
                 </div>
             
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="ppart_MONTO_PARTIDA" class="form-label">Monto partida Presupuestaria:</label>
                     <div class="col-sm">
                         <input type="number" placeholder="Monto partida Presupuestaria" class="form-control" name="ppart_MONTO_PARTIDA" [(ngModel)]="ppart_MONTO_PARTIDA" required>
                     </div>
                 </div>
             
-                <div class="form-group row">
-                    <div class="col-sm offset-sm-3">
-                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form8.valid" class="btn btn-primary" />
+                <div class="form-group">
+                    <div class="col-sm offset-sm-4">
+                     
+                        <input *ngIf="tienePermisoCrear" type="submit" value="Grabar Registro" id="form_button" [disabled]="!form8.valid" class="btn btn-primary" />
                     </div>
+                    <div *ngIf="!tienePermisoCrear">
+                        <p style="color: brown;">No tienes permisos para crear una Partida Presupuestaria</p>
+                      </div>
                 </div>
             </form>
             
@@ -91,25 +95,25 @@
                 </div>
 
 
-                <!--  <div class="form-group">
-              <Label for="rapido2">Codigo Rapido</Label>
-              <select id="rapido2" name="rapido2" (change)="seleccionarCodigoPartidaPresupuestaria($event)" required>
-                <option value="" disabled hidden selected>Seleccione un Codigo Rapido:</option>
-                <option *ngFor="let proyecto of proyectos" [value]="proyecto.id_PPRO_CODIGO_UNICO">
-                  {{ proyecto.ppro_CODIGO_RAPIDO }}
-                </option>
-              </select>
-            </div>-->
+     
 
 
 
-
-                <div class="submit-container">
-                    <div class="submit">
-                        <input type="submit" value="Asignar" id="form_button" [disabled]="!form11.valid"
+                <div class="form-group">
+                    <div class="col-sm offset-sm-4">
+                          <label for="form-label"></label>
+                        <input  *ngIf="tienePermisoAsignar" type="submit" value="Asignar" id="form_button" [disabled]="!form11.valid"
                             class="btn btn-primary" />
+                         
                     </div>
+
+                    <div *ngIf="!tienePermisoAsignar">
+                        <p style="color: brown;">No tienes permisos para asignar una Partida Presupuestaria</p>
+                      </div>
+                  
                 </div>
+
+
 
 
             </form>
