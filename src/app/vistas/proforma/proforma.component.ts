@@ -18,39 +18,12 @@ export class ProformaComponent {
   contadorResultadosGeneracion: number = 0;
   resultadosBusquedaGeneracion: Proforma[];
   listadoGeneracion: Proforma[];
-  //listadoGeneracionTodos: Proforma[];
-
-
- /* palabraBusquedaSubtrasmicion: string;
-  contadorResultadosSubtrasmicion: number = 0;
-  resultadosBusquedaSubtrasmicion: Proforma[];
-  listadoSubtrasmicion: Proforma[];
-
-  palabraBusquedaDistribucion: string;
-  contadorResultadosDistribucion: number = 0;
-  resultadosBusquedaDistribucion: Proforma[];
-  listadoDistribucion: Proforma[];
-
-
-  palabraBusquedaAlumbrado: string;
-  contadorResultadosAlumbrado: number = 0;
-  resultadosBusquedaAlumbrado: Proforma[];
-  listadoAlumbrado: Proforma[];
-
-
-  palabraBusquedaAcometidasMedidores: string;
-  contadorResultadosAcometidasMedidores: number = 0;
-  resultadosBusquedaAcometidasMedidores: Proforma[];
-  listadoAcometidasMedidores: Proforma[];
-
-
-  palabraBusquedaInversiones: string;
-  contadorResultadosInversiones: number = 0;
-  resultadosBusquedaInversiones: Proforma[];
-  listadoInversiones: Proforma[];*/
-
 
   id_PPRO_CODIGO_UNICO: number;
+
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
+
 
 
   constructor(private service: ProformaRestService, private sharedService: SharedIDService) { 
@@ -104,15 +77,20 @@ export class ProformaComponent {
   ngOnInit() {
 
     this.listarGeneracion();
-   /* this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
+ 
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
-
-    // this.listarGeneracionActual();*/
-
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 46) {
+        if (operacion.id_OPERACION === 58) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 59) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
 
   }

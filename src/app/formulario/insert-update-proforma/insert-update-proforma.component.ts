@@ -32,6 +32,9 @@ export class InsertUpdateProformaComponent {
   pivac_IVA : number;
 
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoActualizar: boolean = false;
+
 
 
   constructor(private servicePrincipal: PrincipalRestService, private serviceProforma: ProformaRestService, private sharedService: SharedIDService, private router: Router) {
@@ -43,6 +46,20 @@ export class InsertUpdateProformaComponent {
     this.listarDatosProyecto();
     this.buscarDatosProforma();
     this.listarDatosIva();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 46) {
+        if (operacion.id_OPERACION === 60) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 61) {
+          this.tienePermisoActualizar = true;
+        }
+      }
+    });
 
 
   }
