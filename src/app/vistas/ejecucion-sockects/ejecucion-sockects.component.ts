@@ -25,6 +25,10 @@ export class EjecucionSockectsComponent implements OnInit {
   id_PPRO_CODIGO_UNICO: number;
 
 
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
+
+
 
   constructor(private service: EjecucionRestService, private sharedService: SharedIDService, private websocketService: WebSocketService) {
     this.id_PPRO_CODIGO_UNICO = sharedService.getCodigoUnico();
@@ -78,6 +82,20 @@ export class EjecucionSockectsComponent implements OnInit {
 
   ngOnInit() {
     this.listarGeneracion();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 42) {
+        if (operacion.id_OPERACION === 54) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 55) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
   }
 

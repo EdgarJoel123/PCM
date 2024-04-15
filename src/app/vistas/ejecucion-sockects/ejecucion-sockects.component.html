@@ -35,7 +35,7 @@
                     </div>
                     <div id="ingresar">
                         <div class="col-md-50 d-flex">
-                            <button routerLink="/crearActualizarEjecucionProyecto" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar Ejecución del Proyecto
+                            <button *ngIf="tienePermisoIngresarBoton" routerLink="/crearActualizarEjecucionProyecto" class="btn btn-outline-info my-btn mx-2" type="submit">Ingresar/Actualizar Ejecución del Proyecto
                                  </button>
 
 
@@ -46,7 +46,7 @@
                 </div>
 
 
-                <div class="table-responsive">
+                <div *ngIf="tienePermisoListar" class="table-responsive">
                     <!-- Add these buttons in your template -->
                     <div id="descargar">
                         <button class="btn btn-primary" (click)="downloadPDF()"><i
@@ -86,6 +86,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div *ngIf="!tienePermisoListar">
+                    <p style="color: brown;">No tienes permisos para ver este contenido.</p>
+                  </div>
             </div>
         </div>
     </div>

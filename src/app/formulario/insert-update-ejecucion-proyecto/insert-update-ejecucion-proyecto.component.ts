@@ -47,6 +47,10 @@ export class InsertUpdateEjecucionProyectoComponent {
   porcentaje: number;
 
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoActualizar: boolean = false;
+
+
 
   constructor(private serviceEjecuccionProyecto: EjecucionRestService, private sharedService: SharedIDService, private router: Router) {
     this.id_PPRO_CODIGO_UNICO_ejecucion_proyecto = sharedService.getCodigoUnico();
@@ -57,6 +61,19 @@ export class InsertUpdateEjecucionProyectoComponent {
     this.buscarDatosEjecucionProyecto();
     this.cargarDatosEstadoProyecto();
 
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 42) {
+        if (operacion.id_OPERACION === 56) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 57) {
+          this.tienePermisoActualizar = true;
+        }
+      }
+    });
 
 
 
