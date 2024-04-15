@@ -209,14 +209,14 @@ export class PrincipalComponent {
 
     // Verificar permisos para cada operación
     userData.forEach((operacion: any) => {
-      if (operacion.nombre_MODULO === 'DATOS PRINCIPALES') {
-        if (operacion.op_NOMBRE === 'LISTAR') {
+      if (operacion.id_MODULO === 39) {
+        if (operacion.id_OPERACION === 24) {
           this.tienePermisoListar = true;
         }
-        if (operacion.op_NOMBRE === 'EDITAR') {
+        if (operacion.id_OPERACION === 23) {
           this.tienePermisoEditar = true;
         }
-        if (operacion.op_NOMBRE === 'INGRESAR') {
+        if (operacion.id_OPERACION === 25) {
           this.tienePermisoIngresar = true;
         }
       }
