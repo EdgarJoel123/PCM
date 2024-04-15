@@ -19,37 +19,10 @@ export class AspectosTecnicosComponent {
   contadorResultadosGeneracion: number = 0;
   resultadosBusquedaGeneracion: AspectosTecnicos[];
   listadoGeneracion: AspectosTecnicos[];
-  //listadoGeneracionTodos: AspectosTecnicos[];
+ 
 
-
- /* palabraBusquedaSubtrasmicion: string;
-  contadorResultadosSubtrasmicion: number = 0;
-  resultadosBusquedaSubtrasmicion: AspectosTecnicos[];
-  listadoSubtrasmicion: AspectosTecnicos[];
-
-  palabraBusquedaDistribucion: string;
-  contadorResultadosDistribucion: number = 0;
-  resultadosBusquedaDistribucion: AspectosTecnicos[];
-  listadoDistribucion: AspectosTecnicos[];
-
-
-  palabraBusquedaAlumbrado: string;
-  contadorResultadosAlumbrado: number = 0;
-  resultadosBusquedaAlumbrado: AspectosTecnicos[];
-  listadoAlumbrado: AspectosTecnicos[];
-
-
-  palabraBusquedaAcometidasMedidores: string;
-  contadorResultadosAcometidasMedidores: number = 0;
-  resultadosBusquedaAcometidasMedidores: AspectosTecnicos[];
-  listadoAcometidasMedidores: AspectosTecnicos[];
-
-
-  palabraBusquedaInversiones: string;
-  contadorResultadosInversiones: number = 0;
-  resultadosBusquedaInversiones: AspectosTecnicos[];
-  listadoInversiones: AspectosTecnicos[];*/
-
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
 
 
   id_PPRO_CODIGO_UNICO: number;
@@ -105,14 +78,21 @@ export class AspectosTecnicosComponent {
   ngOnInit() {
 
     this.listarGeneracion();
-    /*this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
+   
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 40) {
+        if (operacion.id_OPERACION === 46) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 47) {
+          this.tienePermisoIngresarBoton = true;
+        }
+      }
+    });
 
-    // this.listarGeneracionActual();*/
 
 
 

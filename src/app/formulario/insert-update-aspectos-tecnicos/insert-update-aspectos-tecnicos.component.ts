@@ -76,6 +76,9 @@ export class InsertUpdateAspectosTecnicosComponent {
   disable_paste__PO_IN_SUB_DISTRI_NUEV_P : boolean = false;
 
 
+  tienePermisoCrear: boolean = false;
+  tienePermisoActualizar: boolean = false; 
+
   constructor(
     private cdr: ChangeDetectorRef,
     private serviceAspectosTecnicos: AspectosTecnicosRestService,
@@ -92,6 +95,21 @@ export class InsertUpdateAspectosTecnicosComponent {
     this.buscarDatosAspectosTecnicos();
     this.cargarDatosAmbiental();
 
+
+    
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 40) {
+        if (operacion.id_OPERACION === 48) {
+          this.tienePermisoCrear = true;
+        }
+        if (operacion.id_OPERACION === 49) {
+          this.tienePermisoActualizar = true;
+        }
+      }
+    });
 
   }
 

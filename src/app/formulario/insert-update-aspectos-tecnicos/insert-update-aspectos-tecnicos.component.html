@@ -246,14 +246,17 @@
 
         <div class="submit-container">
           <div class="submit">
-            <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form2.valid"
+            <input  *ngIf="tienePermisoCrear" type="submit" value="Grabar Registro" id="form_button" [disabled]="!form2.valid"
               class="btn btn-primary" />
+
+             
           </div>
 
           <div class="submit">
-            <input type="button" value="Actualizar Registro" [disabled]="!form2.valid"
+            <input  *ngIf="tienePermisoActualizar" type="button" value="Actualizar Registro" [disabled]="!form2.valid"
               (click)="confirmarActualizacion(form2)" class="btn btn-success" />
-          </div>
+         
+            </div>
 
 
 
