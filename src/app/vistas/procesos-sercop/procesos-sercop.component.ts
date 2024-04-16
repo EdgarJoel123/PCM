@@ -24,48 +24,20 @@ export class ProcesosSercopComponent {
   ppro_CODIGO_RAPIDO: string;
   pproser_PROCESOS_SERCOP:string;
   id_PPROSER:number;
-  pproser_FECHA: Date;
+  pproser_FECHA: string;
 
   pproser_CODIGO_SERCOP: string;
 
   id_PPRO_CODIGO_UNICO_procesos_sercop: number;
-  //listadoGeneracionTodos: ProcesosSercop[];
-
-
- /* palabraBusquedaSubtrasmicion: string;
-  contadorResultadosSubtrasmicion: number = 0;
-  resultadosBusquedaSubtrasmicion: ProcesosSercop[];
-  listadoSubtrasmicion: ProcesosSercop[];
-
-  palabraBusquedaDistribucion: string;
-  contadorResultadosDistribucion: number = 0;
-  resultadosBusquedaDistribucion: ProcesosSercop[];
-  listadoDistribucion: ProcesosSercop[];
-
-
-  palabraBusquedaAlumbrado: string;
-  contadorResultadosAlumbrado: number = 0;
-  resultadosBusquedaAlumbrado: ProcesosSercop[];
-  listadoAlumbrado: ProcesosSercop[];
-
-
-  palabraBusquedaAcometidasMedidores: string;
-  contadorResultadosAcometidasMedidores: number = 0;
-  resultadosBusquedaAcometidasMedidores: ProcesosSercop[];
-  listadoAcometidasMedidores: ProcesosSercop[];
-
-
-  palabraBusquedaInversiones: string;
-  contadorResultadosInversiones: number = 0;
-  resultadosBusquedaInversiones: ProcesosSercop[];
-  listadoInversiones: ProcesosSercop[];*/
-
-
 
   id_PPRO_CODIGO_UNICO: number;
 
 
-  modalVisible: boolean = false;
+
+
+  tienePermisoListar: boolean = false;
+  tienePermisoIngresarBoton: boolean = false;
+  tienePermisoEditar: boolean = false;
 
 
 
@@ -122,16 +94,24 @@ export class ProcesosSercopComponent {
   ngOnInit() {
 
     this.listarGeneracion();
-    /*this.listarSubtrasmicion();
-    this.listarDistribucion();
-    this.listarAlumbrado();
-    this.listarAcometidas();
-    this.listarInversiones();
+  
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 49) {
+        if (operacion.id_OPERACION === 71) {
+          this.tienePermisoListar = true;
+        }
+        if (operacion.id_OPERACION === 74) {
+          this.tienePermisoIngresarBoton = true;
+        }
 
-    // this.listarGeneracionActual();*/
-
-
+        if (operacion.id_OPERACION === 73) {
+          this.tienePermisoEditar = true;
+        }
+      }
+    });
 
   }
 
@@ -177,12 +157,22 @@ export class ProcesosSercopComponent {
       })
   }
 
+  formatoFechaActual(): string {
+    const fechaActual = new Date();
+    // Obtener componentes de la fecha
+    const year = fechaActual.getFullYear();
+    const month = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
+    const day = ('0' + fechaActual.getDate()).slice(-2);
+
+    // Formatear la fecha como "yyyy-MM-dd"
+    return `${year}-${month}-${day}`;
+  }
 
   openEditarModalProcesosSercop(procesosSercop: ProcesosSercop) {
 
 
     this.id_PPROSER = procesosSercop.id_PPROSER;
-    this.pproser_FECHA = procesosSercop.pproser_FECHA;
+    this.pproser_FECHA = this.formatoFechaActual();
     this.pproser_CODIGO_SERCOP = procesosSercop.pproser_CODIGO_SERCOP;
     this.pproser_PROCESOS_SERCOP = procesosSercop.pproser_PROCESOS_SERCOP;
 

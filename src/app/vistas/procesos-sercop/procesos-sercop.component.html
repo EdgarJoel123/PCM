@@ -62,7 +62,7 @@
 
                     <div id="ingresar">
                         <div class="col-md-50 d-flex">
-                            <button routerLink="/crearActualizarProcesosSercop" class="btn btn-outline-info my-btn mx-2"
+                            <button *ngIf="tienePermisoIngresarBoton" routerLink="/crearActualizarProcesosSercop" class="btn btn-outline-info my-btn mx-2"
                                 type="submit">Ingresar
                                 los Procesos SERCOP</button>
                         </div>
@@ -87,7 +87,7 @@
 
 
 
-                <div class="table-responsive">
+                <div *ngIf="tienePermisoListar" class="table-responsive">
 
                     <!-- Add these buttons in your template -->
                     <div id="descargar">
@@ -119,16 +119,23 @@
                                 <td>{{procesosSercop.pproser_CODIGO_SERCOP}}</td>
                                 <td>{{procesosSercop.pproser_PROCESOS_SERCOP}}</td>
                                 <td class="d-flex">
-                                    <button class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalProcesosSercop(procesosSercop)"
+                                    <button *ngIf="tienePermisoEditar" class="btn btn-sm btn-outline-primary me-2" (click)="openEditarModalProcesosSercop(procesosSercop)"
                                       data-bs-toggle="modal" data-bs-target="#Editar">
                                       <i class="bi bi-pencil-fill"></i> Editar
                                     </button>
+                                    <div *ngIf="!tienePermisoEditar">
+                                        <p style="color: brown;">No tienes permisos para editar un registro.</p>
+                                      </div>
                                   </td>
                             </tr>
                         </tbody>
                     </table>
 
                 </div>
+
+                <div *ngIf="!tienePermisoListar">
+                    <p style="color: brown;">No tienes permisos para ver este contenido.</p>
+                  </div>
             </div>
         </div>
     </div>
