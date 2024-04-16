@@ -10,6 +10,8 @@ import { ContactoService } from 'src/app/services/contacto.service';
 })
 export class ContactoComponent {
 
+  tienePermisoEnviar: boolean = false;
+ 
 
   formData = {
     firstName: '',
@@ -22,6 +24,25 @@ export class ContactoComponent {
   @ViewChild('contactForm', { static: false }) contactForm: ElementRef;
 
   constructor(private contactFormService: ContactoService) { }
+
+
+  ngOnInit() {
+
+   
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 51) {
+        if (operacion.id_OPERACION === 75) {
+          this.tienePermisoEnviar = true;
+        }
+
+      } 
+      
+    });
+
+  }
 
   onSubmit() {
     this.contactFormService.sendContactForm(this.formData)
