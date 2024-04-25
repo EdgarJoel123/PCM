@@ -29,6 +29,12 @@ export class InsertUpdateResponsableTecnicoComponent {
 
   nombre_proyecto_CODIGO: string;
 
+
+
+
+  tienePermisoIngresar: boolean = false;
+  tienePermisoAsignar: boolean = false;
+
   constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService, private serviceAuto: AutentificacionService){
 
     this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido = this.sharedService.getCodigoUnico();
@@ -52,6 +58,21 @@ export class InsertUpdateResponsableTecnicoComponent {
   ngOnInit(): void {
 
     this.listarResponsableTecnico();
+
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+    // Verificar permisos para cada operación
+    userData.forEach((operacion: any) => {
+      if (operacion.id_MODULO === 39) {
+        if (operacion.id_OPERACION === 76) {
+          this.tienePermisoIngresar = true;
+        }
+        if (operacion.id_OPERACION === 77) {
+          this.tienePermisoAsignar = true;
+        }
+      }
+    });
+
 
     
   }

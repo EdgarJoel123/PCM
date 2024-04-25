@@ -54,10 +54,14 @@
 
 
 
-                <div class="submit-container">
+                <div class="form-container">
                     <div class="submit">
-                        <input type="submit" value="Grabar Registro" id="form_button" [disabled]="!form9.valid"
+                        <input *ngIf="tienePermisoIngresar" type="submit" value="Crear Responsable" id="form_button" [disabled]="!form9.valid"
                             class="btn btn-primary" />
+
+                            <div *ngIf="!tienePermisoIngresar">
+                                <p style="color: brown;">No tienes permisos para ingresar un Responsable Tecnico</p>
+                              </div>
                     </div>
 
 
@@ -85,8 +89,8 @@
 
                 <div class="form-group">
                     <label for="Responsable">Responsable Tecnico</label>
-                    <select id="Responsable" name="Responsable" (change)="seleccionarResponsableTecnico($event)" required>
-                        <option disabled hidden selected>Seleccione un Responsable Tecnico:</option>
+                    <select [required]="true" id="Responsable" name="Responsable" (change)="seleccionarResponsableTecnico($event)" required>
+                        <option  disabled hidden selected>Seleccione un Responsable Tecnico:</option>
                         <option *ngFor="let responsableTecnico of responsables" [value]="responsableTecnico.id_PRETE">
                             {{ responsableTecnico.prete_NOMBRES }} {{ responsableTecnico.prete_APELLIDOS }}
                         </option>
@@ -97,7 +101,7 @@
                     <label for="nombreProyecto">Nombre del Proyecto:</label>
         
                     <!-- Cambia el atributo disabled por readonly -->
-                    <textarea type="text" id="nombreProyecto" placeholder="No editable" name="nombreProyecto"
+                    <textarea type="text" id="nombreProyecto" required placeholder="No editable" name="nombreProyecto"
                       [(ngModel)]="nombre_proyecto_CODIGO" readonly> </textarea>
         
                   </div>
@@ -107,10 +111,14 @@
 
 
 
-                <div class="submit-container">
-                    <div class="submit">
-                        <input type="submit" value="Asignar" id="form_button" [disabled]="!form10.valid"
+                  <div class="form-group">
+                    <div class="form-group">
+                        <input *ngIf="tienePermisoAsignar" type="submit" value="Asignar" id="form_button" [disabled]="!form10.valid"
                             class="btn btn-primary" />
+
+                            <div *ngIf="!tienePermisoAsignar">
+                                <p style="color: brown;">No tienes permisos para asignar un Responsable Tecnico</p>
+                              </div> 
                     </div>
 
                 </div>
