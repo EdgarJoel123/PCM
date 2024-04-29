@@ -21,20 +21,52 @@ export class CreacionDetalleComponent {
   modulos:  Modulo[];
 
 
-
+  resultadosBusquedaDetalle: Detalle[];
 
   constructor(private service: GestionUsuariosService){}
 
 
   
   ngOnInit(): void {
-    // this.currentFormIndex = Number(sessionStorage.getItem('currentFormIndex')) || 0; // Recuperar el índice almacenado o establecerlo en 0 si no hay ninguno
-    
+
+    this.listarTodosDetalle();
+   
      this.cargarRoles();
      this.cargarModulos();
      this.cargarOperaciones();
+
  
    }
+
+   listarTodosDetalle(): void {
+    this.service.getListarDetalle()
+      .subscribe(data => {
+        this.resultadosBusquedaDetalle = data;
+
+      // console.log(this.resultadosBusquedaDetalle);
+       
+      })
+  }
+
+
+  detalleYaAsigando(): boolean{
+
+    const rol = this.idRolSeleccion;
+
+    const modulo = this.idModuloSeleccion;
+
+    const operacion = this.idOperacionSeleccion;
+
+    for (const detalle of this.resultadosBusquedaDetalle) {
+
+      if ((detalle.id_ROL === rol) && (detalle.id_MODULO === modulo) && (detalle.id_OPERACION === operacion) ) {
+        return true;
+      }
+      
+    }
+
+    return false;
+  }
 
 
    cargarRoles(): void {
@@ -43,7 +75,7 @@ export class CreacionDetalleComponent {
         this.roles = data;
       },
       (error) => {
-        console.error('Error al obtener los roles:', error);
+       // console.error('Error al obtener los roles:', error);
       }
     );
   }
@@ -60,7 +92,17 @@ export class CreacionDetalleComponent {
   }
 
   onFormSubmitRolOperacion(form: any) {
+
     if (form.valid) {
+
+if (this.detalleYaAsigando()) {
+
+  alert("Esta operacion ya esta asignada")
+
+  return;
+  
+}
+
       const nuevaRolOperacion = new Detalle(this.idRolSeleccion, this.idOperacionSeleccion);
   
       this.service.insertarRolOpreaciones(nuevaRolOperacion).subscribe(
@@ -89,7 +131,7 @@ export class CreacionDetalleComponent {
         this.operaciones = data;
       },
       (error) => {
-        console.error('Error al obtener las operaciones:', error);
+       // console.error('Error al obtener las operaciones:', error);
       }
     );
   }
@@ -99,14 +141,14 @@ export class CreacionDetalleComponent {
     const target = event.target as HTMLSelectElement;
     this.idRolSeleccion = parseFloat(target.value);
 
-    console.log('Rol seleccionado:', this.idRolSeleccion);
+    //console.log('Rol seleccionado:', this.idRolSeleccion);
   }
 
   seleccionarModulo(event: Event): void {
     const target = event.target as HTMLSelectElement;
     this.idModuloSeleccion = parseFloat(target.value);
   
-    console.log('Módulo seleccionado:', this.idModuloSeleccion);
+   // console.log('Módulo seleccionado:', this.idModuloSeleccion);
   
     // Llamada al servicio para cargar las operaciones del módulo seleccionado
     this.cargarOperaciones(); // Agrega esta línea para cargar las operaciones
@@ -116,7 +158,7 @@ export class CreacionDetalleComponent {
     const target = event.target as HTMLSelectElement;
     this.idOperacionSeleccion = parseFloat(target.value);
 
-    console.log('Operacion selccionada:', this.idOperacionSeleccion);
+   // console.log('Operacion selccionada:', this.idOperacionSeleccion);
     
 
   }

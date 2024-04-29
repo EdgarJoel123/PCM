@@ -147,7 +147,7 @@ export class ListarComponent {
         .subscribe(data => {
           this.listadoDetalle = data;
   
-          //console.log(this.listadoDetalle);
+          console.log(this.listadoDetalle);
   
         })
     }
