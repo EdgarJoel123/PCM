@@ -37,6 +37,7 @@ import { CreacionUsuariosComponent } from './FormularioGestiosUsuarios/creacion-
 import { CreacionModulosComponent } from './FormularioGestiosUsuarios/creacion-modulos/creacion-modulos.component';
 import { CreacionOperacionesComponent } from './FormularioGestiosUsuarios/creacion-operaciones/creacion-operaciones.component';
 import { CreacionRolesComponent } from './FormularioGestiosUsuarios/creacion-roles/creacion-roles.component';
+import { ImporExportExcelComponent } from './formulario/impor-export-excel/impor-export-excel.component';
 
 //const config: SocketIoConfig = { url: 'http://localhost:8080/ejecucionProyecto', options: {} };
 
@@ -75,7 +76,8 @@ import { CreacionRolesComponent } from './FormularioGestiosUsuarios/creacion-rol
     CreacionUsuariosComponent,
     CreacionModulosComponent,
     CreacionOperacionesComponent,
-    CreacionRolesComponent
+    CreacionRolesComponent,
+    ImporExportExcelComponent
     
   ],
   imports: [

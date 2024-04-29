@@ -29,6 +29,7 @@ import { CreacionRolesComponent } from './FormularioGestiosUsuarios/creacion-rol
 import { CreacionOperacionesComponent } from './FormularioGestiosUsuarios/creacion-operaciones/creacion-operaciones.component';
 import { CreacionModulosComponent } from './FormularioGestiosUsuarios/creacion-modulos/creacion-modulos.component';
 import { CreacionUsuariosComponent } from './FormularioGestiosUsuarios/creacion-usuarios/creacion-usuarios.component';
+import { ImporExportExcelComponent } from './formulario/impor-export-excel/impor-export-excel.component';
 
 const routes: Routes = [
 
@@ -62,6 +63,7 @@ const routes: Routes = [
   { path: 'crearOperaciones', component: CreacionOperacionesComponent, canActivate: [AutentificacionService] },
   { path: 'crearModulos', component: CreacionModulosComponent, canActivate: [AutentificacionService] },
   { path: 'crearUsuarios', component: CreacionUsuariosComponent, canActivate: [AutentificacionService] },
+  { path: 'imporExporExcel', component: ImporExportExcelComponent, canActivate: [AutentificacionService] },
   
 ];
 

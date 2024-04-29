@@ -22,6 +22,13 @@
                     <a *ngIf="tienepermisoGestionarUsuarios"  class="nav-link text-uppercase" routerLink="/listarUsuarios">
                         <i class="bi bi-people-fill"></i><span style="margin-left: 5px;"></span> Gestionar Usuarios
                     </a>
+                    
+                </li>
+
+                <li class="nav-item">
+                    <a *ngIf="tienepermisoCrearProyecto" class="nav-link text-uppercase" routerLink="/imporExporExcel">
+                        <i class="bi bi-file-spreadsheet-fill"></i><span style="margin-left: 5px;"></span> Importar Proyecto
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a *ngIf="tienepermisoCrearProyecto" class="nav-link text-uppercase" routerLink="/crear">
