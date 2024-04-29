@@ -19,7 +19,7 @@ export class InsertUpdateResponsableTecnicoComponent {
   prete_DERTAMENTO_PER: String;
   prete_DMPER_NUMERO_ROL: String;
   prete_DMPER_CODIGO: String;
-  responsables : ResponsableTecnico[];
+  responsables: ResponsableTecnico[];
 
   fech_DETALLE_RES: string;
 
@@ -35,7 +35,11 @@ export class InsertUpdateResponsableTecnicoComponent {
   tienePermisoIngresar: boolean = false;
   tienePermisoAsignar: boolean = false;
 
-  constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService, private serviceAuto: AutentificacionService){
+
+  detalleResponsableTecnico: DetalleResponsableTecnico[];
+
+
+  constructor(private servicePrincipal: PrincipalRestService, private sharedService: SharedIDService, private serviceAuto: AutentificacionService) {
 
     this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido = this.sharedService.getCodigoUnico();
     this.nombre_proyecto_CODIGO = this.sharedService.getNombreProyecto();
@@ -44,7 +48,7 @@ export class InsertUpdateResponsableTecnicoComponent {
   }
 
 
-  
+
 
   listarResponsableTecnico() {
     this.servicePrincipal.getListarResponsableTecnico()
@@ -58,6 +62,7 @@ export class InsertUpdateResponsableTecnicoComponent {
   ngOnInit(): void {
 
     this.listarResponsableTecnico();
+    this.listarResponsableTecnicoDetalle();
 
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
@@ -74,7 +79,7 @@ export class InsertUpdateResponsableTecnicoComponent {
     });
 
 
-    
+
   }
 
 
@@ -99,7 +104,7 @@ export class InsertUpdateResponsableTecnicoComponent {
         this.prete_DMPER_NUMERO_ROL,
         this.prete_DMPER_CODIGO
       );
-  
+
       // Verificar existencia del código antes de insertar
       this.servicePrincipal.verificarExistenciaResponsable(this.prete_DMPER_CODIGO).subscribe(
         (existe: boolean) => {
@@ -136,12 +141,54 @@ export class InsertUpdateResponsableTecnicoComponent {
   }
 
 
+
+  listarResponsableTecnicoDetalle() {
+    this.servicePrincipal.getListarResponsableTecnicoDetalle()
+      .subscribe(data => {
+        this.detalleResponsableTecnico = data;
+      // console.log(this.detalleResponsableTecnico);
+
+      })
+  }
+
+
+  responsableYaAsignado(): boolean {
+    // Suponiendo que this.ID_PPRO_CODIGO_UNICO y this.ID_PPRO_CODIGO_UNICO_partida representan el proyecto y la partida que se intenta asignar
+    const proyecto = this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido;
+    const responsable = this.ID_PPRO_CODIGO_UNICO_responsable;
+
+    // Verificar si la partida ya está asignada al proyecto
+    for (const detalle of this.detalleResponsableTecnico) {
+
+    
+   // console.log(detalle.id_PPRO_CODIGO_UNICO);
+
+   // console.log(detalle.id_PRETE);
+    
+    
+      if (detalle.id_PPRO_CODIGO_UNICO === proyecto && detalle.id_PRETE === responsable) {
+        // La partida ya está asignada a este proyecto
+        return true;
+      }
+    }
+
+    // La partida no está asignada a este proyecto
+    return false;
+  }
+
   onSubmitDetalleResponsableTecnico(form: any) {
 
     const fechaDetalleResponsable = new Date(this.fech_DETALLE_RES + 'T00:00:00'); // Agregar la hora para evitar problemas de zona horaria
 
-
     if (form.valid) {
+
+
+      if (this.responsableYaAsignado()) {
+        alert("Este responsable tecnico ya esta asignado");
+        return;
+      }
+
+
       const Detalleresponsable = new DetalleResponsableTecnico(
         this.ID_PPRO_CODIGO_UNICO_responsable_codigo_rapido,
         this.ID_PPRO_CODIGO_UNICO_responsable,
@@ -157,7 +204,7 @@ export class InsertUpdateResponsableTecnicoComponent {
             // Aquí puedes hacer lo que necesites con la respuesta del servidor
           } else {
             alert("NO SE PUDO ASIGNAR EL RESPONSABLE TECNICO");
-           // form.reset();
+            // form.reset();
             //window.location.reload();
           }
         },
@@ -175,16 +222,16 @@ export class InsertUpdateResponsableTecnicoComponent {
     const target = event.target as HTMLSelectElement;
     this.ID_PPRO_CODIGO_UNICO_responsable = parseFloat(target.value);
 
-    console.log(' seleccionado:', this.ID_PPRO_CODIGO_UNICO_responsable);
+    //console.log(' seleccionado:', this.ID_PPRO_CODIGO_UNICO_responsable);
 
   }
 
-  
+
   buscarDatosUser() {
     const username = this.username_name;
-  
+
     const token = this.serviceAuto.getToken();
-  
+
     this.servicePrincipal.getDatosResponsable(username, token).subscribe(
       (response: any) => {
         if (Object.keys(response.DATA).length === 0) {
@@ -198,7 +245,7 @@ export class InsertUpdateResponsableTecnicoComponent {
           this.prete_DERTAMENTO_PER = response.DATA.DEPARTAMENTO;
           this.prete_DMPER_NUMERO_ROL = response.DATA.DMPER_NUMERO_ROL;
           this.prete_DMPER_CODIGO = response.DATA.DMPER_CODIGO;
-  
+
           console.log(this.prete_DMPER_CODIGO);
         }
       },
@@ -209,7 +256,7 @@ export class InsertUpdateResponsableTecnicoComponent {
         this.username_name = "";
       }
     );
-  
+
     console.log(token);
     console.log(username);
   }

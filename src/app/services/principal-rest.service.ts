@@ -47,6 +47,12 @@ export class PrincipalRestService {
 
   apiVerifcarResponsable = 'http://localhost:8080/proyecto';
 
+  apiUrlResponsableTecnicoDetalle = 'http://localhost:8080/proyecto/listarDetalleResponsableTecnico';
+
+
+  getListarResponsableTecnicoDetalle(): Observable<any> {
+    return this.http.get<DetalleResponsableTecnico>(this.apiUrlResponsableTecnicoDetalle);
+  }
 
 
   eliminarProyecto(id: number){
