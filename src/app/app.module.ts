@@ -76,8 +76,7 @@ import { ImporExportExcelComponent } from './formulario/impor-export-excel/impor
     CreacionUsuariosComponent,
     CreacionModulosComponent,
     CreacionOperacionesComponent,
-    CreacionRolesComponent,
-    ImporExportExcelComponent
+    CreacionRolesComponent
     
   ],
   imports: [
